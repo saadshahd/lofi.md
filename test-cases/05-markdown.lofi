@@ -1,0 +1,36 @@
+# Test: Markdown Native
+# Features: md block with tables, lists, dividers, formatting
+
+card
+  heading "Team Members"
+
+  md
+    | Name | Email | Role |
+    |------|-------|------|
+    | Alice | alice@co.com | Admin |
+    | Bob | bob@co.com | Developer |
+    | Carol | carol@co.com | Designer |
+
+  grid flow=row justify=end
+    button "Add Member" primary
+
+card
+  heading "Features"
+
+  md
+    - **Authentication** — OAuth, SSO, MFA
+    - **Authorization** — Role-based access
+    - **Audit logs** — Full history
+
+    ---
+
+    1. Sign up for free
+    2. Connect your tools
+    3. Start collaborating
+
+    ---
+
+    Welcome back, **John**! Check out [what's new](/changelog).
+
+card
+  md: Simple inline markdown with **bold** and *italic*.

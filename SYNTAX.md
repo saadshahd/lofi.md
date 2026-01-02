@@ -1,0 +1,120 @@
+# lofi Syntax Reference
+
+> Version 0.1.0 | LLM-first wireframe DSL
+
+## Quick Start
+
+```lofi
+card
+  heading "Login"
+  input "Email" type=email required
+  input "Password" type=password required
+  button "Sign In" primary
+```
+
+## Rules
+
+1. **2-space indentation** — Children indented 2 spaces from parent
+2. **One element per line** — Each element on its own line
+3. **Attributes follow element** — `element "content" attr=value`
+4. **Quotes for content** — String content in double quotes
+5. **No quotes for keywords** — Boolean attributes have no value
+
+---
+
+## Elements
+
+All keywords map to 3 internal primitives: `container`, `control`, `content`.
+
+### Container
+
+| Element | Attributes |
+|---------|------------|
+| `page` | `"title"` |
+| `section` | `align=center/left/right` |
+| `card` | |
+| `grid` | `flow=row/col`, `cols=N/"1fr 2fr"`, `gap=1-6`, `justify=start/center/end/between`, `align=start/center/end/stretch`, `place=center` |
+| `form` | |
+| `modal` | `title=`, `position=center/left/right/bottom` |
+| `alert` | `type=info/success/warning/error`, `hidden` |
+| `nav` | |
+| `breadcrumb` | `separator=` |
+| `tabs` | |
+| `menu` | |
+
+### Control
+
+| Element | Attributes |
+|---------|------------|
+| `button` | `"text"`, `primary`, `secondary`, `danger`, `disabled` |
+| `input` | `"label"`, `type=text/email/password/tel/url/number/date`, `placeholder=`, `required`, `disabled`, `error` |
+| `checkbox` | `"label"`, `checked`, `disabled` |
+| `radio` | `"label"`, `name=`, `selected`, `disabled` |
+| `dropdown` | `"label"`, `options="a,b,c"`, `placeholder=` |
+| `textarea` | `"label"`, `rows=N`, `placeholder=` |
+| `link` | `"text"`, `href=`, `active` |
+| `tab` | `"label"`, `active` |
+| `accordion` | (children are `section`s with titles) |
+| `toggle` | `"label"`, `checked`, `disabled` |
+| `slider` | `"label"`, `min=`, `max=`, `value=`, `disabled` |
+
+### Content
+
+| Element | Attributes |
+|---------|------------|
+| `heading` | `"text"`, `level=1-6` |
+| `text` | `"content"`, `muted` |
+| `image` | `src=`, `alt=` |
+| `icon` | `name=`, `size=small/medium/large` |
+| `badge` | `"text"`, `type=info/success/warning/error` |
+| `toast` | `type=`, `position=top/bottom` |
+| `avatar` | `src=`, `alt=`, `size=small/medium/large` |
+| `progress` | `value=0-100`, `size=small/medium/large` |
+| `chart` | `"label"`, `type=bar/line/pie/area/donut` |
+
+---
+
+## Blocks
+
+### md (native)
+
+Markdown is native — use for tables, lists, dividers, rich text.
+
+```lofi
+card
+  md
+    | Name | Role |
+    |------|------|
+    | Alice | Admin |
+
+    - Item one
+    - Item two
+
+    ---
+
+    **Bold**, *italic*, [links](url).
+```
+
+Inline: `md: Welcome back, **John**!`
+
+### html (escape hatch)
+
+For elements not in vocabulary:
+
+```lofi
+card
+  html
+    <video src="demo.mp4" controls></video>
+```
+
+---
+
+## CLI
+
+```bash
+lofi input.lofi              # → input.html
+lofi --watch input.lofi      # Watch mode
+lofi --serve input.lofi      # Dev server
+```
+
+Extension: `.lofi`

@@ -1,0 +1,48 @@
+# Test: Complete Form
+# Features: form, input types, checkbox, radio, dropdown, textarea, toggle, slider, accordion, alert, error states
+
+card
+  heading "Account Settings"
+
+  form
+    input "Email" type=email required placeholder="you@example.com"
+    input "Password" type=password required
+    input "Phone" type=tel
+    input "Website" type=url
+    input "Age" type=number
+    input "Birthday" type=date
+
+    input "Username" error
+    alert type=error
+      text "Username already taken"
+
+    textarea "Bio" rows=3 placeholder="Tell us about yourself"
+
+    dropdown "Country" options="USA,Canada,UK,Australia" placeholder="Select country"
+
+    checkbox "Receive notifications" checked
+    checkbox "Enable dark mode"
+
+    radio "Plan" name=plan selected
+    radio "Pro Plan" name=plan
+    radio "Enterprise" name=plan
+
+    toggle "Two-factor auth" checked
+    toggle "Public profile"
+
+    slider "Volume" min=0 max=100 value=50
+
+  accordion
+    section "Advanced Settings"
+      checkbox "Developer mode"
+      input "API Key" placeholder="sk-..."
+
+    section "Danger Zone"
+      button "Delete Account" danger
+
+  alert type=warning hidden
+    text "Unsaved changes"
+
+  grid flow=row justify=between
+    button "Cancel" secondary
+    button "Save Changes" primary disabled
