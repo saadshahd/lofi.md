@@ -1,0 +1,6 @@
+# Test: Unknown keyword (should fail with LOFI_SYNTAX_001)
+# Expected error: Unknown element 'unknownelement'
+
+card
+  heading "Title"
+  unknownelement "This should fail"

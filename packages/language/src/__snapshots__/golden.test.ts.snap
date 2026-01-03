@@ -1,0 +1,1276 @@
+// Bun Snapshot v1, https://bun.sh/docs/test/snapshots
+
+exports[`golden tests valid cases parses 01-grid-layout.lofi 1`] = `
+{
+  "$type": "Document",
+  "elements": [
+    {
+      "$type": "Element",
+      "attrs": [
+        {
+          "$type": "Attribute",
+          "name": "cols",
+          "value": "3",
+        },
+        {
+          "$type": "Attribute",
+          "name": "gap",
+          "value": "2",
+        },
+      ],
+      "children": [
+        {
+          "$type": "Element",
+          "attrs": [],
+          "children": [
+            {
+              "$type": "Element",
+              "attrs": [
+                {
+                  "$type": "Attribute",
+                  "name": "level",
+                  "value": "3",
+                },
+              ],
+              "children": [],
+              "content": "Users",
+              "keyword": "heading",
+            },
+            {
+              "$type": "Element",
+              "attrs": [],
+              "children": [],
+              "content": "1,234",
+              "keyword": "text",
+            },
+            {
+              "$type": "Element",
+              "attrs": [
+                {
+                  "$type": "Attribute",
+                  "name": "type",
+                  "value": "success",
+                },
+              ],
+              "children": [],
+              "content": "+12%",
+              "keyword": "badge",
+            },
+          ],
+          "keyword": "card",
+        },
+        {
+          "$type": "Element",
+          "attrs": [],
+          "children": [
+            {
+              "$type": "Element",
+              "attrs": [
+                {
+                  "$type": "Attribute",
+                  "name": "level",
+                  "value": "3",
+                },
+              ],
+              "children": [],
+              "content": "Revenue",
+              "keyword": "heading",
+            },
+            {
+              "$type": "Element",
+              "attrs": [],
+              "children": [],
+              "content": "$45,678",
+              "keyword": "text",
+            },
+            {
+              "$type": "Element",
+              "attrs": [
+                {
+                  "$type": "Attribute",
+                  "name": "type",
+                  "value": "error",
+                },
+              ],
+              "children": [],
+              "content": "-3%",
+              "keyword": "badge",
+            },
+          ],
+          "keyword": "card",
+        },
+        {
+          "$type": "Element",
+          "attrs": [],
+          "children": [
+            {
+              "$type": "Element",
+              "attrs": [
+                {
+                  "$type": "Attribute",
+                  "name": "level",
+                  "value": "3",
+                },
+              ],
+              "children": [],
+              "content": "Orders",
+              "keyword": "heading",
+            },
+            {
+              "$type": "Element",
+              "attrs": [],
+              "children": [],
+              "content": "892",
+              "keyword": "text",
+            },
+            {
+              "$type": "Element",
+              "attrs": [
+                {
+                  "$type": "Attribute",
+                  "name": "type",
+                  "value": "info",
+                },
+              ],
+              "children": [],
+              "content": "+5%",
+              "keyword": "badge",
+            },
+          ],
+          "keyword": "card",
+        },
+      ],
+      "keyword": "grid",
+    },
+    {
+      "$type": "Element",
+      "attrs": [
+        {
+          "$type": "Attribute",
+          "name": "flow",
+          "value": "row",
+        },
+        {
+          "$type": "Attribute",
+          "name": "justify",
+          "value": "between",
+        },
+        {
+          "$type": "Attribute",
+          "name": "align",
+          "value": "center",
+        },
+      ],
+      "children": [
+        {
+          "$type": "Element",
+          "attrs": [],
+          "children": [],
+          "content": "Left aligned",
+          "keyword": "text",
+        },
+        {
+          "$type": "Element",
+          "attrs": [],
+          "children": [],
+          "content": "Right aligned",
+          "keyword": "text",
+        },
+      ],
+      "keyword": "grid",
+    },
+    {
+      "$type": "Element",
+      "attrs": [
+        {
+          "$type": "Attribute",
+          "name": "flow",
+          "value": "row",
+        },
+        {
+          "$type": "Attribute",
+          "name": "justify",
+          "value": "end",
+        },
+        {
+          "$type": "Attribute",
+          "name": "gap",
+          "value": "2",
+        },
+      ],
+      "children": [
+        {
+          "$type": "Element",
+          "attrs": [],
+          "children": [],
+          "content": "Cancel",
+          "keyword": "button",
+        },
+        {
+          "$type": "Element",
+          "attrs": [
+            {
+              "$type": "Attribute",
+              "name": "primary",
+            },
+          ],
+          "children": [],
+          "content": "Save",
+          "keyword": "button",
+        },
+      ],
+      "keyword": "grid",
+    },
+  ],
+}
+`;
+
+exports[`golden tests valid cases parses 02-page-structure.lofi 1`] = `
+{
+  "$type": "Document",
+  "elements": [
+    {
+      "$type": "Element",
+      "attrs": [],
+      "children": [
+        {
+          "$type": "Element",
+          "attrs": [],
+          "children": [
+            {
+              "$type": "Element",
+              "attrs": [
+                {
+                  "$type": "Attribute",
+                  "name": "active",
+                },
+              ],
+              "children": [],
+              "content": "Home",
+              "keyword": "link",
+            },
+            {
+              "$type": "Element",
+              "attrs": [],
+              "children": [],
+              "content": "Settings",
+              "keyword": "link",
+            },
+            {
+              "$type": "Element",
+              "attrs": [],
+              "children": [],
+              "content": "Profile",
+              "keyword": "link",
+            },
+            {
+              "$type": "Element",
+              "attrs": [
+                {
+                  "$type": "Attribute",
+                  "name": "src",
+                  "value": "/user.png",
+                },
+                {
+                  "$type": "Attribute",
+                  "name": "size",
+                  "value": "small",
+                },
+              ],
+              "children": [],
+              "keyword": "avatar",
+            },
+          ],
+          "keyword": "nav",
+        },
+        {
+          "$type": "Element",
+          "attrs": [
+            {
+              "$type": "Attribute",
+              "name": "align",
+              "value": "center",
+            },
+          ],
+          "children": [
+            {
+              "$type": "Element",
+              "attrs": [
+                {
+                  "$type": "Attribute",
+                  "name": "name",
+                  "value": "inbox",
+                },
+                {
+                  "$type": "Attribute",
+                  "name": "size",
+                  "value": "large",
+                },
+              ],
+              "children": [],
+              "keyword": "icon",
+            },
+            {
+              "$type": "Element",
+              "attrs": [
+                {
+                  "$type": "Attribute",
+                  "name": "level",
+                  "value": "1",
+                },
+              ],
+              "children": [],
+              "content": "Welcome",
+              "keyword": "heading",
+            },
+            {
+              "$type": "Element",
+              "attrs": [],
+              "children": [],
+              "content": "Your dashboard is ready",
+              "keyword": "text",
+            },
+            {
+              "$type": "Element",
+              "attrs": [
+                {
+                  "$type": "Attribute",
+                  "name": "value",
+                  "value": "75",
+                },
+                {
+                  "$type": "Attribute",
+                  "name": "size",
+                  "value": "medium",
+                },
+              ],
+              "children": [],
+              "keyword": "progress",
+            },
+          ],
+          "keyword": "section",
+        },
+        {
+          "$type": "Element",
+          "attrs": [],
+          "children": [
+            {
+              "$type": "Element",
+              "attrs": [
+                {
+                  "$type": "Attribute",
+                  "name": "level",
+                  "value": "2",
+                },
+              ],
+              "children": [],
+              "content": "Analytics",
+              "keyword": "heading",
+            },
+            {
+              "$type": "Element",
+              "attrs": [
+                {
+                  "$type": "Attribute",
+                  "name": "type",
+                  "value": "line",
+                },
+              ],
+              "children": [],
+              "content": "Monthly Revenue",
+              "keyword": "chart",
+            },
+            {
+              "$type": "Element",
+              "attrs": [
+                {
+                  "$type": "Attribute",
+                  "name": "type",
+                  "value": "pie",
+                },
+              ],
+              "children": [],
+              "content": "User Distribution",
+              "keyword": "chart",
+            },
+          ],
+          "keyword": "section",
+        },
+        {
+          "$type": "Element",
+          "attrs": [
+            {
+              "$type": "Attribute",
+              "name": "cols",
+              "value": "3",
+            },
+          ],
+          "children": [
+            {
+              "$type": "Element",
+              "attrs": [],
+              "children": [
+                {
+                  "$type": "Element",
+                  "attrs": [
+                    {
+                      "$type": "Attribute",
+                      "name": "name",
+                      "value": "rocket",
+                    },
+                  ],
+                  "children": [],
+                  "keyword": "icon",
+                },
+                {
+                  "$type": "Element",
+                  "attrs": [
+                    {
+                      "$type": "Attribute",
+                      "name": "level",
+                      "value": "3",
+                    },
+                  ],
+                  "children": [],
+                  "content": "Fast",
+                  "keyword": "heading",
+                },
+                {
+                  "$type": "Element",
+                  "attrs": [],
+                  "children": [],
+                  "content": "Lightning performance",
+                  "keyword": "text",
+                },
+              ],
+              "keyword": "card",
+            },
+            {
+              "$type": "Element",
+              "attrs": [],
+              "children": [
+                {
+                  "$type": "Element",
+                  "attrs": [
+                    {
+                      "$type": "Attribute",
+                      "name": "name",
+                      "value": "shield",
+                    },
+                  ],
+                  "children": [],
+                  "keyword": "icon",
+                },
+                {
+                  "$type": "Element",
+                  "attrs": [
+                    {
+                      "$type": "Attribute",
+                      "name": "level",
+                      "value": "3",
+                    },
+                  ],
+                  "children": [],
+                  "content": "Secure",
+                  "keyword": "heading",
+                },
+                {
+                  "$type": "Element",
+                  "attrs": [],
+                  "children": [],
+                  "content": "Enterprise security",
+                  "keyword": "text",
+                },
+              ],
+              "keyword": "card",
+            },
+            {
+              "$type": "Element",
+              "attrs": [],
+              "children": [
+                {
+                  "$type": "Element",
+                  "attrs": [
+                    {
+                      "$type": "Attribute",
+                      "name": "name",
+                      "value": "heart",
+                    },
+                  ],
+                  "children": [],
+                  "keyword": "icon",
+                },
+                {
+                  "$type": "Element",
+                  "attrs": [
+                    {
+                      "$type": "Attribute",
+                      "name": "level",
+                      "value": "3",
+                    },
+                  ],
+                  "children": [],
+                  "content": "Loved",
+                  "keyword": "heading",
+                },
+                {
+                  "$type": "Element",
+                  "attrs": [],
+                  "children": [],
+                  "content": "Trusted by thousands",
+                  "keyword": "text",
+                },
+              ],
+              "keyword": "card",
+            },
+          ],
+          "keyword": "grid",
+        },
+      ],
+      "content": "Dashboard",
+      "keyword": "page",
+    },
+  ],
+}
+`;
+
+exports[`golden tests valid cases parses 03-form-complete.lofi 1`] = `
+{
+  "$type": "Document",
+  "elements": [
+    {
+      "$type": "Element",
+      "attrs": [],
+      "children": [
+        {
+          "$type": "Element",
+          "attrs": [],
+          "children": [],
+          "content": "Account Settings",
+          "keyword": "heading",
+        },
+        {
+          "$type": "Element",
+          "attrs": [],
+          "children": [
+            {
+              "$type": "Element",
+              "attrs": [
+                {
+                  "$type": "Attribute",
+                  "name": "type",
+                  "value": "email",
+                },
+                {
+                  "$type": "Attribute",
+                  "name": "placeholder",
+                  "value": "you@example.com",
+                },
+              ],
+              "children": [],
+              "content": "Email",
+              "keyword": "input",
+            },
+            {
+              "$type": "Element",
+              "attrs": [
+                {
+                  "$type": "Attribute",
+                  "name": "type",
+                  "value": "password",
+                },
+              ],
+              "children": [],
+              "content": "Password",
+              "keyword": "input",
+            },
+            {
+              "$type": "Element",
+              "attrs": [
+                {
+                  "$type": "Attribute",
+                  "name": "type",
+                  "value": "tel",
+                },
+              ],
+              "children": [],
+              "content": "Phone",
+              "keyword": "input",
+            },
+            {
+              "$type": "Element",
+              "attrs": [
+                {
+                  "$type": "Attribute",
+                  "name": "type",
+                  "value": "url",
+                },
+              ],
+              "children": [],
+              "content": "Website",
+              "keyword": "input",
+            },
+            {
+              "$type": "Element",
+              "attrs": [
+                {
+                  "$type": "Attribute",
+                  "name": "type",
+                  "value": "number",
+                },
+              ],
+              "children": [],
+              "content": "Age",
+              "keyword": "input",
+            },
+            {
+              "$type": "Element",
+              "attrs": [
+                {
+                  "$type": "Attribute",
+                  "name": "type",
+                  "value": "date",
+                },
+              ],
+              "children": [],
+              "content": "Birthday",
+              "keyword": "input",
+            },
+            {
+              "$type": "Element",
+              "attrs": [
+                {
+                  "$type": "Attribute",
+                  "name": "error",
+                },
+              ],
+              "children": [],
+              "content": "Username",
+              "keyword": "input",
+            },
+            {
+              "$type": "Element",
+              "attrs": [
+                {
+                  "$type": "Attribute",
+                  "name": "type",
+                  "value": "error",
+                },
+              ],
+              "children": [
+                {
+                  "$type": "Element",
+                  "attrs": [],
+                  "children": [],
+                  "content": "Username already taken",
+                  "keyword": "text",
+                },
+              ],
+              "keyword": "alert",
+            },
+            {
+              "$type": "Element",
+              "attrs": [
+                {
+                  "$type": "Attribute",
+                  "name": "rows",
+                  "value": "3",
+                },
+                {
+                  "$type": "Attribute",
+                  "name": "placeholder",
+                  "value": "Tell us about yourself",
+                },
+              ],
+              "children": [],
+              "content": "Bio",
+              "keyword": "textarea",
+            },
+            {
+              "$type": "Element",
+              "attrs": [
+                {
+                  "$type": "Attribute",
+                  "name": "options",
+                  "value": "USA,Canada,UK,Australia",
+                },
+                {
+                  "$type": "Attribute",
+                  "name": "placeholder",
+                  "value": "Select country",
+                },
+              ],
+              "children": [],
+              "content": "Country",
+              "keyword": "dropdown",
+            },
+            {
+              "$type": "Element",
+              "attrs": [
+                {
+                  "$type": "Attribute",
+                  "name": "checked",
+                },
+              ],
+              "children": [],
+              "content": "Receive notifications",
+              "keyword": "checkbox",
+            },
+            {
+              "$type": "Element",
+              "attrs": [],
+              "children": [],
+              "content": "Enable dark mode",
+              "keyword": "checkbox",
+            },
+            {
+              "$type": "Element",
+              "attrs": [
+                {
+                  "$type": "Attribute",
+                  "name": "name",
+                  "value": "plan",
+                },
+                {
+                  "$type": "Attribute",
+                  "name": "selected",
+                },
+              ],
+              "children": [],
+              "content": "Plan",
+              "keyword": "radio",
+            },
+            {
+              "$type": "Element",
+              "attrs": [
+                {
+                  "$type": "Attribute",
+                  "name": "name",
+                  "value": "plan",
+                },
+              ],
+              "children": [],
+              "content": "Pro Plan",
+              "keyword": "radio",
+            },
+            {
+              "$type": "Element",
+              "attrs": [
+                {
+                  "$type": "Attribute",
+                  "name": "name",
+                  "value": "plan",
+                },
+              ],
+              "children": [],
+              "content": "Enterprise",
+              "keyword": "radio",
+            },
+            {
+              "$type": "Element",
+              "attrs": [
+                {
+                  "$type": "Attribute",
+                  "name": "checked",
+                },
+              ],
+              "children": [],
+              "content": "Two-factor auth",
+              "keyword": "toggle",
+            },
+            {
+              "$type": "Element",
+              "attrs": [],
+              "children": [],
+              "content": "Public profile",
+              "keyword": "toggle",
+            },
+            {
+              "$type": "Element",
+              "attrs": [
+                {
+                  "$type": "Attribute",
+                  "name": "min",
+                  "value": "0",
+                },
+                {
+                  "$type": "Attribute",
+                  "name": "max",
+                  "value": "100",
+                },
+                {
+                  "$type": "Attribute",
+                  "name": "value",
+                  "value": "50",
+                },
+              ],
+              "children": [],
+              "content": "Volume",
+              "keyword": "slider",
+            },
+          ],
+          "keyword": "form",
+        },
+        {
+          "$type": "Element",
+          "attrs": [],
+          "children": [
+            {
+              "$type": "Element",
+              "attrs": [],
+              "children": [
+                {
+                  "$type": "Element",
+                  "attrs": [],
+                  "children": [],
+                  "content": "Developer mode",
+                  "keyword": "checkbox",
+                },
+                {
+                  "$type": "Element",
+                  "attrs": [
+                    {
+                      "$type": "Attribute",
+                      "name": "placeholder",
+                      "value": "sk-...",
+                    },
+                  ],
+                  "children": [],
+                  "content": "API Key",
+                  "keyword": "input",
+                },
+              ],
+              "content": "Advanced Settings",
+              "keyword": "section",
+            },
+            {
+              "$type": "Element",
+              "attrs": [],
+              "children": [
+                {
+                  "$type": "Element",
+                  "attrs": [
+                    {
+                      "$type": "Attribute",
+                      "name": "danger",
+                    },
+                  ],
+                  "children": [],
+                  "content": "Delete Account",
+                  "keyword": "button",
+                },
+              ],
+              "content": "Danger Zone",
+              "keyword": "section",
+            },
+          ],
+          "keyword": "accordion",
+        },
+        {
+          "$type": "Element",
+          "attrs": [
+            {
+              "$type": "Attribute",
+              "name": "type",
+              "value": "warning",
+            },
+            {
+              "$type": "Attribute",
+              "name": "hidden",
+            },
+          ],
+          "children": [
+            {
+              "$type": "Element",
+              "attrs": [],
+              "children": [],
+              "content": "Unsaved changes",
+              "keyword": "text",
+            },
+          ],
+          "keyword": "alert",
+        },
+        {
+          "$type": "Element",
+          "attrs": [
+            {
+              "$type": "Attribute",
+              "name": "flow",
+              "value": "row",
+            },
+            {
+              "$type": "Attribute",
+              "name": "justify",
+              "value": "between",
+            },
+          ],
+          "children": [
+            {
+              "$type": "Element",
+              "attrs": [
+                {
+                  "$type": "Attribute",
+                  "name": "secondary",
+                },
+              ],
+              "children": [],
+              "content": "Cancel",
+              "keyword": "button",
+            },
+            {
+              "$type": "Element",
+              "attrs": [
+                {
+                  "$type": "Attribute",
+                  "name": "primary",
+                },
+              ],
+              "children": [],
+              "content": "Save Changes",
+              "keyword": "button",
+            },
+          ],
+          "keyword": "grid",
+        },
+      ],
+      "keyword": "card",
+    },
+  ],
+}
+`;
+
+exports[`golden tests valid cases parses 04-modal.lofi 1`] = `
+{
+  "$type": "Document",
+  "elements": [
+    {
+      "$type": "Element",
+      "attrs": [
+        {
+          "$type": "Attribute",
+          "name": "title",
+          "value": "Delete Item?",
+        },
+      ],
+      "children": [
+        {
+          "$type": "Element",
+          "attrs": [],
+          "children": [],
+          "content": "This action cannot be undone.",
+          "keyword": "text",
+        },
+        {
+          "$type": "Element",
+          "attrs": [
+            {
+              "$type": "Attribute",
+              "name": "flow",
+              "value": "row",
+            },
+            {
+              "$type": "Attribute",
+              "name": "justify",
+              "value": "end",
+            },
+            {
+              "$type": "Attribute",
+              "name": "gap",
+              "value": "2",
+            },
+          ],
+          "children": [
+            {
+              "$type": "Element",
+              "attrs": [],
+              "children": [],
+              "content": "Cancel",
+              "keyword": "button",
+            },
+            {
+              "$type": "Element",
+              "attrs": [
+                {
+                  "$type": "Attribute",
+                  "name": "danger",
+                },
+              ],
+              "children": [],
+              "content": "Delete",
+              "keyword": "button",
+            },
+          ],
+          "keyword": "grid",
+        },
+      ],
+      "keyword": "modal",
+    },
+    {
+      "$type": "Element",
+      "attrs": [
+        {
+          "$type": "Attribute",
+          "name": "title",
+          "value": "Settings",
+        },
+        {
+          "$type": "Attribute",
+          "name": "position",
+          "value": "right",
+        },
+      ],
+      "children": [
+        {
+          "$type": "Element",
+          "attrs": [
+            {
+              "$type": "Attribute",
+              "name": "level",
+              "value": "3",
+            },
+          ],
+          "children": [],
+          "content": "Preferences",
+          "keyword": "heading",
+        },
+        {
+          "$type": "Element",
+          "attrs": [],
+          "children": [],
+          "content": "Dark mode",
+          "keyword": "toggle",
+        },
+        {
+          "$type": "Element",
+          "attrs": [],
+          "children": [],
+          "content": "Notifications",
+          "keyword": "toggle",
+        },
+        {
+          "$type": "Element",
+          "attrs": [
+            {
+              "$type": "Attribute",
+              "name": "secondary",
+            },
+          ],
+          "children": [],
+          "content": "Close",
+          "keyword": "button",
+        },
+      ],
+      "keyword": "modal",
+    },
+    {
+      "$type": "Element",
+      "attrs": [
+        {
+          "$type": "Attribute",
+          "name": "title",
+          "value": "Quick Actions",
+        },
+        {
+          "$type": "Attribute",
+          "name": "position",
+          "value": "bottom",
+        },
+      ],
+      "children": [
+        {
+          "$type": "Element",
+          "attrs": [
+            {
+              "$type": "Attribute",
+              "name": "cols",
+              "value": "3",
+            },
+          ],
+          "children": [
+            {
+              "$type": "Element",
+              "attrs": [],
+              "children": [],
+              "content": "New File",
+              "keyword": "button",
+            },
+            {
+              "$type": "Element",
+              "attrs": [],
+              "children": [],
+              "content": "Upload",
+              "keyword": "button",
+            },
+            {
+              "$type": "Element",
+              "attrs": [],
+              "children": [],
+              "content": "Share",
+              "keyword": "button",
+            },
+          ],
+          "keyword": "grid",
+        },
+      ],
+      "keyword": "modal",
+    },
+    {
+      "$type": "Element",
+      "attrs": [
+        {
+          "$type": "Attribute",
+          "name": "type",
+          "value": "success",
+        },
+        {
+          "$type": "Attribute",
+          "name": "position",
+          "value": "top",
+        },
+      ],
+      "children": [
+        {
+          "$type": "Element",
+          "attrs": [],
+          "children": [],
+          "content": "Changes saved",
+          "keyword": "text",
+        },
+      ],
+      "keyword": "toast",
+    },
+    {
+      "$type": "Element",
+      "attrs": [
+        {
+          "$type": "Attribute",
+          "name": "type",
+          "value": "error",
+        },
+        {
+          "$type": "Attribute",
+          "name": "position",
+          "value": "bottom",
+        },
+      ],
+      "children": [
+        {
+          "$type": "Element",
+          "attrs": [],
+          "children": [],
+          "content": "Something went wrong",
+          "keyword": "text",
+        },
+      ],
+      "keyword": "toast",
+    },
+  ],
+}
+`;
+
+exports[`golden tests valid cases parses 05-markdown.lofi 1`] = `
+{
+  "$type": "Document",
+  "elements": [
+    {
+      "$type": "Element",
+      "attrs": [],
+      "children": [
+        {
+          "$type": "Element",
+          "attrs": [],
+          "children": [],
+          "content": "Team Members",
+          "keyword": "heading",
+        },
+        {
+          "$type": "MdBlock",
+          "lines": [
+            "| Name | Email | Role |",
+            "|------|-------|------|",
+            "| Alice | alice@co.com | Admin |",
+            "| Bob | bob@co.com | Developer |",
+            "| Carol | carol@co.com | Designer |",
+          ],
+        },
+        {
+          "$type": "Element",
+          "attrs": [
+            {
+              "$type": "Attribute",
+              "name": "flow",
+              "value": "row",
+            },
+            {
+              "$type": "Attribute",
+              "name": "justify",
+              "value": "end",
+            },
+          ],
+          "children": [
+            {
+              "$type": "Element",
+              "attrs": [
+                {
+                  "$type": "Attribute",
+                  "name": "primary",
+                },
+              ],
+              "children": [],
+              "content": "Add Member",
+              "keyword": "button",
+            },
+          ],
+          "keyword": "grid",
+        },
+      ],
+      "keyword": "card",
+    },
+    {
+      "$type": "Element",
+      "attrs": [],
+      "children": [
+        {
+          "$type": "Element",
+          "attrs": [],
+          "children": [],
+          "content": "Features",
+          "keyword": "heading",
+        },
+        {
+          "$type": "MdBlock",
+          "lines": [
+            "- **Authentication** — OAuth, SSO, MFA",
+            "- **Authorization** — Role-based access",
+            "- **Audit logs** — Full history",
+            "**Getting Started:**",
+            "- Sign up for free",
+            "- Connect your tools",
+            "- Start collaborating",
+            "Welcome back, **John**! Check out [what's new](/changelog).",
+          ],
+        },
+      ],
+      "keyword": "card",
+    },
+    {
+      "$type": "Element",
+      "attrs": [],
+      "children": [
+        {
+          "$type": "MdBlock",
+          "content": "Simple inline markdown with **bold** and *italic*.",
+          "lines": [],
+        },
+      ],
+      "keyword": "card",
+    },
+  ],
+}
+`;
+
+exports[`golden tests invalid cases rejects unknown-keyword.lofi 1`] = `
+[
+  "Expecting token of type 'DEDENT' but found \`unknownelement "This should fail"\`.",
+]
+`;

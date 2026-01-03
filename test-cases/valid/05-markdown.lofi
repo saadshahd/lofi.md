@@ -11,7 +11,7 @@ card
     | Bob | bob@co.com | Developer |
     | Carol | carol@co.com | Designer |
 
-  grid flow=row justify=end
+  grid flow="row" justify="end"
     button "Add Member" primary
 
 card
@@ -24,9 +24,10 @@ card
 
     ---
 
-    1. Sign up for free
-    2. Connect your tools
-    3. Start collaborating
+    **Getting Started:**
+    - Sign up for free
+    - Connect your tools
+    - Start collaborating
 
     ---
 

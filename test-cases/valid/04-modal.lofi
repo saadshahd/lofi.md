@@ -4,24 +4,24 @@
 modal title="Delete Item?"
   text "This action cannot be undone."
 
-  grid flow=row justify=end gap=2
+  grid flow="row" justify="end" gap="2"
     button "Cancel"
     button "Delete" danger
 
-modal title="Settings" position=right
-  heading "Preferences" level=3
+modal title="Settings" position="right"
+  heading "Preferences" level="3"
   toggle "Dark mode"
   toggle "Notifications"
   button "Close" secondary
 
-modal title="Quick Actions" position=bottom
-  grid cols=3
+modal title="Quick Actions" position="bottom"
+  grid cols="3"
     button "New File"
     button "Upload"
     button "Share"
 
-toast type=success position=top
+toast type="success" position="top"
   text "Changes saved"
 
-toast type=error position=bottom
+toast type="error" position="bottom"
   text "Something went wrong"

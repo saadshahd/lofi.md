@@ -4,78 +4,6 @@
 
 ## Phase 1: Ruthless MVP
 
-### Identity
-
-| Aspect        | Value   |
-| ------------- | ------- |
-| **Package**   | `lofi`  |
-| **Extension** | `.lofi` |
-| **CLI**       | `lofi`  |
-| **Brand**     | lofi.md |
-
----
-
-### Tech Stack (Decided)
-
-| Component           | Choice  | Rationale                                                |
-| ------------------- | ------- | -------------------------------------------------------- |
-| **Parser**          | Langium | LSP for free, IndentationAwareTokenBuilder, future-proof |
-| **Package manager** | bun     | Fast, simple, matches moo.md ecosystem                   |
-| **Bundler**         | tsup    | Simple, fast, ESM + CJS                                  |
-| **Test runner**     | Vitest  | Fast, ESM-native, good DX                                |
-| **Linting**         | Biome   | Fast, all-in-one (format + lint)                         |
-| **Markdown parser** | remark  | For `md` blocks, battle-tested                           |
-
----
-
-### Monorepo Structure
-
-```
-lofi/
-├── .claude/
-│   ├── CLAUDE.md              # Project instructions for Claude
-│   └── rules/
-│       ├── langium.md         # Langium grammar patterns
-│       ├── testing.md         # Testing philosophy + colocation
-│       ├── lofi-syntax.md     # DSL domain knowledge
-│       ├── output.md          # @lofi/html renderer patterns
-│       ├── storybook.md       # Visual regression patterns
-│       ├── ci.md              # GitHub Actions patterns
-│       └── errors.md          # Error taxonomy (LOFI_*)
-├── packages/
-│   ├── language/              # Parser: Langium grammar → AST
-│   │   ├── src/
-│   │   │   ├── lofi.langium   # Grammar definition
-│   │   │   └── index.ts       # parse() + AST types
-│   │   └── package.json
-│   ├── html/                  # Renderer: AST → HTML + Tailwind
-│   │   ├── src/
-│   │   │   ├── index.ts       # generate()
-│   │   │   └── classes.ts     # CVA class mappings
-│   │   └── package.json
-│   ├── cli/                   # CLI tool
-│   │   ├── src/
-│   │   │   ├── index.ts       # CLI entry
-│   │   │   └── server.ts      # Dev server with hot reload
-│   │   └── package.json
-│   └── vscode/                # VS Code extension (Milestone 6)
-│       └── package.json
-├── apps/
-│   └── storybook/             # Visual regression testing
-│       ├── .storybook/
-│       └── stories/
-├── test-cases/                # Validation test cases (.lofi files)
-├── examples/                  # Canonical examples
-├── PHILOSOPHY.md
-├── SYNTAX.md
-├── ROADMAP.md
-├── biome.json
-├── package.json               # Workspace root
-└── tsconfig.json
-```
-
----
-
 ### Milestones
 
 #### Milestone 1: Syntax Validation ✅
@@ -129,7 +57,7 @@ lofi/
 
 **Error Recovery & Validation** ✅
 
-- [x] Error codes infrastructure (LOFI_INDENT_*, LOFI_SYNTAX_*)
+- [x] Error codes infrastructure (LOFI*INDENT*_, LOFI*SYNTAX*_)
 - [x] LofiTokenBuilder for indentation error wrapping
 - [x] LofiDocumentValidator for parser error enhancement
 - [x] LofiError interface with suggestion/example fields
@@ -138,8 +66,11 @@ lofi/
 
 **Remaining Work**
 
-- [ ] Golden tests with `test-cases/*.lofi` files
+- [x] Golden tests with `test-cases/*.lofi` files
 - [ ] Fix: Attribute parsing fails when unquoted ID value followed by boolean attr (`type=email required` → use `type="email" required`)
+- [ ] Fix: Numbered lists in md blocks fail — lines starting with numbers (`1. Item`) tokenized as NUMBER instead of RAW_LINE
+- [ ] Fix: Tab indentation not rejected — WS terminal `/[\t ]+/` accepts tabs; LofiTokenBuilder validation not triggering
+- [ ] Update golden test snapshots after fixing above bugs
 
 #### Milestone 4: HTML Renderer (@lofi/html)
 
@@ -194,37 +125,6 @@ See [DECISIONS.md](DECISIONS.md) for full decision log including deferred decisi
 ## Langium Grammar (Implemented)
 
 See `packages/language/src/lofi.langium` for the full grammar. Key structure:
-
-```langium
-grammar Lofi
-
-entry Document:
-    elements+=TopLevelElement*;
-
-Element:
-    keyword=KEYWORD content=STRING? attrs+=Attribute*
-    (INDENT children+=ChildElement* DEDENT)?;
-
-MdBlock:
-    'md' (
-        ':' content=RAW_LINE |
-        INDENT lines+=RAW_LINE* DEDENT
-    );
-
-HtmlBlock:
-    'html' INDENT lines+=RAW_LINE* DEDENT;
-
-Attribute:
-    name=ID '=' value=(STRING | NUMBER | ID) |
-    name=ID;
-
-// 31 element keywords (containers, controls, content)
-terminal KEYWORD: /page|section|card|.../;
-
-// RAW_LINE captures md/html block content via negative lookahead
-// SYNC: Keywords duplicated in KEYWORD and RAW_LINE patterns
-terminal RAW_LINE: /(?!keywords...)(?!md|html...)...+/;
-```
 
 ---
 
