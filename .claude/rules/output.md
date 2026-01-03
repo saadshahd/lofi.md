@@ -16,19 +16,24 @@ lofi DSL → Langium Parser → AST → HTML Generator → HTML + Tailwind class
 
 - **Output:** Semantic HTML with Tailwind classes
 - **No React runtime** — Pure HTML for preview
-- **CVA pattern in generator** — Variant logic resolved at generation time
+- **Use CVA directly** — Runtime library, no build step required
 
 ```typescript
-// Variant pattern (no CVA dependency)
-function buttonClasses(variant: 'primary' | 'secondary' | 'danger'): string {
-  const base = 'rounded-md border px-4 py-2 font-medium shadow-sm';
-  const variants = {
-    primary: 'bg-primary text-primary-foreground hover:bg-primary/90',
-    secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
-    danger: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
-  };
-  return `${base} ${variants[variant]}`;
-}
+// CVA is a runtime library - use it directly
+import { cva } from 'class-variance-authority';
+
+const button = cva('rounded-md border px-4 py-2 font-medium shadow-sm', {
+  variants: {
+    intent: {
+      primary: 'bg-primary text-primary-foreground hover:bg-primary/90',
+      secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+      danger: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
+    },
+  },
+  defaultVariants: { intent: 'secondary' },
+});
+
+// In generator: button({ intent: 'primary' }) → class string
 ```
 
 ## Tailwind CSS Bundling
