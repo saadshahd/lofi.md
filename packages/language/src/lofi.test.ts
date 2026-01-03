@@ -258,4 +258,25 @@ card
       }
     });
   });
+
+  describe("indentation errors", () => {
+    it("rejects tab indentation with LOFI_INDENT_002", async () => {
+      await expect(parse("\tcard")).rejects.toThrow("LOFI_INDENT_002");
+    });
+
+    it("rejects mixed tabs and spaces with LOFI_INDENT_003", async () => {
+      await expect(parse("  \tcard")).rejects.toThrow("LOFI_INDENT_003");
+    });
+
+    it("rejects odd-space indentation with LOFI_INDENT_001", async () => {
+      await expect(parse("card\n   heading")).rejects.toThrow(
+        "LOFI_INDENT_001",
+      );
+    });
+
+    it("accepts 2-space indentation", async () => {
+      const doc = await parse("card\n  heading");
+      expect(doc.elements).toHaveLength(1);
+    });
+  });
 });

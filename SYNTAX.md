@@ -7,18 +7,18 @@
 ```lofi
 card
   heading "Login"
-  input "Email" type=email required
-  input "Password" type=password required
-  button "Sign In" primary
+  input "Email" type=email required=1
+  input "Password" type=password required=1
+  button "Sign In" primary=1
 ```
 
 ## Rules
 
-1. **2-space indentation** — Children indented 2 spaces from parent
+1. **2-space indentation** — Children indented 2 spaces from parent (tabs rejected; indentation is structure, tab width is ambiguous)
 2. **One element per line** — Each element on its own line
 3. **Attributes follow element** — `element "content" attr=value`
 4. **Quotes for content** — String content in double quotes
-5. **No quotes for keywords** — Boolean attributes have no value
+5. **All attributes use `=`** — Boolean attributes use `=1` (e.g., `primary=1`, `required=1`)
 
 ---
 
@@ -36,7 +36,7 @@ All keywords map to 3 internal primitives: `container`, `control`, `content`.
 | `grid` | `flow=row/col`, `cols=N/"1fr 2fr"`, `gap=1-6`, `justify=start/center/end/between`, `align=start/center/end/stretch`, `place=center` |
 | `form` | |
 | `modal` | `title=`, `position=center/left/right/bottom` |
-| `alert` | `type=info/success/warning/error`, `hidden` |
+| `alert` | `type=info/success/warning/error`, `hidden=1` |
 | `nav` | |
 | `breadcrumb` | `separator=` |
 | `tabs` | |
@@ -46,24 +46,24 @@ All keywords map to 3 internal primitives: `container`, `control`, `content`.
 
 | Element | Attributes |
 |---------|------------|
-| `button` | `"text"`, `primary`, `secondary`, `danger`, `disabled` |
-| `input` | `"label"`, `type=text/email/password/tel/url/number/date`, `placeholder=`, `required`, `disabled`, `error` |
-| `checkbox` | `"label"`, `checked`, `disabled` |
-| `radio` | `"label"`, `name=`, `selected`, `disabled` |
+| `button` | `"text"`, `primary=1`, `secondary=1`, `danger=1`, `disabled=1` |
+| `input` | `"label"`, `type=text/email/password/tel/url/number/date`, `placeholder=`, `required=1`, `disabled=1`, `error=1` |
+| `checkbox` | `"label"`, `checked=1`, `disabled=1` |
+| `radio` | `"label"`, `name=`, `selected=1`, `disabled=1` |
 | `dropdown` | `"label"`, `options="a,b,c"`, `placeholder=` |
 | `textarea` | `"label"`, `rows=N`, `placeholder=` |
-| `link` | `"text"`, `href=`, `active` |
-| `tab` | `"label"`, `active` |
+| `link` | `"text"`, `href=`, `active=1` |
+| `tab` | `"label"`, `active=1` |
 | `accordion` | (children are `section`s with titles) |
-| `toggle` | `"label"`, `checked`, `disabled` |
-| `slider` | `"label"`, `min=`, `max=`, `value=`, `disabled` |
+| `toggle` | `"label"`, `checked=1`, `disabled=1` |
+| `slider` | `"label"`, `min=`, `max=`, `value=`, `disabled=1` |
 
 ### Content
 
 | Element | Attributes |
 |---------|------------|
 | `heading` | `"text"`, `level=1-6` |
-| `text` | `"content"`, `muted` |
+| `text` | `"content"`, `muted=1` |
 | `image` | `src=`, `alt=` |
 | `icon` | `name=`, `size=small/medium/large` |
 | `badge` | `"text"`, `type=info/success/warning/error` |

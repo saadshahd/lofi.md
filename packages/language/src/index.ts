@@ -97,13 +97,19 @@ const services = createLofiServices();
 export async function parse(input: string): Promise<Document> {
   const helper = parseHelper<Document>(services.Lofi);
   const doc = await helper(input);
-  const errors = doc.parseResult.parserErrors;
+  const parserErrors = doc.parseResult.parserErrors;
+  const lexerErrors = doc.parseResult.lexerErrors;
 
-  if (errors.length > 0) {
-    const errorMessages = errors
-      .map((e) => `Line ${e.token.startLine ?? "?"}: ${e.message}`)
-      .join("\n");
-    throw new Error(`Parse errors:\n${errorMessages}`);
+  if (parserErrors.length > 0 || lexerErrors.length > 0) {
+    const parserMessages = parserErrors.map(
+      (e) => `Line ${e.token.startLine ?? "?"}: ${e.message}`,
+    );
+    const lexerMessages = lexerErrors.map(
+      (e) => `Line ${e.line ?? "?"}: ${e.message}`,
+    );
+    throw new Error(
+      `Parse errors:\n${[...parserMessages, ...lexerMessages].join("\n")}`,
+    );
   }
 
   const result = doc.parseResult.value;

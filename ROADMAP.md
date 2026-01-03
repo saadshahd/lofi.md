@@ -69,7 +69,7 @@
 - [x] Golden tests with `test-cases/*.lofi` files
 - [x] Fix: Attribute parsing — all attrs now require `=` (e.g. `primary=1`), ATTR_NAME terminal for disambiguation
 - [x] Fix: Numbered lists in md blocks — LofiLexer post-lexer collapsing converts tokens to RAW_LINE
-- [ ] Fix: Tab indentation not rejected — WS terminal `/[\t ]+/` accepts tabs; LofiTokenBuilder validation not triggering
+- [x] Fix: Tab indentation not rejected — parse() now surfaces lexerErrors
 - [x] Update golden test snapshots
 
 #### Milestone 4: HTML Renderer (@lofi/html)
@@ -107,12 +107,7 @@
 - [x] PHILOSOPHY.md
 - [ ] SYNTAX.md (complete reference)
 - [ ] README.md (quick start)
-- [ ] 5 canonical examples
-
-#### Milestone 8: Upstream Reference
-
-- [ ] Document original wiremd nesting issue
-- [ ] Note: lofi syntax solves this with indentation
+- [x] 5 canonical examples
 
 ---
 
