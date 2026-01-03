@@ -23,14 +23,14 @@ describe("lofi grammar", () => {
     });
 
     it("parses element with boolean attribute", async () => {
-      const doc = await parse('button "Save" primary');
+      const doc = await parse('button "Save" primary=1');
       const el = doc.elements[0];
       if (isElement(el)) {
         expect(el.keyword).toBe("button");
         expect(el.content).toBe("Save");
         expect(el.attrs).toHaveLength(1);
         expect(el.attrs[0].name).toBe("primary");
-        expect(el.attrs[0].value).toBeUndefined();
+        expect(el.attrs[0].value).toBe("1");
       }
     });
 
@@ -178,13 +178,16 @@ card
   });
 
   describe("md blocks", () => {
-    it("parses inline md", async () => {
-      const doc = await parse("md: Welcome, **user**!");
+    it("parses md block form", async () => {
+      const input = `md
+  Welcome, **user**!`;
+      const doc = await parse(input);
       expect(doc.elements).toHaveLength(1);
       const block = doc.elements[0];
       expect(isMdBlock(block)).toBe(true);
       if (isMdBlock(block)) {
-        expect(block.content).toBe("Welcome, **user**!");
+        expect(block.lines).toHaveLength(1);
+        expect(block.lines[0]).toBe("Welcome, **user**!");
       }
     });
 
@@ -244,8 +247,15 @@ card
   });
 
   describe("error handling", () => {
-    it("throws on unknown keyword", async () => {
-      await expect(parse("unknownelement")).rejects.toThrow();
+    it("parses unknown keyword (validation catches it later)", async () => {
+      // Grammar accepts any ID as element keyword
+      // Validator checks against VALID_KEYWORDS
+      const doc = await parse("unknownelement");
+      expect(doc.elements).toHaveLength(1);
+      const el = doc.elements[0];
+      if (isElement(el)) {
+        expect(el.keyword).toBe("unknownelement");
+      }
     });
   });
 });

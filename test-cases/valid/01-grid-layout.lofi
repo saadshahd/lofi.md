@@ -23,4 +23,4 @@ grid flow="row" justify="between" align="center"
 
 grid flow="row" justify="end" gap="2"
   button "Cancel"
-  button "Save" primary
+  button "Save" primary=1

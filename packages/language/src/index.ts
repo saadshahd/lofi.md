@@ -12,12 +12,13 @@ import {
   LofiGeneratedSharedModule,
 } from "./generated/module.js";
 import { LofiModule, registerLofiValidationChecks } from "./lofi-module.js";
-import type {
-  Document,
-  Element,
-  Attribute,
-  MdBlock,
-  HtmlBlock,
+import {
+  type Document,
+  type Element,
+  type Attribute,
+  type MdBlock,
+  type HtmlBlock,
+  isElement,
 } from "./generated/ast.js";
 
 // Re-export error types for consumers
@@ -105,7 +106,30 @@ export async function parse(input: string): Promise<Document> {
     throw new Error(`Parse errors:\n${errorMessages}`);
   }
 
-  return doc.parseResult.value;
+  const result = doc.parseResult.value;
+  normalizeAttrNames(result);
+  return result;
+}
+
+function normalizeAttrNames(doc: Document): void {
+  for (const el of doc.elements) {
+    if (isElement(el)) {
+      normalizeElement(el);
+    }
+  }
+}
+
+function normalizeElement(el: Element): void {
+  for (const attr of el.attrs) {
+    if (attr.name.endsWith("=")) {
+      (attr as { name: string }).name = attr.name.slice(0, -1);
+    }
+  }
+  for (const child of el.children) {
+    if (isElement(child)) {
+      normalizeElement(child);
+    }
+  }
 }
 
 /**

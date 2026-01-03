@@ -9,11 +9,12 @@ import * as langium from 'langium';
 export const LofiTerminals = {
     INDENT: /synthetic:indent/,
     DEDENT: /synthetic:dedent/,
-    KEYWORD: /page|section|card|grid|modal|nav|tabs|menu|form|alert|breadcrumb|button|input|checkbox|radio|dropdown|textarea|link|tab|accordion|toggle|slider|heading|text|image|icon|badge|toast|avatar|progress|chart/,
     STRING: /"[^"]*"/,
     NUMBER: /[0-9]+/,
-    RAW_LINE: /(?!(?:page|section|card|grid|modal|nav|tabs|menu|form|alert|breadcrumb|button|input|checkbox|radio|dropdown|textarea|link|tab|accordion|toggle|slider|heading|text|image|icon|badge|toast|avatar|progress|chart)(?:\s*"|\s+[a-zA-Z_][a-zA-Z0-9_-]*=))(?!(?:md|html)(?:\s*:|\s))(?!#)(?!=)(?!:)(?!")(?![a-zA-Z_][a-zA-Z0-9_-]*\s*=)(?=[^\r\n]*[^a-zA-Z0-9_\-\r\n])[^\r\n]+/,
+    BOOLEAN: /true|false|yes|no/,
+    ATTR_NAME: /[a-zA-Z_][a-zA-Z0-9_-]*=/,
     ID: /[a-zA-Z_][a-zA-Z0-9_-]*/,
+    RAW_LINE: /(?![a-zA-Z_"0-9=:#])[^\r\n]+/,
     WS: /[\t ]+/,
     NL: /[\r\n]+/,
     COMMENT: /#[^\r\n]*/,
@@ -22,8 +23,6 @@ export const LofiTerminals = {
 export type LofiTerminalNames = keyof typeof LofiTerminals;
 
 export type LofiKeywordNames =
-    | ":"
-    | "="
     | "html"
     | "md";
 
@@ -45,11 +44,17 @@ export function isTopLevelElement(item: unknown): item is TopLevelElement {
     return reflection.isInstance(item, TopLevelElement);
 }
 
+/*
+ * Attribute parsing:
+ * - All attrs require = sign: name=value
+ * - Boolean attrs use =true, =false, =1, =0, =yes, =no
+ * - This eliminates ambiguity between attrs and sibling elements
+ */
 export interface Attribute extends langium.AstNode {
     readonly $container: Element;
     readonly $type: 'Attribute';
     name: string;
-    value?: string;
+    value: string;
 }
 
 export const Attribute = 'Attribute';
@@ -99,7 +104,6 @@ export function isHtmlBlock(item: unknown): item is HtmlBlock {
 export interface MdBlock extends langium.AstNode {
     readonly $container: Document | Element;
     readonly $type: 'MdBlock';
-    content?: string;
     lines: Array<string>;
 }
 
@@ -189,7 +193,6 @@ export class LofiAstReflection extends langium.AbstractAstReflection {
                 return {
                     name: MdBlock,
                     properties: [
-                        { name: 'content' },
                         { name: 'lines', defaultValue: [] }
                     ]
                 };

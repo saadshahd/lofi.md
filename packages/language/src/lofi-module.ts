@@ -1,8 +1,7 @@
-import {
-  type Module,
-  type LangiumCoreServices,
-  type PartialLangiumCoreServices,
-  IndentationAwareLexer,
+import type {
+  Module,
+  LangiumCoreServices,
+  PartialLangiumCoreServices,
 } from "langium";
 import { LofiTokenBuilder } from "./validation/lofi-token-builder.js";
 import { LofiDocumentValidator } from "./validation/lofi-document-validator.js";
@@ -10,11 +9,12 @@ import {
   LofiValidator,
   registerLofiValidation,
 } from "./validation/lofi-validator.js";
+import { LofiLexer } from "./lofi-lexer.js";
 
 /**
  * Custom module for lofi language that enables:
  * - Indentation-sensitive parsing via LofiTokenBuilder
- * - Enhanced error messages with LOFI_* error codes
+ * - Enhanced error messages with LOFI_* error codes via LofiLexer
  * - Semantic validation of Element keywords
  */
 export const LofiModule: Module<
@@ -23,7 +23,7 @@ export const LofiModule: Module<
 > = {
   parser: {
     TokenBuilder: () => new LofiTokenBuilder(),
-    Lexer: (services) => new IndentationAwareLexer(services),
+    Lexer: (services) => new LofiLexer(services),
   },
   validation: {
     DocumentValidator: (services) => new LofiDocumentValidator(services),

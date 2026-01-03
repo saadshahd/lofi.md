@@ -12,7 +12,7 @@ card
     input "Age" type="number"
     input "Birthday" type="date"
 
-    input "Username" error
+    input "Username" error=1
     alert type="error"
       text "Username already taken"
 
@@ -20,14 +20,14 @@ card
 
     dropdown "Country" options="USA,Canada,UK,Australia" placeholder="Select country"
 
-    checkbox "Receive notifications" checked
+    checkbox "Receive notifications" checked=1
     checkbox "Enable dark mode"
 
-    radio "Plan" name="plan" selected
+    radio "Plan" name="plan" selected=1
     radio "Pro Plan" name="plan"
     radio "Enterprise" name="plan"
 
-    toggle "Two-factor auth" checked
+    toggle "Two-factor auth" checked=1
     toggle "Public profile"
 
     slider "Volume" min="0" max="100" value="50"
@@ -38,11 +38,11 @@ card
       input "API Key" placeholder="sk-..."
 
     section "Danger Zone"
-      button "Delete Account" danger
+      button "Delete Account" danger=1
 
-  alert type="warning" hidden
+  alert type="warning" hidden=1
     text "Unsaved changes"
 
   grid flow="row" justify="between"
-    button "Cancel" secondary
-    button "Save Changes" primary
+    button "Cancel" secondary=1
+    button "Save Changes" primary=1

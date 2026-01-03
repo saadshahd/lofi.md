@@ -1,6 +1,23 @@
 /*
  * lofi.md Grammar
- * SYNC: If adding keywords, update both KEYWORD and RAW_LINE patterns
+ *
+ * Design: ID for all identifiers, semantic validation for keywords
+ * - All element names are ID tokens (no KEYWORD terminal)
+ * - ATTR_NAME terminal includes '=' for lexer-level disambiguation
+ * - Validator checks element.keyword ∈ VALID_KEYWORDS (single source of truth)
+ * - All attrs require = (eliminates boolean shorthand ambiguity)
+ * - Post-lexer collapsing handles raw content in md/html blocks
+ *
+ * Architecture (Hickey-compliant):
+ * - Lexer: produces tokens (ID, ATTR_NAME, STRING, NUMBER, BOOLEAN)
+ * - Parser: structural meaning from position
+ * - Validator: semantic checks (is this a valid element name?)
+ *
+ * Why ATTR_NAME includes '='?
+ * - LL(1) parser can't disambiguate ID (element) from ID (attr) without lookahead
+ * - ATTR_NAME=/name=/ lexes differently from ID=/name/
+ * - Parser sees ATTR_NAME → definitely attribute, ID → definitely element
+ * - Post-processing strips trailing '=' for clean API
  */
 
 grammar Lofi
@@ -12,43 +29,49 @@ TopLevelElement:
     Element | MdBlock | HtmlBlock;
 
 Element:
-    keyword=KEYWORD content=STRING? attrs+=Attribute*
+    keyword=ID content=STRING? attrs+=Attribute*
     (INDENT children+=ChildElement* DEDENT)?;
 
 ChildElement:
     Element | MdBlock | HtmlBlock;
 
 MdBlock:
-    'md' (
-        ':' content=RAW_LINE |
-        INDENT lines+=RAW_LINE* DEDENT
-    );
+    'md' INDENT lines+=RAW_LINE+ DEDENT;
 
 HtmlBlock:
-    'html' INDENT lines+=RAW_LINE* DEDENT;
+    'html' INDENT lines+=RAW_LINE+ DEDENT;
 
+/*
+ * Attribute parsing:
+ * - All attrs require = sign: name=value
+ * - Boolean attrs use =true, =false, =1, =0, =yes, =no
+ * - This eliminates ambiguity between attrs and sibling elements
+ */
 Attribute:
-    name=ID '=' value=(STRING | NUMBER | ID) |
-    name=ID;
+    name=ATTR_NAME value=(STRING | NUMBER | BOOLEAN | ID);
 
 /*
  * TERMINALS
- * - Order matters for same-length matches
- * - RAW_LINE before ID for priority
- * - WS and NL must be separate for IndentationAwareTokenBuilder
+ * - No KEYWORD terminal — all identifiers are ID
+ * - BOOLEAN before ID (to match true/false first)
+ * - RAW_LINE is simple — post-lexer collapsing handles block content
  */
 
 terminal INDENT: 'synthetic:indent';
 terminal DEDENT: 'synthetic:dedent';
 
-terminal KEYWORD: /page|section|card|grid|modal|nav|tabs|menu|form|alert|breadcrumb|button|input|checkbox|radio|dropdown|textarea|link|tab|accordion|toggle|slider|heading|text|image|icon|badge|toast|avatar|progress|chart/;
-
 terminal STRING: /"[^"]*"/;
 terminal NUMBER: /[0-9]+/;
-
-terminal RAW_LINE: /(?!(?:page|section|card|grid|modal|nav|tabs|menu|form|alert|breadcrumb|button|input|checkbox|radio|dropdown|textarea|link|tab|accordion|toggle|slider|heading|text|image|icon|badge|toast|avatar|progress|chart)(?:\s*"|\s+[a-zA-Z_][a-zA-Z0-9_-]*=))(?!(?:md|html)(?:\s*:|\s))(?!#)(?!=)(?!:)(?!")(?![a-zA-Z_][a-zA-Z0-9_-]*\s*=)(?=[^\r\n]*[^a-zA-Z0-9_\-\r\n])[^\r\n]+/;
-
+terminal BOOLEAN: /true|false|yes|no/;
+terminal ATTR_NAME: /[a-zA-Z_][a-zA-Z0-9_-]*=/;
 terminal ID: /[a-zA-Z_][a-zA-Z0-9_-]*/;
+
+/*
+ * RAW_LINE: Pattern for md/html block content
+ * Must NOT match element-like patterns (handled by post-lexer collapsing)
+ * Negative lookahead excludes: identifiers, strings, numbers, =, :, #
+ */
+terminal RAW_LINE: /(?![a-zA-Z_"0-9=:#])[^\r\n]+/;
 
 hidden terminal WS: /[\t ]+/;
 hidden terminal NL: /[\r\n]+/;

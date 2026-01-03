@@ -35,12 +35,24 @@ describe("golden tests", () => {
         const input = readFileSync(join(invalidDir, file), "utf-8");
         const result = await parseWithDiagnostics(input);
 
-        const errors = result.parseResult.parserErrors;
-        expect(errors.length).toBeGreaterThan(0);
+        // Check parser errors first
+        const parserErrors = result.parseResult.parserErrors;
 
-        const errorCodes = errors.map((e) => {
-          const match = e.message.match(/\[LOFI_\w+\]/);
-          return match ? match[0] : e.message;
+        // For unknown-keyword, grammar accepts any ID, validation catches it
+        const { services } = await import("./index.js");
+        const validator = services.Lofi.validation.DocumentValidator;
+        const validationDiagnostics = await validator.validateDocument(result);
+
+        const allErrors = [
+          ...parserErrors.map((e) => e.message),
+          ...validationDiagnostics.map((d) => d.message),
+        ];
+
+        expect(allErrors.length).toBeGreaterThan(0);
+
+        const errorCodes = allErrors.map((msg) => {
+          const match = msg.match(/\[LOFI_\w+\]/);
+          return match ? match[0] : msg;
         });
 
         expect(errorCodes).toMatchSnapshot();

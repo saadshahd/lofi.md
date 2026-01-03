@@ -2,30 +2,34 @@
 
 <TopLevelElement> ::= (<Element> | <MdBlock> | <HtmlBlock>)
 
-<Element> ::= <KEYWORD> <STRING>? <Attribute>* ( <INDENT> <ChildElement>* <DEDENT> )?
+<Element> ::= <ID> <STRING>? <Attribute>* ( <INDENT> <ChildElement>* <DEDENT> )?
 
 <ChildElement> ::= (<Element> | <MdBlock> | <HtmlBlock>)
 
-<MdBlock> ::= <HIDDEN>* "md" (<HIDDEN>* ":" <RAW_LINE> | <INDENT> <RAW_LINE>* <DEDENT>)
+<MdBlock> ::= <HIDDEN>* "md" <INDENT> <RAW_LINE>+ <DEDENT>
 
-<HtmlBlock> ::= <HIDDEN>* "html" <INDENT> <RAW_LINE>* <DEDENT>
+<HtmlBlock> ::= <HIDDEN>* "html" <INDENT> <RAW_LINE>+ <DEDENT>
 
-<Attribute> ::= (<ID> <HIDDEN>* "=" (<STRING> | <NUMBER> | <ID>) | <ID>)
+(* * Attribute parsing:  * - All attrs require = sign: name=value  * - Boolean attrs use =true, =false, =1, =0, =yes, =no  * - This eliminates ambiguity between attrs and sibling elements *)
+<Attribute> ::= <ATTR_NAME> (<STRING> | <NUMBER> | <BOOLEAN> | <ID>)
 
-(* * TERMINALS  * - Order matters for same-length matches  * - RAW_LINE before ID for priority  * - WS and NL must be separate for IndentationAwareTokenBuilder *)
+(* * TERMINALS  * - No KEYWORD terminal — all identifiers are ID  * - BOOLEAN before ID (to match true/false first)  * - RAW_LINE is simple — post-lexer collapsing handles block content *)
 <INDENT> ::= <HIDDEN>* not-handled-(CharacterRange)
 
 <DEDENT> ::= <HIDDEN>* not-handled-(CharacterRange)
-
-<KEYWORD> ::= <HIDDEN>* page|section|card|grid|modal|nav|tabs|menu|form|alert|breadcrumb|button|input|checkbox|radio|dropdown|textarea|link|tab|accordion|toggle|slider|heading|text|image|icon|badge|toast|avatar|progress|chart
 
 <STRING> ::= <HIDDEN>* "[^"]*"
 
 <NUMBER> ::= <HIDDEN>* [0-9]+
 
-<RAW_LINE> ::= <HIDDEN>* (?!(?:page|section|card|grid|modal|nav|tabs|menu|form|alert|breadcrumb|button|input|checkbox|radio|dropdown|textarea|link|tab|accordion|toggle|slider|heading|text|image|icon|badge|toast|avatar|progress|chart)(?:\s*"|\s+[a-zA-Z_][a-zA-Z0-9_-]*=))(?!(?:md|html)(?:\s*:|\s))(?!#)(?!=)(?!:)(?!")(?![a-zA-Z_][a-zA-Z0-9_-]*\s*=)(?=[^\r\n]*[^a-zA-Z0-9_\-\r\n])[^\r\n]+
+<BOOLEAN> ::= <HIDDEN>* true|false|yes|no
+
+<ATTR_NAME> ::= <HIDDEN>* [a-zA-Z_][a-zA-Z0-9_-]*=
 
 <ID> ::= <HIDDEN>* [a-zA-Z_][a-zA-Z0-9_-]*
+
+(* * RAW_LINE: Pattern for md/html block content  * Must NOT match element-like patterns (handled by post-lexer collapsing)  * Negative lookahead excludes: identifiers, strings, numbers, =, :, # *)
+<RAW_LINE> ::= <HIDDEN>* (?![a-zA-Z_"0-9=:#])[^\r\n]+
 
 <WS> ::= [\t ]+
 

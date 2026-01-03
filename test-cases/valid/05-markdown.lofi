@@ -12,7 +12,7 @@ card
     | Carol | carol@co.com | Designer |
 
   grid flow="row" justify="end"
-    button "Add Member" primary
+    button "Add Member" primary=1
 
 card
   heading "Features"
@@ -34,4 +34,5 @@ card
     Welcome back, **John**! Check out [what's new](/changelog).
 
 card
-  md: Simple inline markdown with **bold** and *italic*.
+  md
+    Simple inline markdown with **bold** and *italic*.

@@ -84,7 +84,7 @@ export const LofiGrammar = (): Grammar => loadedLofiGrammar ?? (loadedLofiGramma
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@9"
+                "$ref": "#/rules@13"
               },
               "arguments": []
             }
@@ -96,7 +96,7 @@ export const LofiGrammar = (): Grammar => loadedLofiGrammar ?? (loadedLofiGramma
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@10"
+                "$ref": "#/rules@9"
               },
               "arguments": []
             },
@@ -204,62 +204,31 @@ export const LofiGrammar = (): Grammar => loadedLofiGrammar ?? (loadedLofiGramma
             "value": "md"
           },
           {
-            "$type": "Alternatives",
-            "elements": [
-              {
-                "$type": "Group",
-                "elements": [
-                  {
-                    "$type": "Keyword",
-                    "value": ":"
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "content",
-                    "operator": "=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@12"
-                      },
-                      "arguments": []
-                    }
-                  }
-                ]
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@7"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "Assignment",
+            "feature": "lines",
+            "operator": "+=",
+            "terminal": {
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@14"
               },
-              {
-                "$type": "Group",
-                "elements": [
-                  {
-                    "$type": "RuleCall",
-                    "rule": {
-                      "$ref": "#/rules@7"
-                    },
-                    "arguments": []
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "lines",
-                    "operator": "+=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@12"
-                      },
-                      "arguments": []
-                    },
-                    "cardinality": "*"
-                  },
-                  {
-                    "$type": "RuleCall",
-                    "rule": {
-                      "$ref": "#/rules@8"
-                    },
-                    "arguments": []
-                  }
-                ]
-              }
-            ]
+              "arguments": []
+            },
+            "cardinality": "+"
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@8"
+            },
+            "arguments": []
           }
         ]
       },
@@ -294,11 +263,11 @@ export const LofiGrammar = (): Grammar => loadedLofiGrammar ?? (loadedLofiGramma
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@12"
+                "$ref": "#/rules@14"
               },
               "arguments": []
             },
-            "cardinality": "*"
+            "cardinality": "+"
           },
           {
             "$type": "RuleCall",
@@ -320,60 +289,8 @@ export const LofiGrammar = (): Grammar => loadedLofiGrammar ?? (loadedLofiGramma
       "$type": "ParserRule",
       "name": "Attribute",
       "definition": {
-        "$type": "Alternatives",
+        "$type": "Group",
         "elements": [
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Assignment",
-                "feature": "name",
-                "operator": "=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@13"
-                  },
-                  "arguments": []
-                }
-              },
-              {
-                "$type": "Keyword",
-                "value": "="
-              },
-              {
-                "$type": "Assignment",
-                "feature": "value",
-                "operator": "=",
-                "terminal": {
-                  "$type": "Alternatives",
-                  "elements": [
-                    {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@10"
-                      },
-                      "arguments": []
-                    },
-                    {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@11"
-                      },
-                      "arguments": []
-                    },
-                    {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@13"
-                      },
-                      "arguments": []
-                    }
-                  ]
-                }
-              }
-            ]
-          },
           {
             "$type": "Assignment",
             "feature": "name",
@@ -381,9 +298,47 @@ export const LofiGrammar = (): Grammar => loadedLofiGrammar ?? (loadedLofiGramma
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@13"
+                "$ref": "#/rules@12"
               },
               "arguments": []
+            }
+          },
+          {
+            "$type": "Assignment",
+            "feature": "value",
+            "operator": "=",
+            "terminal": {
+              "$type": "Alternatives",
+              "elements": [
+                {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@9"
+                  },
+                  "arguments": []
+                },
+                {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@10"
+                  },
+                  "arguments": []
+                },
+                {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@11"
+                  },
+                  "arguments": []
+                },
+                {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@13"
+                  },
+                  "arguments": []
+                }
+              ]
             }
           }
         ]
@@ -393,7 +348,8 @@ export const LofiGrammar = (): Grammar => loadedLofiGrammar ?? (loadedLofiGramma
       "fragment": false,
       "hiddenTokens": [],
       "parameters": [],
-      "wildcard": false
+      "wildcard": false,
+      "$comment": "/*\\n * Attribute parsing:\\n * - All attrs require = sign: name=value\\n * - Boolean attrs use =true, =false, =1, =0, =yes, =no\\n * - This eliminates ambiguity between attrs and sibling elements\\n */"
     },
     {
       "$type": "TerminalRule",
@@ -407,7 +363,7 @@ export const LofiGrammar = (): Grammar => loadedLofiGrammar ?? (loadedLofiGramma
       },
       "fragment": false,
       "hidden": false,
-      "$comment": "/*\\n * TERMINALS\\n * - Order matters for same-length matches\\n * - RAW_LINE before ID for priority\\n * - WS and NL must be separate for IndentationAwareTokenBuilder\\n */"
+      "$comment": "/*\\n * TERMINALS\\n * - No KEYWORD terminal — all identifiers are ID\\n * - BOOLEAN before ID (to match true/false first)\\n * - RAW_LINE is simple — post-lexer collapsing handles block content\\n */"
     },
     {
       "$type": "TerminalRule",
@@ -418,16 +374,6 @@ export const LofiGrammar = (): Grammar => loadedLofiGrammar ?? (loadedLofiGramma
           "$type": "Keyword",
           "value": "synthetic:dedent"
         }
-      },
-      "fragment": false,
-      "hidden": false
-    },
-    {
-      "$type": "TerminalRule",
-      "name": "KEYWORD",
-      "definition": {
-        "$type": "RegexToken",
-        "regex": "/page|section|card|grid|modal|nav|tabs|menu|form|alert|breadcrumb|button|input|checkbox|radio|dropdown|textarea|link|tab|accordion|toggle|slider|heading|text|image|icon|badge|toast|avatar|progress|chart/"
       },
       "fragment": false,
       "hidden": false
@@ -454,10 +400,20 @@ export const LofiGrammar = (): Grammar => loadedLofiGrammar ?? (loadedLofiGramma
     },
     {
       "$type": "TerminalRule",
-      "name": "RAW_LINE",
+      "name": "BOOLEAN",
       "definition": {
         "$type": "RegexToken",
-        "regex": "/(?!(?:page|section|card|grid|modal|nav|tabs|menu|form|alert|breadcrumb|button|input|checkbox|radio|dropdown|textarea|link|tab|accordion|toggle|slider|heading|text|image|icon|badge|toast|avatar|progress|chart)(?:\\\\s*\\"|\\\\s+[a-zA-Z_][a-zA-Z0-9_-]*=))(?!(?:md|html)(?:\\\\s*:|\\\\s))(?!#)(?!=)(?!:)(?!\\")(?![a-zA-Z_][a-zA-Z0-9_-]*\\\\s*=)(?=[^\\\\r\\\\n]*[^a-zA-Z0-9_\\\\-\\\\r\\\\n])[^\\\\r\\\\n]+/"
+        "regex": "/true|false|yes|no/"
+      },
+      "fragment": false,
+      "hidden": false
+    },
+    {
+      "$type": "TerminalRule",
+      "name": "ATTR_NAME",
+      "definition": {
+        "$type": "RegexToken",
+        "regex": "/[a-zA-Z_][a-zA-Z0-9_-]*=/"
       },
       "fragment": false,
       "hidden": false
@@ -471,6 +427,17 @@ export const LofiGrammar = (): Grammar => loadedLofiGrammar ?? (loadedLofiGramma
       },
       "fragment": false,
       "hidden": false
+    },
+    {
+      "$type": "TerminalRule",
+      "name": "RAW_LINE",
+      "definition": {
+        "$type": "RegexToken",
+        "regex": "/(?![a-zA-Z_\\"0-9=:#])[^\\\\r\\\\n]+/"
+      },
+      "fragment": false,
+      "hidden": false,
+      "$comment": "/*\\n * RAW_LINE: Pattern for md/html block content\\n * Must NOT match element-like patterns (handled by post-lexer collapsing)\\n * Negative lookahead excludes: identifiers, strings, numbers, =, :, #\\n */"
     },
     {
       "$type": "TerminalRule",
@@ -509,5 +476,5 @@ export const LofiGrammar = (): Grammar => loadedLofiGrammar ?? (loadedLofiGramma
   "interfaces": [],
   "types": [],
   "usedGrammars": [],
-  "$comment": "/*\\n * lofi.md Grammar\\n * SYNC: If adding keywords, update both KEYWORD and RAW_LINE patterns\\n */"
+  "$comment": "/*\\n * lofi.md Grammar\\n *\\n * Design: ID for all identifiers, semantic validation for keywords\\n * - All element names are ID tokens (no KEYWORD terminal)\\n * - ATTR_NAME terminal includes '=' for lexer-level disambiguation\\n * - Validator checks element.keyword ∈ VALID_KEYWORDS (single source of truth)\\n * - All attrs require = (eliminates boolean shorthand ambiguity)\\n * - Post-lexer collapsing handles raw content in md/html blocks\\n *\\n * Architecture (Hickey-compliant):\\n * - Lexer: produces tokens (ID, ATTR_NAME, STRING, NUMBER, BOOLEAN)\\n * - Parser: structural meaning from position\\n * - Validator: semantic checks (is this a valid element name?)\\n *\\n * Why ATTR_NAME includes '='?\\n * - LL(1) parser can't disambiguate ID (element) from ID (attr) without lookahead\\n * - ATTR_NAME=/name=/ lexes differently from ID=/name/\\n * - Parser sees ATTR_NAME → definitely attribute, ID → definitely element\\n * - Post-processing strips trailing '=' for clean API\\n */"
 }`));

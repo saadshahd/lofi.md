@@ -6,13 +6,13 @@ modal title="Delete Item?"
 
   grid flow="row" justify="end" gap="2"
     button "Cancel"
-    button "Delete" danger
+    button "Delete" danger=1
 
 modal title="Settings" position="right"
   heading "Preferences" level="3"
   toggle "Dark mode"
   toggle "Notifications"
-  button "Close" secondary
+  button "Close" secondary=1
 
 modal title="Quick Actions" position="bottom"
   grid cols="3"

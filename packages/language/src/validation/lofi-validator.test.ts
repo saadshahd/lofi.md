@@ -36,9 +36,20 @@ describe("lofi validation - indentation errors", () => {
 });
 
 describe("lofi validation - syntax errors", () => {
-  it("rejects unknown keywords", async () => {
+  it("rejects unknown keywords via validation", async () => {
+    // Grammar accepts any ID, validator catches unknown keywords
     const doc = await parseWithDiagnostics("unknownelement");
-    expect(doc.parseResult.parserErrors.length).toBeGreaterThan(0);
+    expect(doc.parseResult.parserErrors).toHaveLength(0);
+    // Validation should flag unknown keyword
+    const validator = (await import("../index.js")).services.Lofi.validation
+      .DocumentValidator;
+    const diagnostics = await validator.validateDocument(doc);
+    const hasUnknownKeyword = diagnostics.some(
+      (d) =>
+        d.message.includes("LOFI_SYNTAX_001") ||
+        d.message.includes("Unknown element"),
+    );
+    expect(hasUnknownKeyword).toBe(true);
   });
 
   it("accepts valid keywords", async () => {

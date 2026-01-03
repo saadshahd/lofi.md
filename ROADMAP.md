@@ -67,10 +67,10 @@
 **Remaining Work**
 
 - [x] Golden tests with `test-cases/*.lofi` files
-- [ ] Fix: Attribute parsing fails when unquoted ID value followed by boolean attr (`type=email required` → use `type="email" required`)
-- [ ] Fix: Numbered lists in md blocks fail — lines starting with numbers (`1. Item`) tokenized as NUMBER instead of RAW_LINE
+- [x] Fix: Attribute parsing — all attrs now require `=` (e.g. `primary=1`), ATTR_NAME terminal for disambiguation
+- [x] Fix: Numbered lists in md blocks — LofiLexer post-lexer collapsing converts tokens to RAW_LINE
 - [ ] Fix: Tab indentation not rejected — WS terminal `/[\t ]+/` accepts tabs; LofiTokenBuilder validation not triggering
-- [ ] Update golden test snapshots after fixing above bugs
+- [x] Update golden test snapshots
 
 #### Milestone 4: HTML Renderer (@lofi/html)
 

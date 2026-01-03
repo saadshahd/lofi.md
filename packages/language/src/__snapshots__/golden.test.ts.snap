@@ -212,6 +212,7 @@ exports[`golden tests valid cases parses 01-grid-layout.lofi 1`] = `
             {
               "$type": "Attribute",
               "name": "primary",
+              "value": "1",
             },
           ],
           "children": [],
@@ -243,6 +244,7 @@ exports[`golden tests valid cases parses 02-page-structure.lofi 1`] = `
                 {
                   "$type": "Attribute",
                   "name": "active",
+                  "value": "1",
                 },
               ],
               "children": [],
@@ -642,6 +644,7 @@ exports[`golden tests valid cases parses 03-form-complete.lofi 1`] = `
                 {
                   "$type": "Attribute",
                   "name": "error",
+                  "value": "1",
                 },
               ],
               "children": [],
@@ -710,6 +713,7 @@ exports[`golden tests valid cases parses 03-form-complete.lofi 1`] = `
                 {
                   "$type": "Attribute",
                   "name": "checked",
+                  "value": "1",
                 },
               ],
               "children": [],
@@ -734,6 +738,7 @@ exports[`golden tests valid cases parses 03-form-complete.lofi 1`] = `
                 {
                   "$type": "Attribute",
                   "name": "selected",
+                  "value": "1",
                 },
               ],
               "children": [],
@@ -772,6 +777,7 @@ exports[`golden tests valid cases parses 03-form-complete.lofi 1`] = `
                 {
                   "$type": "Attribute",
                   "name": "checked",
+                  "value": "1",
                 },
               ],
               "children": [],
@@ -853,6 +859,7 @@ exports[`golden tests valid cases parses 03-form-complete.lofi 1`] = `
                     {
                       "$type": "Attribute",
                       "name": "danger",
+                      "value": "1",
                     },
                   ],
                   "children": [],
@@ -877,6 +884,7 @@ exports[`golden tests valid cases parses 03-form-complete.lofi 1`] = `
             {
               "$type": "Attribute",
               "name": "hidden",
+              "value": "1",
             },
           ],
           "children": [
@@ -911,6 +919,7 @@ exports[`golden tests valid cases parses 03-form-complete.lofi 1`] = `
                 {
                   "$type": "Attribute",
                   "name": "secondary",
+                  "value": "1",
                 },
               ],
               "children": [],
@@ -923,6 +932,7 @@ exports[`golden tests valid cases parses 03-form-complete.lofi 1`] = `
                 {
                   "$type": "Attribute",
                   "name": "primary",
+                  "value": "1",
                 },
               ],
               "children": [],
@@ -993,6 +1003,7 @@ exports[`golden tests valid cases parses 04-modal.lofi 1`] = `
                 {
                   "$type": "Attribute",
                   "name": "danger",
+                  "value": "1",
                 },
               ],
               "children": [],
@@ -1053,6 +1064,7 @@ exports[`golden tests valid cases parses 04-modal.lofi 1`] = `
             {
               "$type": "Attribute",
               "name": "secondary",
+              "value": "1",
             },
           ],
           "children": [],
@@ -1214,6 +1226,7 @@ exports[`golden tests valid cases parses 05-markdown.lofi 1`] = `
                 {
                   "$type": "Attribute",
                   "name": "primary",
+                  "value": "1",
                 },
               ],
               "children": [],
@@ -1243,10 +1256,12 @@ exports[`golden tests valid cases parses 05-markdown.lofi 1`] = `
             "- **Authentication** — OAuth, SSO, MFA",
             "- **Authorization** — Role-based access",
             "- **Audit logs** — Full history",
+            "---",
             "**Getting Started:**",
             "- Sign up for free",
             "- Connect your tools",
             "- Start collaborating",
+            "---",
             "Welcome back, **John**! Check out [what's new](/changelog).",
           ],
         },
@@ -1259,8 +1274,9 @@ exports[`golden tests valid cases parses 05-markdown.lofi 1`] = `
       "children": [
         {
           "$type": "MdBlock",
-          "content": "Simple inline markdown with **bold** and *italic*.",
-          "lines": [],
+          "lines": [
+            "Simple inline markdown with **bold** and *italic*.",
+          ],
         },
       ],
       "keyword": "card",
@@ -1271,6 +1287,6 @@ exports[`golden tests valid cases parses 05-markdown.lofi 1`] = `
 
 exports[`golden tests invalid cases rejects unknown-keyword.lofi 1`] = `
 [
-  "Expecting token of type 'DEDENT' but found \`unknownelement "This should fail"\`.",
+  "[LOFI_SYNTAX_001]",
 ]
 `;
