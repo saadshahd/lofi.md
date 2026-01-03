@@ -1,0 +1,71 @@
+# lofi.md
+
+> LLM-first wireframe DSL. Think in wireframes, ship in HTML.
+
+See @PHILOSOPHY.md for axioms. See @SYNTAX.md for element reference. See @ROADMAP.md for milestones.
+
+## Stack
+
+| Layer | Tool | Notes |
+|-------|------|-------|
+| Runtime | bun | Fast, simple, matches moo.md ecosystem |
+| Parser | Langium | LSP for free, IndentationAwareTokenBuilder |
+| Build | tsup | ESM + CJS, simple config |
+| Test | Vitest + `langium/test` + Storybook 10 | Colocated tests, visual regression |
+| Lint | Biome | Fast, all-in-one |
+| Markdown | remark | For `md` blocks |
+| CSS | Tailwind v4 | Standalone CLI, no Node.js required |
+| UI (VS Code) | React 19, shadcn@latest | Webview only, not DSL output |
+| Icons | Phosphor | Clean, MIT |
+
+## Commands
+
+```bash
+# Development
+bun install              # Install dependencies
+bun run dev              # Dev server with hot reload
+bun run build            # Build all packages
+
+# Testing
+bun test                 # Run Vitest
+bun run storybook        # Launch Storybook 10
+
+# Linting
+bun run lint             # Biome check
+bun run lint:fix         # Biome fix
+
+# CLI
+lofi input.lofi          # Generate HTML
+lofi --serve input.lofi  # Dev server
+lofi --watch input.lofi  # Watch mode
+```
+
+## Architecture
+
+```
+lofi/
+├── packages/
+│   ├── language/        # Langium grammar + generator
+│   │   ├── src/
+│   │   │   ├── lofi.langium
+│   │   │   └── generator/
+│   │   └── package.json
+│   ├── cli/             # CLI tool
+│   └── vscode/          # VS Code extension (React webview)
+├── test-cases/          # Golden test inputs (.lofi files)
+└── examples/            # Canonical examples
+```
+
+## Key Constraints
+
+1. **LLM-first** — Syntax optimized for machine generation
+2. **One way** — Each concept has exactly one representation
+3. **Closed vocabulary** — 31 elements, no arbitrary Tailwind classes
+4. **HTML output** — No React runtime for preview
+5. **2-space indentation** — Mandatory, no tabs
+
+## Output Pipeline
+
+```
+lofi DSL → Langium → AST → HTML + Tailwind classes → lofi.css (optimized)
+```

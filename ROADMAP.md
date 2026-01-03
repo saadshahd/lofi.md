@@ -35,8 +35,13 @@ lofi/
 ├── .claude/
 │   ├── CLAUDE.md              # Project instructions for Claude
 │   └── rules/
-│       ├── langium.md         # Langium-specific rules
-│       └── testing.md         # Testing requirements
+│       ├── langium.md         # Langium grammar patterns
+│       ├── testing.md         # Testing philosophy + colocation
+│       ├── lofi-syntax.md     # DSL domain knowledge
+│       ├── output.md          # HTML generator + Tailwind bundling
+│       ├── ui.md              # shadcn + Storybook 10 (VS Code)
+│       ├── ci.md              # GitHub Actions patterns
+│       └── errors.md          # Error taxonomy (LOFI_*)
 ├── packages/
 │   ├── language/              # Langium grammar + language server
 │   │   ├── src/
@@ -79,9 +84,14 @@ lofi/
 - [ ] Configure TypeScript (tsconfig.json)
 - [ ] Configure Biome (biome.json)
 - [ ] Set up Vitest
-- [ ] Create `.claude/CLAUDE.md` with project rules
-- [ ] Create `.claude/rules/langium.md`
-- [ ] Create `.claude/rules/testing.md`
+- [x] Create `.claude/CLAUDE.md` with project rules
+- [x] Create `.claude/rules/langium.md`
+- [x] Create `.claude/rules/testing.md`
+- [x] Create `.claude/rules/lofi-syntax.md`
+- [x] Create `.claude/rules/output.md`
+- [x] Create `.claude/rules/ui.md`
+- [x] Create `.claude/rules/ci.md`
+- [x] Create `.claude/rules/errors.md`
 
 #### Milestone 3: Langium Grammar
 - [ ] Define `lofi.langium` grammar
@@ -126,21 +136,7 @@ lofi/
 
 ## Key Decisions
 
-| Decision | Choice | Rationale |
-|----------|--------|-----------|
-| Primitives | 3: `container`, `control`, `content` | Minimal; visual variants not categories |
-| Vocabulary | Domain keywords as sugar over primitives | Friendly syntax, extensible internals |
-| Syntax | Fresh design | Current wiremd has broken abstractions |
-| Keywords | English words | Anka research: 99.9% LLM parse success |
-| Nesting | Indentation-based | Validated: 100% test success |
-| Attributes | Named `key=value` | Explicit, unambiguous |
-| Markdown | Native `md` block | Tables, lists, dividers — don't reinvent |
-| HTML | Escape hatch `html` block | Only for elements not in vocabulary |
-| Style | Sketch only | Single style |
-| Output | HTML only | No React/Tailwind |
-| Icons | Phosphor | Clean, MIT |
-| Tables | Markdown in `md` block | Keep remark-gfm |
-| Parser | Langium | LSP for free, indentation support built-in |
+See [DECISIONS.md](DECISIONS.md) for full decision log including deferred decisions.
 
 ---
 
