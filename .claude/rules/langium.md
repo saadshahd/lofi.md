@@ -54,13 +54,26 @@ interface Element {
 }
 ```
 
+## Keyword Sync Requirement
+
+Keywords are defined in two places that must stay synchronized:
+
+| Location | Purpose |
+|----------|---------|
+| `lofi.langium` KEYWORD terminal | Lexer matching |
+| `validation/errors.ts` VALID_KEYWORDS | Runtime validation |
+
+When adding/removing keywords, update both files. The grammar comment `SYNC: If adding keywords...` marks this.
+
 ## Error Recovery
 
-Langium provides automatic error recovery. Enhance with:
+Langium provides automatic error recovery via:
 
-1. Custom validation rules in `validator.ts`
-2. Error codes matching `LOFI_*` taxonomy
-3. Quick-fix actions for common errors
+- `LofiTokenBuilder` — Wraps indentation errors with LOFI_INDENT_* codes
+- `LofiDocumentValidator` — Enhances parser errors with LOFI_SYNTAX_* codes
+- `LofiValidator` — AST-level semantic validation
+
+Error codes follow the taxonomy in `.claude/rules/errors.md`.
 
 ## Testing with langium/test
 

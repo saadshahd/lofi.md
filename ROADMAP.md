@@ -127,11 +127,19 @@ lofi/
 - [x] 44 unit tests passing (basic parsing, nesting, comments, all keywords, md/html blocks)
 - [x] Configure langium-config.json with syntax highlighting generators (TextMate, Monarch, Prism, EBNF)
 
+**Error Recovery & Validation** ✅
+
+- [x] Error codes infrastructure (LOFI_INDENT_*, LOFI_SYNTAX_*)
+- [x] LofiTokenBuilder for indentation error wrapping
+- [x] LofiDocumentValidator for parser error enhancement
+- [x] LofiError interface with suggestion/example fields
+- [x] VALID_KEYWORDS constant (SYNC: must match KEYWORD terminal)
+- [x] Error path test coverage
+
 **Remaining Work**
 
-- [ ] Error recovery and sync points (Langium validation rules)
 - [ ] Golden tests with `test-cases/*.lofi` files
-- [ ] Error messages with LOFI_* codes (see `.claude/rules/errors.md`)
+- [ ] Fix: Attribute parsing fails when unquoted ID value followed by boolean attr (`type=email required` → use `type="email" required`)
 
 #### Milestone 4: HTML Renderer (@lofi/html)
 

@@ -11,7 +11,7 @@ import {
   LofiGeneratedModule,
   LofiGeneratedSharedModule,
 } from "./generated/module.js";
-import { LofiModule } from "./lofi-module.js";
+import { LofiModule, registerLofiValidationChecks } from "./lofi-module.js";
 import type {
   Document,
   Element,
@@ -19,6 +19,10 @@ import type {
   MdBlock,
   HtmlBlock,
 } from "./generated/ast.js";
+
+// Re-export error types for consumers
+export type { LofiError, LofiErrorCode } from "./validation/errors.js";
+export { ErrorCodes, ErrorMeta, VALID_KEYWORDS } from "./validation/errors.js";
 
 // Re-export AST types for consumers
 export type {
@@ -42,7 +46,11 @@ export type LofiServices = LangiumCoreServices;
 
 /**
  * Create Langium services for the lofi language.
- * Uses IndentationAwareTokenBuilder for Python-style indentation.
+ *
+ * Includes:
+ * - LofiTokenBuilder for Python-style indentation with enhanced error messages
+ * - LofiDocumentValidator for LOFI_* error codes
+ * - LofiValidator for semantic AST validation
  */
 export function createLofiServices(fileSystem = EmptyFileSystem): {
   shared: LangiumSharedCoreServices;
@@ -58,6 +66,10 @@ export function createLofiServices(fileSystem = EmptyFileSystem): {
     LofiModule,
   );
   shared.ServiceRegistry.register(Lofi);
+
+  // Register semantic validation checks
+  registerLofiValidationChecks(Lofi);
+
   return { shared, Lofi };
 }
 
