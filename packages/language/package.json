@@ -1,0 +1,17 @@
+{
+  "name": "@lofi/language",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --dts",
+    "langium:generate": "langium generate"
+  },
+  "dependencies": {
+    "langium": "^3.3.0"
+  },
+  "devDependencies": {
+    "langium-cli": "^3.3.0"
+  }
+}

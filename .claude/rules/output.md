@@ -1,5 +1,5 @@
 ---
-paths: packages/language/src/generator/**/*.ts
+paths: packages/html/src/**/*.ts
 ---
 
 # HTML Generator Patterns
@@ -38,10 +38,10 @@ const button = cva('rounded-md border px-4 py-2 font-medium shadow-sm', {
 
 ## Tailwind CSS Bundling
 
-Tailwind v4 standalone CLI (no Node.js required):
+Tailwind v4 via npm:
 
 ```bash
-./tailwindcss -i input.css -o lofi.css
+npx tailwindcss -i input.css -o lofi.css
 ```
 
 ```css
@@ -67,7 +67,7 @@ Document ALL classes used by each element. This enables:
 3. Easy theme customization
 
 ```typescript
-// packages/language/src/generator/classes.ts
+// packages/html/src/classes.ts
 export const elementClasses = {
   button: {
     base: 'rounded-md border px-4 py-2 font-medium shadow-sm transition-colors',

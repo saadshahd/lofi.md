@@ -10,6 +10,8 @@
 | Output     | Text DSL → HTML only with shadcn sketch styling | LLMs generate text, humans consume visually  |
 | Ecosystem  | Node/bun                                        | moo.md integration, designers don't use Java |
 | Tailwind   | Closed vocabulary, no arbitrary classes         | bounded output for better generation         |
+| Packages   | `@lofi/html` (1st renderer)                     | Single responsibility; enables `@lofi/figma` |
+| Storybook  | `apps/storybook` aggregates from packages       | React wrapper for visual regression only     |
 
 ## Deferred Decisions
 

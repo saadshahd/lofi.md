@@ -6,25 +6,25 @@
 
 ### Identity
 
-| Aspect | Value |
-|--------|-------|
-| **Package** | `lofi` |
+| Aspect        | Value   |
+| ------------- | ------- |
+| **Package**   | `lofi`  |
 | **Extension** | `.lofi` |
-| **CLI** | `lofi` |
-| **Brand** | lofi.md |
+| **CLI**       | `lofi`  |
+| **Brand**     | lofi.md |
 
 ---
 
 ### Tech Stack (Decided)
 
-| Component | Choice | Rationale |
-|-----------|--------|-----------|
-| **Parser** | Langium | LSP for free, IndentationAwareTokenBuilder, future-proof |
-| **Package manager** | bun | Fast, simple, matches moo.md ecosystem |
-| **Bundler** | tsup | Simple, fast, ESM + CJS |
-| **Test runner** | Vitest | Fast, ESM-native, good DX |
-| **Linting** | Biome | Fast, all-in-one (format + lint) |
-| **Markdown parser** | remark | For `md` blocks, battle-tested |
+| Component           | Choice  | Rationale                                                |
+| ------------------- | ------- | -------------------------------------------------------- |
+| **Parser**          | Langium | LSP for free, IndentationAwareTokenBuilder, future-proof |
+| **Package manager** | bun     | Fast, simple, matches moo.md ecosystem                   |
+| **Bundler**         | tsup    | Simple, fast, ESM + CJS                                  |
+| **Test runner**     | Vitest  | Fast, ESM-native, good DX                                |
+| **Linting**         | Biome   | Fast, all-in-one (format + lint)                         |
+| **Markdown parser** | remark  | For `md` blocks, battle-tested                           |
 
 ---
 
@@ -38,24 +38,32 @@ lofi/
 │       ├── langium.md         # Langium grammar patterns
 │       ├── testing.md         # Testing philosophy + colocation
 │       ├── lofi-syntax.md     # DSL domain knowledge
-│       ├── output.md          # HTML generator + Tailwind bundling
-│       ├── ui.md              # shadcn + Storybook 10 (VS Code)
+│       ├── output.md          # @lofi/html renderer patterns
+│       ├── storybook.md       # Visual regression patterns
 │       ├── ci.md              # GitHub Actions patterns
 │       └── errors.md          # Error taxonomy (LOFI_*)
 ├── packages/
-│   ├── language/              # Langium grammar + language server
+│   ├── language/              # Parser: Langium grammar → AST
 │   │   ├── src/
 │   │   │   ├── lofi.langium   # Grammar definition
-│   │   │   ├── main.ts        # Language server entry
-│   │   │   └── generator.ts   # AST → HTML generator
+│   │   │   └── index.ts       # parse() + AST types
+│   │   └── package.json
+│   ├── html/                  # Renderer: AST → HTML + Tailwind
+│   │   ├── src/
+│   │   │   ├── index.ts       # generate()
+│   │   │   └── classes.ts     # CVA class mappings
 │   │   └── package.json
 │   ├── cli/                   # CLI tool
 │   │   ├── src/
 │   │   │   ├── index.ts       # CLI entry
 │   │   │   └── server.ts      # Dev server with hot reload
 │   │   └── package.json
-│   └── vscode/                # VS Code extension (Phase 2)
+│   └── vscode/                # VS Code extension (Milestone 6)
 │       └── package.json
+├── apps/
+│   └── storybook/             # Visual regression testing
+│       ├── .storybook/
+│       └── stories/
 ├── test-cases/                # Validation test cases (.lofi files)
 ├── examples/                  # Canonical examples
 ├── PHILOSOPHY.md
@@ -71,47 +79,55 @@ lofi/
 ### Milestones
 
 #### Milestone 1: Syntax Validation ✅
+
 - [x] Write formal syntax spec
 - [x] Create 10 test case files
 - [x] Run LLM validation tests
 - [x] **Result: 100% parse success (10/10)**
 
-#### Milestone 2: Repo Scaffolding
+#### Milestone 2: Repo Scaffolding ✅
 
 **Monorepo & Packages**
-- [ ] Initialize bun workspace monorepo
-- [ ] Create packages/language structure
-- [ ] Create packages/cli structure
-- [ ] Set up Langium project (`npm init langium`)
+
+- [x] Initialize bun workspace monorepo
+- [x] Create packages/language structure (parser only)
+- [x] Create packages/html structure (renderer)
+- [x] Create packages/cli structure
+- [x] Create apps/storybook structure
 
 **Config & Tooling**
-- [ ] Configure TypeScript (tsconfig.json)
-- [ ] Configure Biome (biome.json)
-- [ ] Set up Vitest + `langium/test` integration
-- [ ] Set up Tailwind v4 standalone CLI
-- [ ] Set up Storybook 10 (visual regression)
+
+- [x] Configure TypeScript (tsconfig.json)
+- [x] Configure Biome (biome.json)
+- [x] Set up Vitest (base config)
+- [x] Set up Tailwind v4 (npm package)
+- [x] Set up Storybook 10 (visual regression)
 
 **Claude Rules** ✅
+
 - [x] Create `.claude/CLAUDE.md` with project rules
 - [x] Create `.claude/rules/langium.md`
 - [x] Create `.claude/rules/testing.md`
 - [x] Create `.claude/rules/lofi-syntax.md`
 - [x] Create `.claude/rules/output.md`
-- [x] Create `.claude/rules/ui.md`
+- [x] Create `.claude/rules/storybook.md`
 - [x] Create `.claude/rules/ci.md`
 - [x] Create `.claude/rules/errors.md`
 
 #### Milestone 3: Langium Grammar
+
 - [ ] Define `lofi.langium` grammar
 - [ ] Implement IndentationAwareTokenBuilder
 - [ ] Define AST node types
 - [ ] Handle `md` blocks (delegate to remark)
 - [ ] Handle `html` blocks (passthrough)
-- [ ] Unit tests for all 10 test cases
+- [ ] Set up `langium/test` integration
+- [ ] Unit tests for all test cases
 - [ ] Error messages with line numbers
 
-#### Milestone 4: HTML Generator
-- [ ] Create generator.ts (AST → HTML + Tailwind classes)
+#### Milestone 4: HTML Renderer (@lofi/html)
+
+- [ ] Implement `generate()` in packages/html
 - [ ] Define element → Tailwind class mapping (closed vocabulary)
 - [ ] Use CVA for variant handling (runtime, no build step)
 - [ ] Implement sketch theme CSS variables
@@ -120,6 +136,7 @@ lofi/
 - [ ] Visual regression tests in Storybook
 
 #### Milestone 5: CLI + Server
+
 - [ ] `lofi <input.lofi>` → HTML output
 - [ ] `lofi --watch` → file watcher
 - [ ] `lofi --serve` → dev server with hot reload
@@ -127,6 +144,7 @@ lofi/
 - [ ] Publish to npm
 
 #### Milestone 6: LSP + Tooling
+
 - [ ] VS Code extension (packages/vscode)
 - [ ] React 19 webview for preview panel
 - [ ] shadcn@latest components for extension UI
@@ -136,12 +154,14 @@ lofi/
 - [ ] Diagnostics (errors shown in editor)
 
 #### Milestone 7: Documentation
+
 - [x] PHILOSOPHY.md
 - [ ] SYNTAX.md (complete reference)
 - [ ] README.md (quick start)
 - [ ] 5 canonical examples
 
 #### Milestone 8: Upstream Reference
+
 - [ ] Document original wiremd nesting issue
 - [ ] Note: lofi syntax solves this with indentation
 
