@@ -4,8 +4,26 @@
     {
       "id": "lofi",
       "grammar": "src/lofi.langium",
-      "fileExtensions": [".lofi"]
+      "fileExtensions": [".lofi"],
+      "textMate": {
+        "out": "syntaxes/lofi.tmLanguage.json"
+      },
+      "monarch": {
+        "out": "syntaxes/lofi.monarch.ts"
+      },
+      "prism": {
+        "out": "syntaxes/lofi.prism.js"
+      },
+      "bnf": {
+        "out": "syntaxes/lofi.ebnf",
+        "dialect": "EBNF"
+      },
+      "chevrotainParserConfig": {
+        "recoveryEnabled": true,
+        "nodeLocationTracking": "full"
+      }
     }
   ],
-  "out": "src/generated"
+  "out": "src/generated",
+  "mode": "development"
 }

@@ -3,7 +3,7 @@
  * DO NOT EDIT MANUALLY!
  ******************************************************************************/
 
-import type { LangiumSharedCoreServices, LangiumCoreServices, LangiumGeneratedCoreServices, LangiumGeneratedSharedCoreServices, LanguageMetaData, Module } from 'langium';
+import type { LangiumSharedCoreServices, LangiumCoreServices, LangiumGeneratedCoreServices, LangiumGeneratedSharedCoreServices, LanguageMetaData, Module, IParserConfig } from 'langium';
 import { LofiAstReflection } from './ast.js';
 import { LofiGrammar } from './grammar.js';
 
@@ -14,6 +14,11 @@ export const LofiLanguageMetaData = {
     mode: 'development'
 } as const satisfies LanguageMetaData;
 
+export const LofiParserConfig: IParserConfig = {
+    recoveryEnabled: true,
+    nodeLocationTracking: 'full',
+};
+
 export const LofiGeneratedSharedModule: Module<LangiumSharedCoreServices, LangiumGeneratedSharedCoreServices> = {
     AstReflection: () => new LofiAstReflection()
 };
@@ -21,5 +26,7 @@ export const LofiGeneratedSharedModule: Module<LangiumSharedCoreServices, Langiu
 export const LofiGeneratedModule: Module<LangiumCoreServices, LangiumGeneratedCoreServices> = {
     Grammar: () => LofiGrammar(),
     LanguageMetaData: () => LofiLanguageMetaData,
-    parser: {}
+    parser: {
+        ParserConfig: () => LofiParserConfig
+    }
 };
