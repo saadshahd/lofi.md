@@ -114,16 +114,23 @@ lofi/
 - [x] Create `.claude/rules/ci.md`
 - [x] Create `.claude/rules/errors.md`
 
-#### Milestone 3: Langium Grammar
+#### Milestone 3: Langium Grammar ✅
 
-- [ ] Define `lofi.langium` grammar
-- [ ] Implement IndentationAwareTokenBuilder
-- [ ] Define AST node types
-- [ ] Handle `md` blocks (delegate to remark)
-- [ ] Handle `html` blocks (passthrough)
-- [ ] Set up `langium/test` integration
-- [ ] Unit tests for all test cases
-- [ ] Error messages with line numbers
+**Core Grammar**
+
+- [x] Define `lofi.langium` grammar with all 31 keywords
+- [x] Implement IndentationAwareTokenBuilder + IndentationAwareLexer
+- [x] Define AST node types (Document, Element, Attribute, MdBlock, HtmlBlock)
+- [x] Handle `md` blocks (inline `md: content` and block with INDENT/DEDENT)
+- [x] Handle `html` blocks (passthrough with INDENT/DEDENT)
+- [x] RAW_LINE terminal with negative lookahead for element-like patterns
+- [x] 44 unit tests passing (basic parsing, nesting, comments, all keywords, md/html blocks)
+
+**Remaining Work**
+
+- [ ] Error recovery and sync points (Langium validation rules)
+- [ ] Golden tests with `test-cases/*.lofi` files
+- [ ] Error messages with LOFI_* codes (see `.claude/rules/errors.md`)
 
 #### Milestone 4: HTML Renderer (@lofi/html)
 
@@ -173,35 +180,39 @@ See [DECISIONS.md](DECISIONS.md) for full decision log including deferred decisi
 
 ---
 
-## Langium Grammar Preview
+## Langium Grammar (Implemented)
+
+See `packages/language/src/lofi.langium` for the full grammar. Key structure:
 
 ```langium
 grammar Lofi
 
-entry Document: elements+=Element*;
+entry Document:
+    elements+=TopLevelElement*;
 
 Element:
-    keyword=KEYWORD attrs+=Attribute*
-    (INDENT children+=(Element | MdBlock | HtmlBlock)* DEDENT)?;
+    keyword=KEYWORD content=STRING? attrs+=Attribute*
+    (INDENT children+=ChildElement* DEDENT)?;
 
-MdBlock: 'md' (INDENT content=MD_CONTENT DEDENT | ':' content=MD_INLINE);
-HtmlBlock: 'html' INDENT content=HTML_CONTENT DEDENT;
+MdBlock:
+    'md' (
+        ':' content=RAW_LINE |
+        INDENT lines+=RAW_LINE* DEDENT
+    );
+
+HtmlBlock:
+    'html' INDENT lines+=RAW_LINE* DEDENT;
 
 Attribute:
-    name=ID '=' value=(STRING | ID) |
-    name=ID;  // boolean flag like "primary" or "disabled"
+    name=ID '=' value=(STRING | NUMBER | ID) |
+    name=ID;
 
-// Keywords map to 3 primitives in AST:
-// container: page|section|card|grid|modal|nav|tabs|menu|form|alert|breadcrumb
-// control:   button|input|checkbox|radio|dropdown|textarea|link|tab|accordion|toggle|slider
-// content:   heading|text|image|icon|badge|toast|avatar|progress|chart
-terminal KEYWORD: /page|section|card|grid|heading|text|image|icon|link|form|input|button|checkbox|radio|dropdown|textarea|alert|badge|modal|toast|nav|breadcrumb|tabs|tab|menu|accordion|toggle|slider|avatar|progress|chart|md|html/;
-terminal ID: /[a-zA-Z_][a-zA-Z0-9_-]*/;
-terminal STRING: /"[^"]*"/;
-terminal INDENT: 'synthetic:indent';
-terminal DEDENT: 'synthetic:dedent';
-hidden terminal WS: /[\t ]+/;
-hidden terminal NL: /[\r\n]+/;
+// 31 element keywords (containers, controls, content)
+terminal KEYWORD: /page|section|card|.../;
+
+// RAW_LINE captures md/html block content via negative lookahead
+// SYNC: Keywords duplicated in KEYWORD and RAW_LINE patterns
+terminal RAW_LINE: /(?!keywords...)(?!md|html...)...+/;
 ```
 
 ---

@@ -12,6 +12,7 @@
 | Tailwind   | Closed vocabulary, no arbitrary classes         | bounded output for better generation         |
 | Packages   | `@lofi/html` (1st renderer)                     | Single responsibility; enables `@lofi/figma` |
 | Storybook  | `apps/storybook` aggregates from packages       | React wrapper for visual regression only     |
+| md/html    | RAW_LINE with negative lookahead (not lexer modes) | Localized complexity; lexer modes overkill for 2 block types |
 
 ## Deferred Decisions
 
