@@ -81,7 +81,7 @@
 - [x] Unit tests for renderer (28 tests passing)
 - [x] Visual regression tests in Storybook (8 story files)
 
-#### Milestone 4B: Visual Direction & Theme
+#### Milestone 4B: Visual Direction & Theme ✅
 
 **Research Phase**
 - [x] Panel review: visual direction for wireframe aesthetic
@@ -97,26 +97,48 @@
 - [x] Update `styles.ts` to use theme tokens
 - [ ] Implement light/dark mode via prefers-color-scheme (deferred)
 
-**Storybook Integration**
+**Storybook Integration** ✅
 - [x] Import lofi.css in Storybook preview
 - [x] Inject SVG filter definition via generate()
 - [x] Configure Vite aliases for hot reload without rebuild
-- [ ] Add story for each of 31 elements
-- [ ] Add variant combination stories
-- [ ] Structural tests (not pixel-perfect regression)
+- [x] Add story for each of 31 elements (one file per element)
+- [x] Add variant combination stories (compositions: Dashboard, Auth, Ecommerce)
+- [ ] Structural tests (not pixel-perfect regression) — deferred per panel: use visual regression (Chromatic) instead
 
 **Visual Polish** ✅
 - [x] Fix contrast issues in theme colors (border: #636E72, placeholder: #7F8C8D for WCAG AA)
 - [x] Improve wobble effect (baseFrequency=0.02, scale=2; subtle filter for icons)
 - [x] Icons get subtle wobble (wobble-subtle utility)
 
-#### Milestone 5: CLI + Server
+#### Milestone 5: CLI + Server ✅
 
-- [ ] `lofi <input.lofi>` → HTML output
-- [ ] `lofi --watch` → file watcher
-- [ ] `lofi --serve` → dev server with hot reload
-- [ ] Create bin/lofi entry point
-- [ ] Publish to npm
+- [x] `lofi <input.lofi>` → HTML output (stdout or `-o file.html`)
+- [x] `lofi --watch` → file watcher with auto-regeneration
+- [x] `lofi --serve` → dev server with WebSocket hot reload
+- [x] Create bin/lofi entry point (bun-native, no bundling needed)
+- [ ] Publish to npm (deferred until v1.0)
+
+#### Milestone 7: Documentation ✅
+
+- [x] PHILOSOPHY.md
+- [x] SYNTAX.md (complete reference)
+- [x] README.md (quick start)
+- [x] 5 canonical examples
+
+---
+
+## Phase 1 Complete ✅
+
+Milestones 1-5 + 7 deliver a working MVP:
+- Parse lofi DSL with full error handling
+- Generate sketch-style HTML with all 31 elements
+- CLI with --serve (hot reload) and --watch modes
+- Visual component library in Storybook
+- Complete documentation
+
+---
+
+## Phase 2: Developer Experience
 
 #### Milestone 6: LSP + Tooling
 
@@ -129,13 +151,6 @@
 - [ ] Diagnostics (errors shown in editor)
 
 > **Note:** Langium's auto-generated TextMate/Prism grammars only include literal keywords (`md`, `html`), not terminal patterns. The Monarch grammar works correctly. For full keyword highlighting, either manually enhance TextMate grammar or implement semantic highlighting.
-
-#### Milestone 7: Documentation
-
-- [x] PHILOSOPHY.md
-- [x] SYNTAX.md (complete reference)
-- [ ] README.md (quick start)
-- [x] 5 canonical examples
 
 ---
 

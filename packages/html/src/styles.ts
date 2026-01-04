@@ -107,10 +107,10 @@ export const alert = cva(
   }
 );
 
-export const nav = cva("flex items-center gap-4");
+export const nav = cva("flex items-center gap-4 mb-4");
 
 export const breadcrumb = cva(
-  "flex items-center gap-2 text-sm text-lofi-text-muted font-hand"
+  "flex items-center gap-2 text-sm text-lofi-text-muted font-hand mb-4"
 );
 
 export const tabs = cva("flex border-b-2 border-lofi-border");
@@ -277,7 +277,7 @@ export const icon = cva("inline-block text-lofi wobble-subtle", {
 });
 
 export const badge = cva(
-  "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-hand wobble [&:not(:last-child)]:mb-2 [&:not(:first-child)]:mt-2",
+  "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-hand wobble not-last:mb-2 not-first:mt-2",
   {
     variants: {
       type: {

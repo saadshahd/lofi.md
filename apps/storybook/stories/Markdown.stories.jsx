@@ -17,8 +17,7 @@ export const BasicFormatting = {
 
 export const Table = {
   args: {
-    source: `card
-  md
+    source: `md
     | Name | Role | Status |
     |------|------|--------|
     | Alice | Admin | Active |

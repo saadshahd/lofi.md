@@ -3,14 +3,16 @@
   "version": "0.0.1",
   "type": "module",
   "bin": {
-    "lofi": "./dist/index.js"
+    "lofi": "./src/index.ts"
   },
   "scripts": {
-    "build": "tsup src/index.ts --format esm --dts",
-    "dev": "tsup src/index.ts --watch"
+    "dev": "bun --watch src/index.ts"
   },
   "dependencies": {
     "@lofi/language": "workspace:*",
     "@lofi/html": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
   }
 }
