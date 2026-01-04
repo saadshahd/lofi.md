@@ -105,10 +105,10 @@
 - [ ] Add variant combination stories
 - [ ] Structural tests (not pixel-perfect regression)
 
-**Remaining Visual Polish**
-- [ ] Fix contrast issues in theme colors
-- [ ] Improve wobble effect (feTurbulence tuning)
-- [ ] Test all element variants visually
+**Visual Polish** ✅
+- [x] Fix contrast issues in theme colors (border: #636E72, placeholder: #7F8C8D for WCAG AA)
+- [x] Improve wobble effect (baseFrequency=0.02, scale=2; subtle filter for icons)
+- [x] Icons get subtle wobble (wobble-subtle utility)
 
 #### Milestone 5: CLI + Server
 

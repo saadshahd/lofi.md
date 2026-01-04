@@ -11,13 +11,17 @@ import remarkGfm from "remark-gfm";
 import remarkHtml from "remark-html";
 
 /**
- * SVG filter for hand-drawn wobble effect.
- * Include once per document for the `wobble` utility class to work.
+ * SVG filters for hand-drawn wobble effect.
+ * Include once per document for the `wobble` and `wobble-subtle` utility classes to work.
  */
 export const SVG_WOBBLE_FILTER = `<svg style="position:absolute;width:0;height:0" aria-hidden="true">
   <filter id="lofi-wobble">
-    <feTurbulence type="turbulence" baseFrequency="0.01" numOctaves="1" result="noise"/>
-    <feDisplacementMap in="SourceGraphic" in2="noise" scale="1" />
+    <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="1" result="noise"/>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" />
+  </filter>
+  <filter id="lofi-wobble-subtle">
+    <feTurbulence type="turbulence" baseFrequency="0.015" numOctaves="1" result="noise"/>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="0.5" />
   </filter>
 </svg>`;
 
@@ -68,7 +72,7 @@ import {
  */
 export function generate(
   doc: Document,
-  options: { includeFilter?: boolean } = {}
+  options: { includeFilter?: boolean } = {},
 ): string {
   const { includeFilter = true } = options;
   const content = doc.elements.map(renderNode).join("\n");

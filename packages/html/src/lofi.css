@@ -16,8 +16,9 @@
   --color-lofi: #2D3436;
   --color-lofi-bg: #FFFEF9;
   --color-lofi-muted: #F5F4EF;
-  --color-lofi-placeholder: #E8E6DF;
-  --color-lofi-border: #B2BEC3;
+  --color-lofi-placeholder: #7F8C8D;
+  --color-lofi-text-muted: #7F8C8D;
+  --color-lofi-border: #636E72;
   --color-lofi-accent: #0984E3;
   --color-lofi-error: #D63031;
   --color-lofi-success: #00B894;
@@ -46,7 +47,11 @@
   }
 } */
 
-/* 6. Wobble utility (for sketchy containers) */
+/* 6. Wobble utilities (for sketchy containers and icons) */
 @utility wobble {
   filter: url(#lofi-wobble);
+}
+
+@utility wobble-subtle {
+  filter: url(#lofi-wobble-subtle);
 }

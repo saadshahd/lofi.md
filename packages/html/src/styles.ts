@@ -23,22 +23,27 @@ export const section = cva("py-6", {
 });
 
 export const card = cva(
-  "rounded-lofi border border-lofi-border bg-lofi-bg p-4 wobble",
+  "rounded-lofi border border-lofi-border bg-lofi-bg p-4 wobble"
 );
 
-export const grid = cva("grid", {
+/*
+ * Grid uses CSS Grid for explicit column layouts (cols attribute),
+ * but flexbox for flow-based layouts (flow attribute) since flex
+ * naturally sizes items to content without stretching.
+ */
+export const grid = cva("", {
   variants: {
     flow: {
-      row: "grid-flow-row",
-      col: "grid-flow-col",
+      horizontal: "flex flex-row",
+      vertical: "flex flex-col",
     },
     cols: {
-      "1": "grid-cols-1",
-      "2": "grid-cols-2",
-      "3": "grid-cols-3",
-      "4": "grid-cols-4",
-      "5": "grid-cols-5",
-      "6": "grid-cols-6",
+      "1": "grid grid-cols-1",
+      "2": "grid grid-cols-2",
+      "3": "grid grid-cols-3",
+      "4": "grid grid-cols-4",
+      "5": "grid grid-cols-5",
+      "6": "grid grid-cols-6",
     },
     gap: {
       "1": "gap-1",
@@ -48,17 +53,11 @@ export const grid = cva("grid", {
       "5": "gap-5",
       "6": "gap-6",
     },
-    justify: {
+    align: {
       start: "justify-start",
       center: "justify-center",
       end: "justify-end",
       between: "justify-between",
-    },
-    align: {
-      start: "items-start",
-      center: "items-center",
-      end: "items-end",
-      stretch: "items-stretch",
     },
     place: {
       center: "place-items-center",
@@ -85,16 +84,16 @@ export const modal = cva(
     defaultVariants: {
       position: "center",
     },
-  },
+  }
 );
 
 export const alert = cva("rounded-lofi border p-4 font-hand wobble", {
   variants: {
     type: {
-      info: "border-lofi-accent bg-lofi-muted text-lofi",
-      success: "border-lofi-success bg-lofi-muted text-lofi",
-      warning: "border-lofi-warning bg-lofi-muted text-lofi",
-      error: "border-lofi-error bg-lofi-muted text-lofi",
+      info: "border-lofi-accent bg-lofi-accent/10 text-lofi",
+      success: "border-lofi-success bg-lofi-success/10 text-lofi",
+      warning: "border-lofi-warning bg-lofi-warning/20 text-lofi",
+      error: "border-lofi-error bg-lofi-error/10 text-lofi",
     },
     hidden: {
       true: "hidden",
@@ -108,7 +107,7 @@ export const alert = cva("rounded-lofi border p-4 font-hand wobble", {
 export const nav = cva("flex items-center gap-4");
 
 export const breadcrumb = cva(
-  "flex items-center gap-2 text-sm text-lofi-muted font-hand",
+  "flex items-center gap-2 text-sm text-lofi-text-muted font-hand"
 );
 
 export const tabs = cva("flex border-b border-lofi-border");
@@ -136,7 +135,10 @@ export const button = cva(
         true: "opacity-50 cursor-not-allowed pointer-events-none",
       },
     },
-  },
+    defaultVariants: {
+      secondary: true,
+    },
+  }
 );
 
 export const input = cva(
@@ -150,37 +152,37 @@ export const input = cva(
         true: "border-lofi-error focus:ring-lofi-error",
       },
     },
-  },
+  }
 );
 
 export const checkbox = cva(
-  "h-4 w-4 rounded-lofi border border-lofi-border text-lofi focus:ring-2 focus:ring-lofi-accent",
+  "h-4 w-4 rounded-lofi border border-lofi-border accent-lofi focus:ring-2 focus:ring-lofi",
   {
     variants: {
       disabled: {
         true: "opacity-50 cursor-not-allowed",
       },
     },
-  },
+  }
 );
 
 export const radio = cva(
-  "h-4 w-4 border border-lofi-border text-lofi focus:ring-2 focus:ring-lofi-accent",
+  "h-4 w-4 border border-lofi-border accent-lofi focus:ring-2 focus:ring-lofi",
   {
     variants: {
       disabled: {
         true: "opacity-50 cursor-not-allowed",
       },
     },
-  },
+  }
 );
 
 export const dropdown = cva(
-  "flex h-10 w-full items-center justify-between rounded-lofi border border-lofi-border bg-lofi-bg px-3 py-2 text-sm font-hand focus:outline-none focus:ring-2 focus:ring-lofi-accent wobble",
+  "flex h-10 w-full items-center justify-between rounded-lofi border border-lofi-border bg-lofi-bg px-3 py-2 text-sm font-hand focus:outline-none focus:ring-2 focus:ring-lofi-accent wobble"
 );
 
 export const textarea = cva(
-  "flex w-full rounded-lofi border border-lofi-border bg-lofi-bg px-3 py-2 text-sm font-hand placeholder:text-lofi-placeholder focus:outline-none focus:ring-2 focus:ring-lofi-accent wobble",
+  "flex w-full rounded-lofi border border-lofi-border bg-lofi-bg px-3 py-2 text-sm font-hand placeholder:text-lofi-placeholder focus:outline-none focus:ring-2 focus:ring-lofi-accent wobble"
 );
 
 export const link = cva(
@@ -191,7 +193,7 @@ export const link = cva(
         true: "font-medium",
       },
     },
-  },
+  }
 );
 
 export const tab = cva(
@@ -202,11 +204,11 @@ export const tab = cva(
         true: "border-lofi text-lofi",
       },
     },
-  },
+  }
 );
 
 export const accordion = cva(
-  "divide-y divide-lofi-border border border-lofi-border rounded-lofi wobble",
+  "divide-y divide-lofi-border border border-lofi-border rounded-lofi wobble"
 );
 
 export const toggle = cva(
@@ -224,18 +226,18 @@ export const toggle = cva(
     defaultVariants: {
       checked: false,
     },
-  },
+  }
 );
 
 export const slider = cva(
-  "w-full h-2 bg-lofi-muted rounded-full cursor-pointer",
+  "w-full h-2 bg-lofi-muted rounded-full cursor-pointer accent-lofi",
   {
     variants: {
       disabled: {
         true: "opacity-50 cursor-not-allowed",
       },
     },
-  },
+  }
 );
 
 // ============================================================================
@@ -261,14 +263,14 @@ export const heading = cva("font-sketch text-lofi", {
 export const text = cva("text-lofi font-hand", {
   variants: {
     muted: {
-      true: "text-lofi-muted",
+      true: "text-lofi-text-muted",
     },
   },
 });
 
 export const image = cva("max-w-full h-auto rounded-lofi wobble");
 
-export const icon = cva("inline-block text-lofi", {
+export const icon = cva("inline-block text-lofi wobble-subtle", {
   variants: {
     size: {
       small: "w-4 h-4",
@@ -286,16 +288,16 @@ export const badge = cva(
   {
     variants: {
       type: {
-        info: "bg-lofi-muted text-lofi-accent",
-        success: "bg-lofi-muted text-lofi-success",
-        warning: "bg-lofi-muted text-lofi-warning",
-        error: "bg-lofi-muted text-lofi-error",
+        info: "bg-lofi-accent/15 text-lofi-accent",
+        success: "bg-lofi-success/15 text-lofi-success",
+        warning: "bg-lofi-warning/25 text-lofi-warning",
+        error: "bg-lofi-error/15 text-lofi-error",
       },
     },
     defaultVariants: {
       type: "info",
     },
-  },
+  }
 );
 
 export const toast = cva(
@@ -316,7 +318,7 @@ export const toast = cva(
     defaultVariants: {
       position: "top",
     },
-  },
+  }
 );
 
 export const avatar = cva("rounded-full bg-lofi-placeholder overflow-hidden", {
@@ -345,9 +347,9 @@ export const progress = cva(
     defaultVariants: {
       size: "medium",
     },
-  },
+  }
 );
 
 export const chart = cva(
-  "w-full aspect-video bg-lofi-muted border border-lofi-border rounded-lofi flex items-center justify-center text-lofi-placeholder font-hand wobble",
+  "w-full aspect-video bg-lofi-muted border border-lofi-border rounded-lofi flex items-center justify-center text-lofi-placeholder font-hand wobble"
 );

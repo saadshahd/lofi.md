@@ -29,7 +29,7 @@ export const ThreeColumns = {
 
 export const JustifyBetween = {
   args: {
-    source: `grid flow="row" justify="between"
+    source: `grid flow="horizontal" align="between"
   button "Cancel" secondary=1
   button "Save" primary=1`,
   },

@@ -33,9 +33,9 @@ export const CompleteForm = {
     radio "Pro Plan" name="plan"
     toggle "Two-factor auth" checked=1
     slider "Volume" min="0" max="100" value="50"
-  grid flow="row" justify="between"
-    button "Cancel" secondary=1
-    button "Save Changes" primary=1`,
+    grid flow="horizontal" gap=2
+      button "Cancel" secondary=1
+      button "Save Changes" primary=1`,
   },
 };
 

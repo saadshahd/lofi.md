@@ -4,7 +4,8 @@
 | ------------ | --------------------------------------------------- | ------------------------------------------------ |
 | Primitives   | 3: `container`, `control`, `content`                | Minimal set; visual variants not categories      |
 | Vocabulary   | Domain keywords as sugar over primitives            | Friendly syntax, extensible internals            |
-| Layout       | Single `grid` with props (no row/column)            | One element handles all layout via props         |
+| Layout       | `grid` with dual mode: cols→CSS Grid, flow→Flexbox  | Grid for 2D layouts, flex for content-sized flow |
+| Alignment    | Single `align` attr (start/end/center/between)      | No CSS knowledge needed; cross-axis deferred     |
 | Markdown     | Native `md` block (tables, lists, dividers)         | Don't reinvent what markdown does                |
 | DSL > HTML   | Escape hatch only                                   | For elements not in vocabulary                   |
 | Output       | Text DSL → HTML only with shadcn sketch styling     | LLMs generate text, humans consume visually      |
@@ -18,7 +19,7 @@
 | Typography   | Architects Daughter (headings), Patrick Hand (body) | Sketch feel while remaining legible              |
 | Font loading | Google Fonts with subset                            | Balance between character and performance        |
 | Wobble       | feTurbulence + feDisplacementMap SVG filter         | Pure CSS/SVG, no JS runtime, works everywhere    |
-| Icons        | Clean (no wobble)                                   | Panel consensus: clean icons, sketchy containers |
+| Icons        | Subtle wobble (scale=0.5)                           | User preference: consistency with sketch feel    |
 | Dark mode    | prefers-color-scheme only                           | No toggle complexity for MVP                     |
 
 ## Deferred Decisions

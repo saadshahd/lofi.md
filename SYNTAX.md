@@ -33,7 +33,7 @@ All keywords map to 3 internal primitives: `container`, `control`, `content`.
 | `page` | `"title"` |
 | `section` | `align=center/left/right` |
 | `card` | |
-| `grid` | `flow=row/col`, `cols=N/"1fr 2fr"`, `gap=1-6`, `justify=start/center/end/between`, `align=start/center/end/stretch`, `place=center` |
+| `grid` | `flow=horizontal/vertical`, `cols=N`, `gap=1-6`, `align=start/center/end/between`, `place=center` |
 | `form` | |
 | `modal` | `title=`, `position=center/left/right/bottom` |
 | `alert` | `type=info/success/warning/error`, `hidden=1` |
@@ -41,6 +41,8 @@ All keywords map to 3 internal primitives: `container`, `control`, `content`.
 | `breadcrumb` | `separator=` |
 | `tabs` | |
 | `menu` | |
+
+> **Grid modes:** Use `cols` for explicit column layouts (CSS Grid). Use `flow` for content-sized items in a row/column (flexbox). Don't combine both.
 
 ### Control
 

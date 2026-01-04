@@ -32,7 +32,7 @@ describe("generate()", () => {
     });
 
     it("renders grid with attributes", async () => {
-      const doc = await parse('grid cols="3" gap="4" justify="between"');
+      const doc = await parse('grid cols="3" gap="4" align="between"');
       const html = generate(doc);
       expect(html).toContain("grid-cols-3");
       expect(html).toContain("gap-4");
@@ -51,7 +51,7 @@ describe("generate()", () => {
       const html = generate(doc);
       expect(html).toContain('role="alert"');
       expect(html).toContain("border-lofi-error");
-      expect(html).toContain("bg-lofi-muted");
+      expect(html).toContain("bg-lofi-error/10");
       expect(html).toContain("Error message");
     });
 
@@ -168,7 +168,7 @@ describe("generate()", () => {
       const doc = await parse('text "Subtle text" muted=1');
       const html = generate(doc);
       expect(html).toContain("<p");
-      expect(html).toContain("text-lofi-muted");
+      expect(html).toContain("text-lofi-text-muted");
       expect(html).toContain("Subtle text");
     });
 
@@ -184,7 +184,7 @@ describe("generate()", () => {
       const doc = await parse('badge "New" type="success"');
       const html = generate(doc);
       expect(html).toContain("<span");
-      expect(html).toContain("bg-lofi-muted");
+      expect(html).toContain("bg-lofi-success/15");
       expect(html).toContain("text-lofi-success");
       expect(html).toContain("New");
     });
