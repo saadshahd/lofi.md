@@ -72,15 +72,15 @@
 - [x] Fix: Tab indentation not rejected — parse() now surfaces lexerErrors
 - [x] Update golden test snapshots
 
-#### Milestone 4: HTML Renderer (@lofi/html)
+#### Milestone 4: HTML Renderer (@lofi/html) ✅
 
-- [ ] Implement `generate()` in packages/html
-- [ ] Define element → Tailwind class mapping (closed vocabulary)
-- [ ] Use CVA for variant handling (runtime, no build step)
-- [ ] Implement sketch theme CSS variables
-- [ ] Handle all 31 element types
-- [ ] Unit tests for renderer
-- [ ] Visual regression tests in Storybook
+- [x] Implement `generate()` in packages/html
+- [x] Define element → Tailwind class mapping (closed vocabulary)
+- [x] Use CVA for variant handling (runtime, no build step)
+- [ ] Implement sketch theme CSS variables (DEFERRED)
+- [x] Handle all 31 element types
+- [x] Unit tests for renderer (28 tests passing)
+- [x] Visual regression tests in Storybook (8 story files)
 
 #### Milestone 5: CLI + Server
 
@@ -105,7 +105,7 @@
 #### Milestone 7: Documentation
 
 - [x] PHILOSOPHY.md
-- [ ] SYNTAX.md (complete reference)
+- [x] SYNTAX.md (complete reference)
 - [ ] README.md (quick start)
 - [x] 5 canonical examples
 

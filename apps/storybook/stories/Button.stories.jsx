@@ -1,17 +1,26 @@
-// TODO: Visual regression test for button element
-//
-// Pattern:
-// import { parse } from '@lofi/language';
-// import { generate } from '@lofi/html';
-//
-// const meta = {
-//   title: 'Elements/Button',
-//   render: (args) => {
-//     const ast = parse(`button "${args.label}" ${args.variant}`);
-//     const html = generate(ast);
-//     return <div dangerouslySetInnerHTML={{ __html: html }} />;
-//   },
-// } satisfies Meta;
+import { LofiPreview } from "./LofiPreview";
 
-export default { title: "Elements/Button" };
-export const Primary = () => <div>TODO: generate()</div>;
+export default {
+  title: "Controls/Button",
+  component: LofiPreview,
+};
+
+export const Primary = {
+  args: { source: 'button "Save" primary=1' },
+};
+
+export const Secondary = {
+  args: { source: 'button "Cancel" secondary=1' },
+};
+
+export const Danger = {
+  args: { source: 'button "Delete" danger=1' },
+};
+
+export const Disabled = {
+  args: { source: 'button "Submit" disabled=1' },
+};
+
+export const Default = {
+  args: { source: 'button "Click me"' },
+};
