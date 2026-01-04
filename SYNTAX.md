@@ -33,7 +33,7 @@ All keywords map to 3 internal primitives: `container`, `control`, `content`.
 | `page` | `"title"` |
 | `section` | `align=center/left/right` |
 | `card` | |
-| `grid` | `flow=horizontal/vertical`, `cols=N`, `gap=1-6`, `align=start/center/end/between`, `place=center` |
+| `grid` | `flow=horizontal/vertical`, `cols=N`, `gap=1-6`, `align=start/center/end/between`, `items=start/center/end/stretch`, `place=center` |
 | `form` | |
 | `modal` | `title=`, `position=center/left/right/bottom` |
 | `alert` | `type=info/success/warning/error`, `hidden=1` |

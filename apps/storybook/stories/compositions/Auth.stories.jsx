@@ -39,8 +39,8 @@ export const Signup = {
         input "Confirm Password" type="password"
         checkbox "I agree to the Terms of Service"
         button "Create Account" primary=1
-      text "Already have an account?" muted=1
-      link "Sign in"`,
+      md
+        Already have an account? [Sign in](#)`,
   },
 };
 

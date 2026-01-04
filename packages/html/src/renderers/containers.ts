@@ -35,7 +35,10 @@ export function renderCard(el: Element, children: string): string {
 }
 
 export function renderGrid(el: Element, children: string): string {
-  const flow = getAttr(el.attrs, "flow") as "row" | "col" | undefined;
+  const flow = getAttr(el.attrs, "flow") as
+    | "horizontal"
+    | "vertical"
+    | undefined;
   const cols = getAttr(el.attrs, "cols") as
     | "1"
     | "2"
@@ -52,13 +55,13 @@ export function renderGrid(el: Element, children: string): string {
     | "5"
     | "6"
     | undefined;
-  const justify = getAttr(el.attrs, "justify") as
+  const align = getAttr(el.attrs, "align") as
     | "start"
     | "center"
     | "end"
     | "between"
     | undefined;
-  const align = getAttr(el.attrs, "align") as
+  const items = getAttr(el.attrs, "items") as
     | "start"
     | "center"
     | "end"
@@ -66,7 +69,7 @@ export function renderGrid(el: Element, children: string): string {
     | undefined;
   const place = getAttr(el.attrs, "place") as "center" | undefined;
 
-  const cls = styles.grid({ flow, cols, gap, justify, align, place });
+  const cls = styles.grid({ flow, cols, gap, align, items, place });
   return `<div class="${cls}">${children}</div>`;
 }
 
@@ -85,7 +88,7 @@ export function renderModal(el: Element, children: string): string {
     | undefined;
   const cls = styles.modal({ position });
   const titleHtml = title
-    ? `<h2 class="text-lg font-semibold mb-4">${escapeHtml(title)}</h2>`
+    ? `<h2 class="text-lg font-semibold font-sketch">${escapeHtml(title)}</h2>`
     : "";
   return `<div class="${cls}">${titleHtml}${children}</div>`;
 }
@@ -111,7 +114,7 @@ export function renderBreadcrumb(el: Element, children: string): string {
   const separator = stripQuotes(getAttr(el.attrs, "separator")) || "/";
   const cls = styles.breadcrumb();
   return `<nav aria-label="Breadcrumb" class="${cls}" data-separator="${escapeHtml(
-    separator
+    separator,
   )}">${children}</nav>`;
 }
 

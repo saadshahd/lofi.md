@@ -19,8 +19,7 @@ export const Active = {
 
 export const InText = {
   args: {
-    source: `text "Read our"
-link "documentation"
-text "for more information."`,
+    source: `md
+  Read our [documentation](#) for more information.`,
   },
 };

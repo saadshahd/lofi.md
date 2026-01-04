@@ -33,37 +33,40 @@ export const Analytics = {
         chart "Revenue" type="line"
       card
         heading "User Distribution"
-        chart "Users" type="pie"`,
+        chart "Users" type="donut"`,
   },
 };
 
 export const AdminPanel = {
   args: {
     source: `page "Admin Panel"
-    menu
-      link "Dashboard" active=1
-      link "Users"
-      link "Products"
-      link "Orders"
-      link "Settings"
-    breadcrumb
-      link "Home"
-      link "Dashboard"
-    heading "Welcome back"
-    grid cols="2" gap="4"
-      card
-        heading "Recent Orders"
-        md
-          | Order | Customer | Status |
-          |-------|----------|--------|
-          | #1234 | Alice | Shipped |
-          | #1235 | Bob | Pending |
-          | #1236 | Carol | Delivered |
-      card
-        heading "Quick Actions"
-        grid flow="vertical" gap="2"
-          button "Add Product" primary=1
-          button "View Reports"
-          button "Manage Users"`,
+  grid flow="horizontal" gap="6"
+    card
+      menu
+        link "Dashboard" active=1
+        link "Users"
+        link "Products"
+        link "Orders"
+        link "Settings"
+    section
+      breadcrumb
+        link "Home"
+        link "Dashboard"
+      heading "Welcome back"
+      grid cols="2" gap="4"
+        card
+          heading "Recent Orders"
+          md
+            | Order | Customer | Status |
+            |-------|----------|--------|
+            | #1234 | Alice | Shipped |
+            | #1235 | Bob | Pending |
+            | #1236 | Carol | Delivered |
+        card
+          heading "Quick Actions"
+          grid flow="vertical" gap="2"
+            button "Add Product" primary=1
+            button "View Reports"
+            button "Manage Users"`,
   },
 };

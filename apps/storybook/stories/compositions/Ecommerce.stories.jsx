@@ -23,31 +23,33 @@ export const ProductCard = {
 export const ProductGrid = {
   args: {
     source: `page "Products"
-  nav
-    link "All"
-    link "Electronics" active=1
-    link "Clothing"
-    link "Home"
-    input "Search" placeholder="Search products..."
-  grid cols="3" gap="4"
-    card
-      grid flow="vertical" gap=3
-        image src="https://picsum.photos/400/300?1" alt="Product 1"
-        heading "Headphones"
-        text "$129.00"
-        button "Add to Cart" primary=1
-    card
-      grid flow="vertical" gap=3
-        image src="https://picsum.photos/400/300?2" alt="Product 2"
-        heading "Smart Watch"
-        text "$299.00"
-        button "Add to Cart" primary=1
-    card
-      grid flow="vertical" gap=3
-        image src="https://picsum.photos/400/300?3" alt="Product 3"
-        heading "Bluetooth Speaker"
-        text "$79.00"
-        button "Add to Cart" primary=1`,
+  grid flow="vertical" gap="4"
+    grid align="between" items="center"
+      grid
+        link "All"
+        link "Electronics" active=1
+        link "Clothing"
+        link "Home"
+      input placeholder="Search products..."
+    grid cols="3" gap="4"
+      card
+        grid flow="vertical" gap=3
+          image src="https://picsum.photos/400/300?1" alt="Product 1"
+          heading "Headphones"
+          text "$129.00"
+          button "Add to Cart" primary=1
+      card
+        grid flow="vertical" gap=3
+          image src="https://picsum.photos/400/300?2" alt="Product 2"
+          heading "Smart Watch"
+          text "$299.00"
+          button "Add to Cart" primary=1
+      card
+        grid flow="vertical" gap=3
+          image src="https://picsum.photos/400/300?3" alt="Product 3"
+          heading "Bluetooth Speaker"
+          text "$79.00"
+          button "Add to Cart" primary=1`,
   },
 };
 
@@ -59,15 +61,6 @@ export const Checkout = {
     link "Shipping"
     link "Payment"
   grid cols="2" gap="4"
-    card
-      heading "Shipping Address"
-      form
-        input "Full Name"
-        input "Address"
-        grid cols="2" gap="2"
-          input "City"
-          input "Zip Code"
-        dropdown "Country" options="USA,Canada,UK"
     card
       heading "Payment"
       form
@@ -84,6 +77,15 @@ export const Checkout = {
         | Product 1 | $99.00 |
         | Product 2 | $49.00 |
         | Shipping | $9.00 |
-        | **Total** | **$157.00** |`,
+        | **Total** | **$157.00** |
+    card
+      heading "Shipping Address"
+      form
+        input "Full Name"
+        input "Address"
+        grid cols="2" gap="2"
+          input "City"
+          input "Zip Code"
+        dropdown "Country" options="USA,Canada,UK"`,
   },
 };

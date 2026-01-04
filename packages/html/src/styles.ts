@@ -23,7 +23,7 @@ export const section = cva("py-6", {
 });
 
 export const card = cva(
-  "rounded-lofi border-2 border-lofi-border bg-lofi-bg p-4 wobble shadow-hard"
+  "rounded-lofi border-2 border-lofi-border bg-lofi-bg p-4 wobble shadow-hard flex flex-col gap-3",
 );
 
 /*
@@ -31,11 +31,11 @@ export const card = cva(
  * but flexbox for flow-based layouts (flow attribute) since flex
  * naturally sizes items to content without stretching.
  */
-export const grid = cva("", {
+export const grid = cva("flex", {
   variants: {
     flow: {
-      horizontal: "flex flex-row",
-      vertical: "flex flex-col",
+      horizontal: "flex-row",
+      vertical: "flex-col",
     },
     cols: {
       "1": "grid grid-cols-1",
@@ -59,6 +59,12 @@ export const grid = cva("", {
       end: "justify-end",
       between: "justify-between",
     },
+    items: {
+      start: "items-start",
+      center: "items-center",
+      end: "items-end",
+      stretch: "items-stretch",
+    },
     place: {
       center: "place-items-center",
     },
@@ -71,7 +77,7 @@ export const grid = cva("", {
 export const form = cva("flex flex-col gap-4");
 
 export const modal = cva(
-  "fixed bg-lofi-bg rounded-lofi border-2 border-lofi-border p-6 max-w-md w-full wobble shadow-hard",
+  "fixed bg-lofi-bg rounded-lofi border-2 border-lofi-border p-6 max-w-md w-full wobble shadow-hard flex flex-col gap-4",
   {
     variants: {
       position: {
@@ -84,7 +90,7 @@ export const modal = cva(
     defaultVariants: {
       position: "center",
     },
-  }
+  },
 );
 
 export const alert = cva(
@@ -104,13 +110,13 @@ export const alert = cva(
     defaultVariants: {
       type: "info",
     },
-  }
+  },
 );
 
 export const nav = cva("flex items-center gap-4 mb-4");
 
 export const breadcrumb = cva(
-  "flex items-center gap-2 text-sm text-lofi-text-muted font-hand mb-4"
+  "flex items-center gap-2 text-sm text-lofi-text-muted font-hand mb-4",
 );
 
 export const tabs = cva("flex border-b-2 border-lofi-border");
@@ -135,7 +141,7 @@ export const button = cva("btn", {
 });
 
 export const input = cva(
-  "flex h-10 w-full rounded-lofi border-2 border-lofi-border bg-lofi-bg px-3 py-2 text-sm font-hand placeholder:text-lofi-placeholder focus:outline-none focus-visible:focus-lofi wobble",
+  "flex h-10 rounded-lofi border-2 border-lofi-border bg-lofi-bg px-3 py-2 text-sm font-hand placeholder:text-lofi-placeholder focus:outline-none focus-visible:focus-lofi wobble",
   {
     variants: {
       disabled: {
@@ -144,8 +150,15 @@ export const input = cva(
       error: {
         true: "border-lofi-error focus:ring-lofi-error",
       },
+      inline: {
+        true: "w-auto",
+        false: "w-full",
+      },
     },
-  }
+    defaultVariants: {
+      inline: false,
+    },
+  },
 );
 
 export const checkbox = cva(
@@ -156,7 +169,7 @@ export const checkbox = cva(
         true: "opacity-50 cursor-not-allowed",
       },
     },
-  }
+  },
 );
 
 export const radio = cva(
@@ -167,15 +180,15 @@ export const radio = cva(
         true: "opacity-50 cursor-not-allowed",
       },
     },
-  }
+  },
 );
 
 export const dropdown = cva(
-  "flex h-10 w-full items-center justify-between rounded-lofi border-2 border-lofi-border bg-lofi-bg px-3 py-2 text-sm font-hand focus:outline-none focus-visible:focus-lofi wobble"
+  "flex h-10 w-full items-center justify-between rounded-lofi border-2 border-lofi-border bg-lofi-bg px-3 py-2 text-sm font-hand focus:outline-none focus-visible:focus-lofi wobble",
 );
 
 export const textarea = cva(
-  "flex w-full rounded-lofi border-2 border-lofi-border bg-lofi-bg px-3 py-2 text-sm font-hand placeholder:text-lofi-placeholder focus:outline-none focus-visible:focus-lofi wobble"
+  "flex w-full rounded-lofi border-2 border-lofi-border bg-lofi-bg px-3 py-2 text-sm font-hand placeholder:text-lofi-placeholder focus:outline-none focus-visible:focus-lofi wobble",
 );
 
 export const link = cva(
@@ -183,10 +196,10 @@ export const link = cva(
   {
     variants: {
       active: {
-        true: "font-medium",
+        true: "font-semibold",
       },
     },
-  }
+  },
 );
 
 export const tab = cva(
@@ -197,11 +210,11 @@ export const tab = cva(
         true: "border-lofi text-lofi",
       },
     },
-  }
+  },
 );
 
 export const accordion = cva(
-  "divide-y divide-lofi-border border-2 border-lofi-border rounded-lofi wobble"
+  "divide-y divide-lofi-border border-2 border-lofi-border rounded-lofi wobble",
 );
 
 export const toggle = cva(
@@ -219,7 +232,7 @@ export const toggle = cva(
     defaultVariants: {
       checked: false,
     },
-  }
+  },
 );
 
 export const slider = cva(
@@ -230,7 +243,7 @@ export const slider = cva(
         true: "opacity-50 cursor-not-allowed",
       },
     },
-  }
+  },
 );
 
 // ============================================================================
@@ -277,7 +290,7 @@ export const icon = cva("inline-block text-lofi wobble-subtle", {
 });
 
 export const badge = cva(
-  "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-hand wobble not-last:mb-2 not-first:mt-2",
+  "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-hand wobble w-fit",
   {
     variants: {
       type: {
@@ -290,7 +303,7 @@ export const badge = cva(
     defaultVariants: {
       type: "info",
     },
-  }
+  },
 );
 
 export const toast = cva(
@@ -311,7 +324,7 @@ export const toast = cva(
     defaultVariants: {
       position: "top",
     },
-  }
+  },
 );
 
 export const avatar = cva("rounded-full bg-lofi-placeholder overflow-hidden", {
@@ -340,9 +353,20 @@ export const progress = cva(
     defaultVariants: {
       size: "medium",
     },
-  }
+  },
 );
 
 export const chart = cva(
-  "w-full aspect-video bg-lofi-muted border-2 border-lofi-border rounded-lofi flex items-center justify-center text-lofi-placeholder font-hand wobble"
+  "bg-lofi-muted border-2 border-lofi-border rounded-lofi flex items-center justify-center text-lofi-placeholder font-hand wobble relative",
+  {
+    variants: {
+      aspect: {
+        video: "w-full aspect-video",
+        square: "w-3/4 aspect-square mx-auto",
+      },
+    },
+    defaultVariants: {
+      aspect: "video",
+    },
+  },
 );

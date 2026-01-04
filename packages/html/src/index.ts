@@ -48,10 +48,31 @@ import {
   renderTextarea,
   renderLink,
   renderTab,
-  renderAccordion,
   renderToggle,
   renderSlider,
 } from "./renderers/controls.js";
+
+import * as styles from "./styles.js";
+import { stripQuotes, escapeHtml } from "./renderers/utils.js";
+
+function renderAccordionItem(
+  sectionEl: Element,
+  renderNodeFn: (node: TopLevelElement | ChildElement) => string,
+): string {
+  const headingEl = sectionEl.children.find(
+    (c) => c.$type === "Element" && c.keyword === "heading",
+  ) as Element | undefined;
+
+  const title = headingEl ? stripQuotes(headingEl.content) : "Section";
+
+  const contentChildren = sectionEl.children.filter(
+    (c) =>
+      !(c.$type === "Element" && c.keyword === "heading" && c === headingEl),
+  );
+  const contentHtml = contentChildren.map(renderNodeFn).join("\n");
+
+  return `<details class="accordion-item" open><summary class="accordion-trigger">${escapeHtml(title)}</summary><div class="accordion-content">${contentHtml}</div></details>`;
+}
 
 import {
   renderHeading,
@@ -64,6 +85,15 @@ import {
   renderProgress,
   renderChart,
 } from "./renderers/content.js";
+
+function renderAccordionWithItems(el: Element): string {
+  const cls = styles.accordion();
+  const items = el.children
+    .filter((c) => c.$type === "Element" && c.keyword === "section")
+    .map((sectionEl) => renderAccordionItem(sectionEl as Element, renderNode))
+    .join("\n");
+  return `<div class="${cls}">${items}</div>`;
+}
 
 /**
  * Generate HTML from a lofi document.
@@ -136,7 +166,7 @@ function renderElement(el: Element): string {
     case "tab":
       return renderTab(el);
     case "accordion":
-      return renderAccordion(el, children);
+      return renderAccordionWithItems(el);
     case "toggle":
       return renderToggle(el);
     case "slider":
