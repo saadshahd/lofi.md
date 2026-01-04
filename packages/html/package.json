@@ -4,6 +4,13 @@
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./lofi.css": "./src/lofi.css"
+  },
   "scripts": {
     "build": "tsup src/index.ts --format esm --dts"
   },

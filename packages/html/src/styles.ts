@@ -2,14 +2,15 @@ import { cva } from "class-variance-authority";
 
 /*
  * CVA definitions for all 31 lofi elements.
- * Uses basic Tailwind 4 defaults. Sketch theme deferred.
+ * Uses Tailwind v4 @theme tokens from lofi.css for hand-drawn sketch aesthetic.
+ * Containers get wobble effect, icons stay clean.
  */
 
 // ============================================================================
-// CONTAINERS (11)
+// CONTAINERS (11) - All get wobble effect for sketchy borders
 // ============================================================================
 
-export const page = cva("min-h-screen p-6");
+export const page = cva("min-h-screen p-6 bg-lofi-bg text-lofi font-hand");
 
 export const section = cva("py-6", {
   variants: {
@@ -22,7 +23,7 @@ export const section = cva("py-6", {
 });
 
 export const card = cva(
-  "rounded-lg border border-gray-200 bg-white p-4 shadow-sm",
+  "rounded-lofi border border-lofi-border bg-lofi-bg p-4 wobble",
 );
 
 export const grid = cva("grid", {
@@ -71,7 +72,7 @@ export const grid = cva("grid", {
 export const form = cva("flex flex-col gap-4");
 
 export const modal = cva(
-  "fixed bg-white rounded-lg border border-gray-200 shadow-lg p-6 max-w-md w-full",
+  "fixed bg-lofi-bg rounded-lofi border border-lofi-border p-6 max-w-md w-full wobble",
   {
     variants: {
       position: {
@@ -87,13 +88,13 @@ export const modal = cva(
   },
 );
 
-export const alert = cva("rounded-md border p-4", {
+export const alert = cva("rounded-lofi border p-4 font-hand wobble", {
   variants: {
     type: {
-      info: "border-blue-200 bg-blue-50 text-blue-800",
-      success: "border-green-200 bg-green-50 text-green-800",
-      warning: "border-yellow-200 bg-yellow-50 text-yellow-800",
-      error: "border-red-200 bg-red-50 text-red-800",
+      info: "border-lofi-accent bg-lofi-muted text-lofi",
+      success: "border-lofi-success bg-lofi-muted text-lofi",
+      warning: "border-lofi-warning bg-lofi-muted text-lofi",
+      error: "border-lofi-error bg-lofi-muted text-lofi",
     },
     hidden: {
       true: "hidden",
@@ -106,28 +107,30 @@ export const alert = cva("rounded-md border p-4", {
 
 export const nav = cva("flex items-center gap-4");
 
-export const breadcrumb = cva("flex items-center gap-2 text-sm text-gray-600");
+export const breadcrumb = cva(
+  "flex items-center gap-2 text-sm text-lofi-muted font-hand",
+);
 
-export const tabs = cva("flex border-b border-gray-200");
+export const tabs = cva("flex border-b border-lofi-border");
 
 export const menu = cva("flex flex-col");
 
 // ============================================================================
-// CONTROLS (11)
+// CONTROLS (11) - Interactive elements with wobble effect
 // ============================================================================
 
 export const button = cva(
-  "inline-flex items-center justify-center rounded-md border px-4 py-2 font-medium transition-colors",
+  "inline-flex items-center justify-center rounded-lofi border px-4 py-2 font-hand transition-colors wobble",
   {
     variants: {
       primary: {
-        true: "border-transparent bg-gray-900 text-white hover:bg-gray-800",
+        true: "border-transparent bg-lofi text-lofi-bg hover:opacity-90",
       },
       secondary: {
-        true: "border-gray-300 bg-white text-gray-900 hover:bg-gray-50",
+        true: "border-lofi-border bg-lofi-bg text-lofi hover:bg-lofi-muted",
       },
       danger: {
-        true: "border-transparent bg-red-600 text-white hover:bg-red-500",
+        true: "border-transparent bg-lofi-error text-lofi-bg hover:opacity-90",
       },
       disabled: {
         true: "opacity-50 cursor-not-allowed pointer-events-none",
@@ -137,21 +140,21 @@ export const button = cva(
 );
 
 export const input = cva(
-  "flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2",
+  "flex h-10 w-full rounded-lofi border border-lofi-border bg-lofi-bg px-3 py-2 text-sm font-hand placeholder:text-lofi-placeholder focus:outline-none focus:ring-2 focus:ring-lofi-accent focus:ring-offset-2 wobble",
   {
     variants: {
       disabled: {
-        true: "opacity-50 cursor-not-allowed bg-gray-100",
+        true: "opacity-50 cursor-not-allowed bg-lofi-muted",
       },
       error: {
-        true: "border-red-500 focus:ring-red-400",
+        true: "border-lofi-error focus:ring-lofi-error",
       },
     },
   },
 );
 
 export const checkbox = cva(
-  "h-4 w-4 rounded border border-gray-300 text-gray-900 focus:ring-2 focus:ring-gray-400",
+  "h-4 w-4 rounded-lofi border border-lofi-border text-lofi focus:ring-2 focus:ring-lofi-accent",
   {
     variants: {
       disabled: {
@@ -162,7 +165,7 @@ export const checkbox = cva(
 );
 
 export const radio = cva(
-  "h-4 w-4 border border-gray-300 text-gray-900 focus:ring-2 focus:ring-gray-400",
+  "h-4 w-4 border border-lofi-border text-lofi focus:ring-2 focus:ring-lofi-accent",
   {
     variants: {
       disabled: {
@@ -173,34 +176,37 @@ export const radio = cva(
 );
 
 export const dropdown = cva(
-  "flex h-10 w-full items-center justify-between rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gray-400",
+  "flex h-10 w-full items-center justify-between rounded-lofi border border-lofi-border bg-lofi-bg px-3 py-2 text-sm font-hand focus:outline-none focus:ring-2 focus:ring-lofi-accent wobble",
 );
 
 export const textarea = cva(
-  "flex w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400",
+  "flex w-full rounded-lofi border border-lofi-border bg-lofi-bg px-3 py-2 text-sm font-hand placeholder:text-lofi-placeholder focus:outline-none focus:ring-2 focus:ring-lofi-accent wobble",
 );
 
-export const link = cva("text-blue-600 underline hover:text-blue-800", {
-  variants: {
-    active: {
-      true: "font-medium text-blue-900",
-    },
-  },
-});
-
-export const tab = cva(
-  "px-4 py-2 text-sm font-medium border-b-2 border-transparent hover:border-gray-300 hover:text-gray-700",
+export const link = cva(
+  "text-lofi-accent underline hover:opacity-80 font-hand",
   {
     variants: {
       active: {
-        true: "border-gray-900 text-gray-900",
+        true: "font-medium",
+      },
+    },
+  },
+);
+
+export const tab = cva(
+  "px-4 py-2 text-sm font-hand border-b-2 border-transparent hover:border-lofi-border hover:text-lofi",
+  {
+    variants: {
+      active: {
+        true: "border-lofi text-lofi",
       },
     },
   },
 );
 
 export const accordion = cva(
-  "divide-y divide-gray-200 border border-gray-200 rounded-md",
+  "divide-y divide-lofi-border border border-lofi-border rounded-lofi wobble",
 );
 
 export const toggle = cva(
@@ -208,8 +214,8 @@ export const toggle = cva(
   {
     variants: {
       checked: {
-        true: "bg-gray-900",
-        false: "bg-gray-200",
+        true: "bg-lofi",
+        false: "bg-lofi-muted",
       },
       disabled: {
         true: "opacity-50 cursor-not-allowed",
@@ -221,19 +227,22 @@ export const toggle = cva(
   },
 );
 
-export const slider = cva("w-full h-2 bg-gray-200 rounded-lg cursor-pointer", {
-  variants: {
-    disabled: {
-      true: "opacity-50 cursor-not-allowed",
+export const slider = cva(
+  "w-full h-2 bg-lofi-muted rounded-full cursor-pointer",
+  {
+    variants: {
+      disabled: {
+        true: "opacity-50 cursor-not-allowed",
+      },
     },
   },
-});
+);
 
 // ============================================================================
-// CONTENT (9)
+// CONTENT (9) - Text elements with sketch fonts, icons stay clean
 // ============================================================================
 
-export const heading = cva("font-bold text-gray-900", {
+export const heading = cva("font-sketch text-lofi", {
   variants: {
     level: {
       "1": "text-4xl",
@@ -249,17 +258,17 @@ export const heading = cva("font-bold text-gray-900", {
   },
 });
 
-export const text = cva("text-gray-900", {
+export const text = cva("text-lofi font-hand", {
   variants: {
     muted: {
-      true: "text-gray-500",
+      true: "text-lofi-muted",
     },
   },
 });
 
-export const image = cva("max-w-full h-auto");
+export const image = cva("max-w-full h-auto rounded-lofi wobble");
 
-export const icon = cva("inline-block", {
+export const icon = cva("inline-block text-lofi", {
   variants: {
     size: {
       small: "w-4 h-4",
@@ -273,14 +282,14 @@ export const icon = cva("inline-block", {
 });
 
 export const badge = cva(
-  "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium",
+  "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-hand wobble",
   {
     variants: {
       type: {
-        info: "bg-blue-100 text-blue-800",
-        success: "bg-green-100 text-green-800",
-        warning: "bg-yellow-100 text-yellow-800",
-        error: "bg-red-100 text-red-800",
+        info: "bg-lofi-muted text-lofi-accent",
+        success: "bg-lofi-muted text-lofi-success",
+        warning: "bg-lofi-muted text-lofi-warning",
+        error: "bg-lofi-muted text-lofi-error",
       },
     },
     defaultVariants: {
@@ -290,14 +299,14 @@ export const badge = cva(
 );
 
 export const toast = cva(
-  "fixed rounded-md border border-gray-200 bg-white p-4 shadow-lg",
+  "fixed rounded-lofi border border-lofi-border bg-lofi-bg p-4 font-hand wobble",
   {
     variants: {
       type: {
-        info: "border-blue-200",
-        success: "border-green-200",
-        warning: "border-yellow-200",
-        error: "border-red-200",
+        info: "border-lofi-accent",
+        success: "border-lofi-success",
+        warning: "border-lofi-warning",
+        error: "border-lofi-error",
       },
       position: {
         top: "top-4 left-1/2 -translate-x-1/2",
@@ -310,7 +319,7 @@ export const toast = cva(
   },
 );
 
-export const avatar = cva("rounded-full bg-gray-200 overflow-hidden", {
+export const avatar = cva("rounded-full bg-lofi-placeholder overflow-hidden", {
   variants: {
     size: {
       small: "w-8 h-8",
@@ -323,19 +332,22 @@ export const avatar = cva("rounded-full bg-gray-200 overflow-hidden", {
   },
 });
 
-export const progress = cva("w-full rounded-full bg-gray-200 overflow-hidden", {
-  variants: {
-    size: {
-      small: "h-1",
-      medium: "h-2",
-      large: "h-4",
+export const progress = cva(
+  "w-full rounded-full bg-lofi-muted overflow-hidden wobble",
+  {
+    variants: {
+      size: {
+        small: "h-1",
+        medium: "h-2",
+        large: "h-4",
+      },
+    },
+    defaultVariants: {
+      size: "medium",
     },
   },
-  defaultVariants: {
-    size: "medium",
-  },
-});
+);
 
 export const chart = cva(
-  "w-full aspect-video bg-gray-50 border border-gray-200 rounded-md flex items-center justify-center text-gray-400",
+  "w-full aspect-video bg-lofi-muted border border-lofi-border rounded-lofi flex items-center justify-center text-lofi-placeholder font-hand wobble",
 );

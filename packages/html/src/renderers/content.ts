@@ -28,7 +28,7 @@ export function renderImage(el: Element): string {
   const alt = stripQuotes(getAttr(el.attrs, "alt")) || "";
   const cls = styles.image();
   return `<img src="${escapeHtml(src)}" alt="${escapeHtml(
-    alt
+    alt,
   )}" class="${cls}" />`;
 }
 
@@ -41,7 +41,7 @@ export function renderIcon(el: Element): string {
     | undefined;
   const cls = styles.icon({ size });
   return `<span class="${cls}" data-icon="${escapeHtml(
-    name
+    name,
   )}" role="img" aria-label="${escapeHtml(name)}"></span>`;
 }
 
@@ -84,7 +84,7 @@ export function renderAvatar(el: Element): string {
 
   if (src) {
     return `<div class="${cls}"><img src="${escapeHtml(src)}" alt="${escapeHtml(
-      alt
+      alt,
     )}" class="w-full h-full object-cover" /></div>`;
   }
   const initials = alt
@@ -93,8 +93,8 @@ export function renderAvatar(el: Element): string {
     .join("")
     .toUpperCase()
     .slice(0, 2);
-  return `<div class="${cls} flex items-center justify-center text-gray-600 font-medium">${escapeHtml(
-    initials
+  return `<div class="${cls} flex items-center justify-center text-lofi font-medium">${escapeHtml(
+    initials,
   )}</div>`;
 }
 
@@ -108,9 +108,9 @@ export function renderProgress(el: Element): string {
   const cls = styles.progress({ size });
   const percentage = Math.min(
     100,
-    Math.max(0, Number.parseInt(value, 10) || 0)
+    Math.max(0, Number.parseInt(value, 10) || 0),
   );
-  return `<div class="${cls}" role="progressbar" aria-valuenow="${percentage}" aria-valuemin="0" aria-valuemax="100"><div class="h-full bg-gray-900 rounded-full" style="width: ${percentage}%"></div></div>`;
+  return `<div class="${cls}" role="progressbar" aria-valuenow="${percentage}" aria-valuemin="0" aria-valuemax="100"><div class="h-full bg-lofi rounded-full" style="width: ${percentage}%"></div></div>`;
 }
 
 export function renderChart(el: Element): string {
@@ -118,6 +118,6 @@ export function renderChart(el: Element): string {
   const type = stripQuotes(getAttr(el.attrs, "type")) || "bar";
   const cls = styles.chart();
   return `<div class="${cls}" data-chart-type="${escapeHtml(
-    type
+    type,
   )}">[${escapeHtml(type)} chart: ${escapeHtml(label)}]</div>`;
 }

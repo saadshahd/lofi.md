@@ -1,0 +1,52 @@
+/* lofi.css - Hand-drawn sketch theme for lofi.md wireframes */
+
+/* 1. Fonts (subset for performance) */
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Patrick+Hand&display=swap&text=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789%20!@%23$%25%5E&*()_+-=%5B%5D%7B%7D;:,.<>?/');
+
+/* 2. Tailwind */
+@import "tailwindcss";
+
+/* 3. Source files for utility generation */
+@source "./styles.ts";
+@source "./renderers/*.ts";
+
+/* 4. Theme tokens */
+@theme {
+  /* Colors - creates bg-lofi-*, text-lofi-*, border-lofi-* utilities */
+  --color-lofi: #2D3436;
+  --color-lofi-bg: #FFFEF9;
+  --color-lofi-muted: #F5F4EF;
+  --color-lofi-placeholder: #E8E6DF;
+  --color-lofi-border: #B2BEC3;
+  --color-lofi-accent: #0984E3;
+  --color-lofi-error: #D63031;
+  --color-lofi-success: #00B894;
+  --color-lofi-warning: #FDCB6E;
+
+  /* Font families - creates font-sketch, font-hand utilities */
+  --font-sketch: 'Architects Daughter', cursive;
+  --font-hand: 'Patrick Hand', cursive;
+
+  /* Border radius - creates rounded-lofi utility */
+  --radius-lofi: 4px;
+}
+
+/* 5. Dark mode */
+/* @media (prefers-color-scheme: dark) {
+  @theme {
+    --color-lofi: #F5F4EF;
+    --color-lofi-bg: #1A1A1A;
+    --color-lofi-muted: #2D2D2D;
+    --color-lofi-placeholder: #3D3D3D;
+    --color-lofi-border: #404040;
+    --color-lofi-accent: #60A5FA;
+    --color-lofi-error: #FF7675;
+    --color-lofi-success: #55EFC4;
+    --color-lofi-warning: #FFEAA7;
+  }
+} */
+
+/* 6. Wobble utility (for sketchy containers) */
+@utility wobble {
+  filter: url(#lofi-wobble);
+}

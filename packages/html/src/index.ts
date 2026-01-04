@@ -10,6 +10,17 @@ import { remark } from "remark";
 import remarkGfm from "remark-gfm";
 import remarkHtml from "remark-html";
 
+/**
+ * SVG filter for hand-drawn wobble effect.
+ * Include once per document for the `wobble` utility class to work.
+ */
+export const SVG_WOBBLE_FILTER = `<svg style="position:absolute;width:0;height:0" aria-hidden="true">
+  <filter id="lofi-wobble">
+    <feTurbulence type="turbulence" baseFrequency="0.01" numOctaves="1" result="noise"/>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="1" />
+  </filter>
+</svg>`;
+
 import {
   renderPage,
   renderSection,
@@ -50,8 +61,18 @@ import {
   renderChart,
 } from "./renderers/content.js";
 
-export function generate(doc: Document): string {
-  return doc.elements.map(renderNode).join("\n");
+/**
+ * Generate HTML from a lofi document.
+ * @param doc - Parsed lofi document
+ * @param options.includeFilter - Include SVG wobble filter (default: true)
+ */
+export function generate(
+  doc: Document,
+  options: { includeFilter?: boolean } = {}
+): string {
+  const { includeFilter = true } = options;
+  const content = doc.elements.map(renderNode).join("\n");
+  return includeFilter ? `${SVG_WOBBLE_FILTER}\n${content}` : content;
 }
 
 function renderNode(node: TopLevelElement | ChildElement): string {

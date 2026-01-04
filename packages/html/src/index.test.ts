@@ -16,8 +16,9 @@ describe("generate()", () => {
       const doc = await parse("card");
       const html = generate(doc);
       expect(html).toContain("<div");
-      expect(html).toContain("rounded-lg");
+      expect(html).toContain("rounded-lofi");
       expect(html).toContain("border");
+      expect(html).toContain("wobble");
     });
 
     it("renders nested card with children", async () => {
@@ -49,7 +50,8 @@ describe("generate()", () => {
       const doc = await parse('alert type="error"\n  text "Error message"');
       const html = generate(doc);
       expect(html).toContain('role="alert"');
-      expect(html).toContain("bg-red-50");
+      expect(html).toContain("border-lofi-error");
+      expect(html).toContain("bg-lofi-muted");
       expect(html).toContain("Error message");
     });
 
@@ -65,9 +67,10 @@ describe("generate()", () => {
       const doc = await parse('button "Save" primary=1');
       const html = generate(doc);
       expect(html).toContain("<button");
-      expect(html).toContain("bg-gray-900");
-      expect(html).toContain("text-white");
+      expect(html).toContain("bg-lofi");
+      expect(html).toContain("text-lofi-bg");
       expect(html).toContain("Save");
+      expect(html).toContain("wobble");
     });
 
     it("renders disabled button", async () => {
@@ -92,7 +95,7 @@ describe("generate()", () => {
     it("renders input with error state", async () => {
       const doc = await parse('input "Username" error=1');
       const html = generate(doc);
-      expect(html).toContain("border-red-500");
+      expect(html).toContain("border-lofi-error");
     });
 
     it("renders checkbox", async () => {
@@ -165,7 +168,7 @@ describe("generate()", () => {
       const doc = await parse('text "Subtle text" muted=1');
       const html = generate(doc);
       expect(html).toContain("<p");
-      expect(html).toContain("text-gray-500");
+      expect(html).toContain("text-lofi-muted");
       expect(html).toContain("Subtle text");
     });
 
@@ -181,8 +184,8 @@ describe("generate()", () => {
       const doc = await parse('badge "New" type="success"');
       const html = generate(doc);
       expect(html).toContain("<span");
-      expect(html).toContain("bg-green-100");
-      expect(html).toContain("text-green-800");
+      expect(html).toContain("bg-lofi-muted");
+      expect(html).toContain("text-lofi-success");
       expect(html).toContain("New");
     });
 
@@ -248,7 +251,8 @@ describe("generate()", () => {
       expect(html).toContain('type="email"');
       expect(html).toContain('type="password"');
       expect(html).toContain("Sign In");
-      expect(html).toContain("bg-gray-900");
+      expect(html).toContain("bg-lofi");
+      expect(html).toContain("font-sketch");
     });
   });
 });

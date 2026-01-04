@@ -30,7 +30,7 @@ export function renderInput(el: Element): string {
     : "";
 
   const labelHtml = label
-    ? `<label for="${id}" class="text-sm font-medium text-gray-700">${escapeHtml(label)}</label>`
+    ? `<label for="${id}" class="text-sm font-medium text-lofi">${escapeHtml(label)}</label>`
     : "";
   return `<div class="flex flex-col gap-1.5">${labelHtml}<input id="${id}" type="${type}" class="${cls}"${placeholderAttr}${requiredAttr}${disabledAttr} /></div>`;
 }
@@ -45,7 +45,7 @@ export function renderCheckbox(el: Element): string {
   const checkedAttr = checked ? " checked" : "";
   const disabledAttr = disabled ? " disabled" : "";
 
-  return `<div class="flex items-center gap-2"><input type="checkbox" id="${id}" class="${cls}"${checkedAttr}${disabledAttr} /><label for="${id}" class="text-sm text-gray-700">${escapeHtml(label)}</label></div>`;
+  return `<div class="flex items-center gap-2"><input type="checkbox" id="${id}" class="${cls}"${checkedAttr}${disabledAttr} /><label for="${id}" class="text-sm text-lofi">${escapeHtml(label)}</label></div>`;
 }
 
 export function renderRadio(el: Element): string {
@@ -59,7 +59,7 @@ export function renderRadio(el: Element): string {
   const checkedAttr = selected ? " checked" : "";
   const disabledAttr = disabled ? " disabled" : "";
 
-  return `<div class="flex items-center gap-2"><input type="radio" id="${id}" name="${name}" class="${cls}"${checkedAttr}${disabledAttr} /><label for="${id}" class="text-sm text-gray-700">${escapeHtml(label)}</label></div>`;
+  return `<div class="flex items-center gap-2"><input type="radio" id="${id}" name="${name}" class="${cls}"${checkedAttr}${disabledAttr} /><label for="${id}" class="text-sm text-lofi">${escapeHtml(label)}</label></div>`;
 }
 
 export function renderDropdown(el: Element): string {
@@ -80,7 +80,7 @@ export function renderDropdown(el: Element): string {
     : "";
 
   const labelHtml = label
-    ? `<label for="${id}" class="text-sm font-medium text-gray-700">${escapeHtml(label)}</label>`
+    ? `<label for="${id}" class="text-sm font-medium text-lofi">${escapeHtml(label)}</label>`
     : "";
   return `<div class="flex flex-col gap-1.5">${labelHtml}<select id="${id}" class="${cls}">${placeholderOption}${optionsHtml}</select></div>`;
 }
@@ -97,7 +97,7 @@ export function renderTextarea(el: Element): string {
     : "";
 
   const labelHtml = label
-    ? `<label for="${id}" class="text-sm font-medium text-gray-700">${escapeHtml(label)}</label>`
+    ? `<label for="${id}" class="text-sm font-medium text-lofi">${escapeHtml(label)}</label>`
     : "";
   return `<div class="flex flex-col gap-1.5">${labelHtml}<textarea id="${id}" rows="${rows}" class="${cls}"${placeholderAttr}></textarea></div>`;
 }
@@ -132,7 +132,7 @@ export function renderToggle(el: Element): string {
   const disabledAttr = disabled ? " disabled" : "";
 
   const knobPosition = checked ? "translate-x-5" : "translate-x-0";
-  return `<div class="flex items-center gap-2"><button type="button" role="switch" id="${id}" class="${cls}" aria-checked="${checked}"${disabledAttr}><span class="sr-only">${escapeHtml(label)}</span><span class="pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform transition ${knobPosition}"></span></button><label for="${id}" class="text-sm text-gray-700">${escapeHtml(label)}</label></div>`;
+  return `<div class="flex items-center gap-2"><button type="button" role="switch" id="${id}" class="${cls}" aria-checked="${checked}"${disabledAttr}><span class="sr-only">${escapeHtml(label)}</span><span class="pointer-events-none inline-block h-5 w-5 rounded-full bg-lofi-bg shadow transform transition ${knobPosition}"></span></button><label for="${id}" class="text-sm text-lofi">${escapeHtml(label)}</label></div>`;
 }
 
 export function renderSlider(el: Element): string {
@@ -147,7 +147,7 @@ export function renderSlider(el: Element): string {
   const disabledAttr = disabled ? " disabled" : "";
 
   const labelHtml = label
-    ? `<label for="${id}" class="text-sm font-medium text-gray-700">${escapeHtml(label)}</label>`
+    ? `<label for="${id}" class="text-sm font-medium text-lofi">${escapeHtml(label)}</label>`
     : "";
   return `<div class="flex flex-col gap-1.5">${labelHtml}<input type="range" id="${id}" min="${min}" max="${max}" value="${value}" class="${cls}"${disabledAttr} /></div>`;
 }

@@ -77,10 +77,38 @@
 - [x] Implement `generate()` in packages/html
 - [x] Define element → Tailwind class mapping (closed vocabulary)
 - [x] Use CVA for variant handling (runtime, no build step)
-- [ ] Implement sketch theme CSS variables (DEFERRED)
 - [x] Handle all 31 element types
 - [x] Unit tests for renderer (28 tests passing)
 - [x] Visual regression tests in Storybook (8 story files)
+
+#### Milestone 4B: Visual Direction & Theme
+
+**Research Phase**
+- [x] Panel review: visual direction for wireframe aesthetic
+- [x] Decision: hand-drawn/sketchy aesthetic
+- [x] Panel review: Tailwind v4 idiomatic implementation
+- [x] Document design tokens
+
+**Theme Implementation**
+- [x] Create `packages/html/src/lofi.css` with Tailwind v4 @theme
+- [x] Add Google Fonts (subset: Architects Daughter, Patrick Hand)
+- [x] Implement SVG feTurbulence filter for wobble effect
+- [x] Create `@utility wobble` for sketch containers
+- [x] Update `styles.ts` to use theme tokens
+- [ ] Implement light/dark mode via prefers-color-scheme (deferred)
+
+**Storybook Integration**
+- [x] Import lofi.css in Storybook preview
+- [x] Inject SVG filter definition via generate()
+- [x] Configure Vite aliases for hot reload without rebuild
+- [ ] Add story for each of 31 elements
+- [ ] Add variant combination stories
+- [ ] Structural tests (not pixel-perfect regression)
+
+**Remaining Visual Polish**
+- [ ] Fix contrast issues in theme colors
+- [ ] Improve wobble effect (feTurbulence tuning)
+- [ ] Test all element variants visually
 
 #### Milestone 5: CLI + Server
 

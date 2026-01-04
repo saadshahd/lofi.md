@@ -17,7 +17,8 @@
   "devDependencies": {
     "@storybook/react": "^8.5.0",
     "@storybook/react-vite": "^8.5.0",
-    "storybook": "^8.5.0",
-    "prop-types": "^15.8.1"
+    "@tailwindcss/vite": "^4.1.18",
+    "prop-types": "^15.8.1",
+    "storybook": "^8.5.0"
   }
 }
