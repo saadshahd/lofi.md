@@ -16,8 +16,8 @@ import remarkHtml from "remark-html";
  */
 export const SVG_WOBBLE_FILTER = `<svg style="position:absolute;width:0;height:0" aria-hidden="true">
   <filter id="lofi-wobble">
-    <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="1" result="noise"/>
-    <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" />
+    <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="2" result="noise"/>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5" />
   </filter>
   <filter id="lofi-wobble-subtle">
     <feTurbulence type="turbulence" baseFrequency="0.015" numOctaves="1" result="noise"/>

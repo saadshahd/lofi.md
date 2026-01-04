@@ -1,4 +1,5 @@
 import type { Element } from "@lofi/language";
+import { getIconSvg } from "../icons.js";
 import * as styles from "../styles.js";
 import { escapeHtml, getAttr, hasAttr, stripQuotes } from "./utils.js";
 
@@ -40,9 +41,7 @@ export function renderIcon(el: Element): string {
     | "large"
     | undefined;
   const cls = styles.icon({ size });
-  return `<span class="${cls}" data-icon="${escapeHtml(
-    name,
-  )}" role="img" aria-label="${escapeHtml(name)}"></span>`;
+  return getIconSvg(name, cls);
 }
 
 export function renderBadge(el: Element): string {

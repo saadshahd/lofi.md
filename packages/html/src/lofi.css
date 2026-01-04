@@ -1,7 +1,7 @@
 /* lofi.css - Hand-drawn sketch theme for lofi.md wireframes */
 
-/* 1. Fonts (subset for performance) */
-@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Patrick+Hand&display=swap&text=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789%20!@%23$%25%5E&*()_+-=%5B%5D%7B%7D;:,.<>?/');
+/* 1. Fonts - single family for consistent rhythm, faster load */
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap');
 
 /* 2. Tailwind */
 @import "tailwindcss";
@@ -12,24 +12,24 @@
 
 /* 4. Theme tokens */
 @theme {
-  /* Colors - creates bg-lofi-*, text-lofi-*, border-lofi-* utilities */
-  --color-lofi: #2D3436;
-  --color-lofi-bg: #FFFEF9;
+  /* Colors - "pencil on paper" palette (panel synthesis) */
+  --color-lofi: #2B2B2B;
+  --color-lofi-bg: #FFFDF5;
   --color-lofi-muted: #F5F4EF;
   --color-lofi-placeholder: #7F8C8D;
   --color-lofi-text-muted: #7F8C8D;
-  --color-lofi-border: #636E72;
+  --color-lofi-border: #4A4A4A;
   --color-lofi-accent: #0984E3;
-  --color-lofi-error: #D63031;
-  --color-lofi-success: #00B894;
-  --color-lofi-warning: #FDCB6E;
+  --color-lofi-error: #C0392B;
+  --color-lofi-success: #0A7A5C;
+  --color-lofi-warning: #B45309;
 
-  /* Font families - creates font-sketch, font-hand utilities */
-  --font-sketch: 'Architects Daughter', cursive;
-  --font-hand: 'Patrick Hand', cursive;
+  /* Font families - Kalam for both (bold for headings, regular for body) */
+  --font-sketch: 'Kalam', cursive;
+  --font-hand: 'Kalam', cursive;
 
-  /* Border radius - creates rounded-lofi utility */
-  --radius-lofi: 4px;
+  /* Border radius - slightly rounder for hand-drawn feel */
+  --radius-lofi: 6px;
 }
 
 /* 5. Dark mode */
@@ -54,4 +54,217 @@
 
 @utility wobble-subtle {
   filter: url(#lofi-wobble-subtle);
+}
+
+/* 7. Sketch effect utilities */
+@utility link-underline {
+  text-decoration-thickness: 0.14em;
+  text-underline-offset: 0.18em;
+}
+
+@utility focus-lofi {
+  outline: 2px solid var(--color-lofi-accent);
+  outline-offset: 2px;
+}
+
+/* 8. Button system - sketch aesthetic with press effect */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-lofi);
+  border-width: 2px;
+  padding: 0.5rem 1rem;
+  font-family: var(--font-hand);
+  font-size: 1rem;
+  line-height: 1.5;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.1s ease;
+  filter: url(#lofi-wobble);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-lofi-accent);
+  outline-offset: 2px;
+}
+
+.btn:disabled,
+.btn[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.btn-secondary {
+  background-color: var(--color-lofi-bg);
+  border-color: var(--color-lofi-border);
+  color: var(--color-lofi);
+  box-shadow: 3px 3px 0 0 var(--color-lofi-border);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-lofi-muted);
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 0 var(--color-lofi-border);
+}
+
+.btn-secondary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 0 var(--color-lofi-border);
+}
+
+.btn-primary {
+  background-color: var(--color-lofi);
+  border-color: var(--color-lofi);
+  color: var(--color-lofi-bg);
+  box-shadow: 3px 3px 0 0 var(--color-lofi-border);
+}
+
+.btn-primary:hover {
+  background-color: color-mix(in srgb, var(--color-lofi) 85%, white);
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 0 var(--color-lofi-border);
+}
+
+.btn-primary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 0 var(--color-lofi-border);
+}
+
+.btn-danger {
+  background-color: var(--color-lofi-error);
+  border-color: var(--color-lofi-error);
+  color: var(--color-lofi-bg);
+  box-shadow: 3px 3px 0 0 var(--color-lofi-border);
+}
+
+.btn-danger:hover {
+  background-color: color-mix(in srgb, var(--color-lofi-error) 85%, white);
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 0 var(--color-lofi-border);
+}
+
+.btn-danger:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 0 var(--color-lofi-border);
+}
+
+/* 9. Markdown content styles */
+.lofi-md {
+  font-family: var(--font-hand);
+  color: var(--color-lofi);
+  line-height: 1.6;
+}
+
+.lofi-md table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 2px solid var(--color-lofi-border);
+  border-radius: var(--radius-lofi);
+  margin: 1rem 0;
+}
+
+.lofi-md table:first-child { margin-top: 0; }
+.lofi-md table:last-child { margin-bottom: 0; }
+
+.lofi-md th,
+.lofi-md td {
+  border: 1px solid var(--color-lofi-border);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+.lofi-md th {
+  background-color: var(--color-lofi-muted);
+  font-weight: 700;
+}
+
+.lofi-md tr:nth-child(even) {
+  background-color: color-mix(in srgb, var(--color-lofi-muted) 50%, transparent);
+}
+
+.lofi-md ul,
+.lofi-md ol {
+  margin: 0.75rem 0;
+  padding-left: 1.5rem;
+}
+
+.lofi-md ul:first-child,
+.lofi-md ol:first-child { margin-top: 0; }
+
+.lofi-md ul:last-child,
+.lofi-md ol:last-child { margin-bottom: 0; }
+
+.lofi-md ul {
+  list-style-type: disc;
+}
+
+.lofi-md ol {
+  list-style-type: decimal;
+}
+
+.lofi-md li {
+  margin: 0.25rem 0;
+}
+
+.lofi-md li:first-child { margin-top: 0; }
+.lofi-md li:last-child { margin-bottom: 0; }
+
+.lofi-md li::marker {
+  color: var(--color-lofi-border);
+}
+
+.lofi-md hr {
+  border: none;
+  border-top: 2px solid var(--color-lofi-border);
+  margin: 1.5rem 0;
+}
+
+.lofi-md hr:first-child { margin-top: 0; }
+.lofi-md hr:last-child { margin-bottom: 0; }
+
+.lofi-md blockquote {
+  border-left: 4px solid var(--color-lofi-accent);
+  padding-left: 1rem;
+  margin: 1rem 0;
+  color: var(--color-lofi-text-muted);
+  font-style: italic;
+}
+
+.lofi-md blockquote:first-child { margin-top: 0; }
+.lofi-md blockquote:last-child { margin-bottom: 0; }
+
+.lofi-md code {
+  background-color: var(--color-lofi-muted);
+  padding: 0.125rem 0.25rem;
+  border-radius: 3px;
+  font-family: ui-monospace, monospace;
+  font-size: 0.875em;
+}
+
+.lofi-md pre {
+  background-color: var(--color-lofi-muted);
+  padding: 1rem;
+  border-radius: var(--radius-lofi);
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.lofi-md pre:first-child { margin-top: 0; }
+.lofi-md pre:last-child { margin-bottom: 0; }
+
+.lofi-md pre code {
+  background: none;
+  padding: 0;
+}
+
+.lofi-md a {
+  color: var(--color-lofi-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 0.14em;
+  text-underline-offset: 0.18em;
+}
+
+.lofi-md a:hover {
+  opacity: 0.8;
 }

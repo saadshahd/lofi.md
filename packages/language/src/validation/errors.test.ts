@@ -75,8 +75,8 @@ describe("error constants", () => {
     }
   });
 
-  it("has 5 error codes defined", () => {
-    expect(Object.keys(ErrorCodes).length).toBe(5);
+  it("has 6 error codes defined", () => {
+    expect(Object.keys(ErrorCodes).length).toBe(6);
   });
 });
 

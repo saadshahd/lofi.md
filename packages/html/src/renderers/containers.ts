@@ -1,6 +1,14 @@
 import type { Element } from "@lofi/language";
+import { getIconSvg } from "../icons.js";
 import * as styles from "../styles.js";
 import { escapeHtml, getAttr, hasAttr, stripQuotes } from "./utils.js";
+
+const alertIconMap = {
+  info: "info",
+  success: "check-circle",
+  warning: "warning",
+  error: "x-circle",
+} as const;
 
 export function renderPage(el: Element, children: string): string {
   const title = stripQuotes(el.content);
@@ -83,15 +91,15 @@ export function renderModal(el: Element, children: string): string {
 }
 
 export function renderAlert(el: Element, children: string): string {
-  const type = getAttr(el.attrs, "type") as
-    | "info"
-    | "success"
-    | "warning"
-    | "error"
-    | undefined;
+  const type = (getAttr(el.attrs, "type") ??
+    "info") as keyof typeof alertIconMap;
   const hidden = hasAttr(el.attrs, "hidden");
   const cls = styles.alert({ type, hidden });
-  return `<div role="alert" class="${cls}">${children}</div>`;
+
+  const iconName = alertIconMap[type];
+  const iconSvg = getIconSvg(iconName, "w-5 h-5 shrink-0");
+
+  return `<div role="alert" class="${cls}">${iconSvg}${children}</div>`;
 }
 
 export function renderNav(el: Element, children: string): string {
@@ -102,7 +110,9 @@ export function renderNav(el: Element, children: string): string {
 export function renderBreadcrumb(el: Element, children: string): string {
   const separator = stripQuotes(getAttr(el.attrs, "separator")) || "/";
   const cls = styles.breadcrumb();
-  return `<nav aria-label="Breadcrumb" class="${cls}" data-separator="${escapeHtml(separator)}">${children}</nav>`;
+  return `<nav aria-label="Breadcrumb" class="${cls}" data-separator="${escapeHtml(
+    separator
+  )}">${children}</nav>`;
 }
 
 export function renderTabs(el: Element, children: string): string {

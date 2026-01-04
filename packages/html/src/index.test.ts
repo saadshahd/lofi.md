@@ -67,18 +67,17 @@ describe("generate()", () => {
       const doc = await parse('button "Save" primary=1');
       const html = generate(doc);
       expect(html).toContain("<button");
-      expect(html).toContain("bg-lofi");
-      expect(html).toContain("text-lofi-bg");
+      expect(html).toContain("btn");
+      expect(html).toContain("btn-primary");
       expect(html).toContain("Save");
-      expect(html).toContain("wobble");
     });
 
     it("renders disabled button", async () => {
       const doc = await parse('button "Save" disabled=1');
       const html = generate(doc);
       expect(html).toContain("disabled");
-      expect(html).toContain("opacity-50");
-      expect(html).toContain("cursor-not-allowed");
+      expect(html).toContain("btn");
+      expect(html).toContain("btn-secondary");
     });
 
     it("renders input with label and placeholder", async () => {

@@ -20,6 +20,47 @@ All 31 keywords map to 3 internal primitives:
 4. **Quotes for content** — String content in double quotes.
 5. **No quotes for keywords** — Boolean attributes have no value.
 
+## Attribute Conventions
+
+### Mutually Exclusive Variants
+
+When an element has multiple visual variants (e.g., button styles), use **mutually exclusive boolean attributes**:
+
+```lofi
+button "Save" primary=1      # Filled dark
+button "Cancel"              # Secondary (default)
+button "Delete" danger=1     # Filled error
+```
+
+In the DSL, these are boolean flags. In the renderer, they map to a single `intent` enum:
+
+```typescript
+// Renderer selects ONE intent
+let intent: "primary" | "secondary" | "danger" = "secondary";
+if (hasAttr(el.attrs, "primary")) intent = "primary";
+else if (hasAttr(el.attrs, "danger")) intent = "danger";
+```
+
+### State Attributes
+
+Attributes that modify state (not style):
+
+```lofi
+button "Submit" disabled=1   # Non-interactive
+checkbox "Agree" checked=1   # Pre-selected
+input "Name" error=1         # Validation failed
+```
+
+### Value Attributes
+
+Attributes with specific values:
+
+```lofi
+alert "Error" type="error"   # info | success | warning | error
+heading "Title" level="2"    # 1-6
+grid cols="3" gap="4"        # Numeric values
+```
+
 ## Blocks
 
 ### md (Markdown)

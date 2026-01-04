@@ -14,7 +14,7 @@ See @PHILOSOPHY.md for axioms. See @SYNTAX.md for element reference. See @ROADMA
 | Test | Vitest + `langium/test` + Storybook 10 | Colocated tests, visual regression |
 | Lint | Biome | Fast, all-in-one |
 | Markdown | remark | For `md` blocks |
-| CSS | Tailwind v4 | Standalone CLI, no Node.js required |
+| CSS | Tailwind v4 + CSS | Hybrid: utilities for simple, CSS classes for stateful |
 | UI (VS Code) | React 19, shadcn@latest | Webview only, not DSL output |
 | Icons | Phosphor | Clean, MIT |
 
@@ -63,6 +63,7 @@ lofi/
 3. **Closed vocabulary** — 31 elements, no arbitrary Tailwind classes
 4. **HTML output** — No React runtime for preview
 5. **2-space indentation** — Mandatory, no tabs
+6. **CSS for states** — Use CSS classes (not Tailwind variants) for hover/active/focus
 
 ## Output Pipeline
 

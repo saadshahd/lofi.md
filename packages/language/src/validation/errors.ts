@@ -11,6 +11,7 @@ export const ErrorCodes = {
   LOFI_INDENT_003: "LOFI_INDENT_003",
   LOFI_INDENT_004: "LOFI_INDENT_004",
   LOFI_SYNTAX_001: "LOFI_SYNTAX_001",
+  LOFI_ATTR_001: "LOFI_ATTR_001",
 } as const;
 
 export type LofiErrorCode = (typeof ErrorCodes)[keyof typeof ErrorCodes];
@@ -62,6 +63,11 @@ export const ErrorMeta: Record<
     suggestion:
       "Valid elements: page, section, card, grid, modal, nav, tabs, menu, form, alert, breadcrumb, button, input, checkbox, radio, dropdown, textarea, link, tab, accordion, toggle, slider, heading, text, image, icon, badge, toast, avatar, progress, chart",
     example: 'card\n  heading "Title"\n  button "Save"',
+  },
+  LOFI_ATTR_001: {
+    message: "Unknown icon name",
+    suggestion: "See SYNTAX.md for valid icon names",
+    example: 'icon name="heart"',
   },
 };
 

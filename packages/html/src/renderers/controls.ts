@@ -4,12 +4,15 @@ import { escapeHtml, getAttr, hasAttr, stripQuotes } from "./utils.js";
 
 export function renderButton(el: Element): string {
   const text = stripQuotes(el.content);
-  const primary = hasAttr(el.attrs, "primary") || undefined;
-  const secondary = hasAttr(el.attrs, "secondary") || undefined;
-  const danger = hasAttr(el.attrs, "danger") || undefined;
-  const disabled = hasAttr(el.attrs, "disabled") || undefined;
-  const cls = styles.button({ primary, secondary, danger, disabled });
+
+  let intent: "primary" | "secondary" | "danger" = "secondary";
+  if (hasAttr(el.attrs, "primary")) intent = "primary";
+  else if (hasAttr(el.attrs, "danger")) intent = "danger";
+
+  const disabled = hasAttr(el.attrs, "disabled");
+  const cls = styles.button({ intent });
   const disabledAttr = disabled ? " disabled" : "";
+
   return `<button class="${cls}"${disabledAttr}>${escapeHtml(text)}</button>`;
 }
 

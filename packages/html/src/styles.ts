@@ -23,7 +23,7 @@ export const section = cva("py-6", {
 });
 
 export const card = cva(
-  "rounded-lofi border border-lofi-border bg-lofi-bg p-4 wobble"
+  "rounded-lofi border-2 border-lofi-border bg-lofi-bg p-4 wobble shadow-hard"
 );
 
 /*
@@ -71,7 +71,7 @@ export const grid = cva("", {
 export const form = cva("flex flex-col gap-4");
 
 export const modal = cva(
-  "fixed bg-lofi-bg rounded-lofi border border-lofi-border p-6 max-w-md w-full wobble",
+  "fixed bg-lofi-bg rounded-lofi border-2 border-lofi-border p-6 max-w-md w-full wobble shadow-hard",
   {
     variants: {
       position: {
@@ -87,22 +87,25 @@ export const modal = cva(
   }
 );
 
-export const alert = cva("rounded-lofi border p-4 font-hand wobble", {
-  variants: {
-    type: {
-      info: "border-lofi-accent bg-lofi-accent/10 text-lofi",
-      success: "border-lofi-success bg-lofi-success/10 text-lofi",
-      warning: "border-lofi-warning bg-lofi-warning/20 text-lofi",
-      error: "border-lofi-error bg-lofi-error/10 text-lofi",
+export const alert = cva(
+  "rounded-lofi border-2 p-4 font-hand wobble flex items-start gap-1.5 leading-none [&>p]:mt-1",
+  {
+    variants: {
+      type: {
+        info: "border-lofi-accent bg-lofi-accent/10 text-lofi",
+        success: "border-lofi-success bg-lofi-success/10 text-lofi",
+        warning: "border-lofi-warning bg-lofi-warning/20 text-lofi",
+        error: "border-lofi-error bg-lofi-error/10 text-lofi",
+      },
+      hidden: {
+        true: "hidden",
+      },
     },
-    hidden: {
-      true: "hidden",
+    defaultVariants: {
+      type: "info",
     },
-  },
-  defaultVariants: {
-    type: "info",
-  },
-});
+  }
+);
 
 export const nav = cva("flex items-center gap-4");
 
@@ -110,7 +113,7 @@ export const breadcrumb = cva(
   "flex items-center gap-2 text-sm text-lofi-text-muted font-hand"
 );
 
-export const tabs = cva("flex border-b border-lofi-border");
+export const tabs = cva("flex border-b-2 border-lofi-border");
 
 export const menu = cva("flex flex-col");
 
@@ -118,31 +121,21 @@ export const menu = cva("flex flex-col");
 // CONTROLS (11) - Interactive elements with wobble effect
 // ============================================================================
 
-export const button = cva(
-  "inline-flex items-center justify-center rounded-lofi border px-4 py-2 font-hand transition-colors wobble",
-  {
-    variants: {
-      primary: {
-        true: "border-transparent bg-lofi text-lofi-bg hover:opacity-90",
-      },
-      secondary: {
-        true: "border-lofi-border bg-lofi-bg text-lofi hover:bg-lofi-muted",
-      },
-      danger: {
-        true: "border-transparent bg-lofi-error text-lofi-bg hover:opacity-90",
-      },
-      disabled: {
-        true: "opacity-50 cursor-not-allowed pointer-events-none",
-      },
+export const button = cva("btn", {
+  variants: {
+    intent: {
+      primary: "btn-primary",
+      secondary: "btn-secondary",
+      danger: "btn-danger",
     },
-    defaultVariants: {
-      secondary: true,
-    },
-  }
-);
+  },
+  defaultVariants: {
+    intent: "secondary",
+  },
+});
 
 export const input = cva(
-  "flex h-10 w-full rounded-lofi border border-lofi-border bg-lofi-bg px-3 py-2 text-sm font-hand placeholder:text-lofi-placeholder focus:outline-none focus:ring-2 focus:ring-lofi-accent focus:ring-offset-2 wobble",
+  "flex h-10 w-full rounded-lofi border-2 border-lofi-border bg-lofi-bg px-3 py-2 text-sm font-hand placeholder:text-lofi-placeholder focus:outline-none focus-visible:focus-lofi wobble",
   {
     variants: {
       disabled: {
@@ -156,7 +149,7 @@ export const input = cva(
 );
 
 export const checkbox = cva(
-  "h-4 w-4 rounded-lofi border border-lofi-border accent-lofi focus:ring-2 focus:ring-lofi",
+  "h-4 w-4 rounded-lofi border-2 border-lofi-border accent-lofi focus-visible:focus-lofi",
   {
     variants: {
       disabled: {
@@ -167,7 +160,7 @@ export const checkbox = cva(
 );
 
 export const radio = cva(
-  "h-4 w-4 border border-lofi-border accent-lofi focus:ring-2 focus:ring-lofi",
+  "h-4 w-4 border-2 border-lofi-border accent-lofi focus-visible:focus-lofi",
   {
     variants: {
       disabled: {
@@ -178,15 +171,15 @@ export const radio = cva(
 );
 
 export const dropdown = cva(
-  "flex h-10 w-full items-center justify-between rounded-lofi border border-lofi-border bg-lofi-bg px-3 py-2 text-sm font-hand focus:outline-none focus:ring-2 focus:ring-lofi-accent wobble"
+  "flex h-10 w-full items-center justify-between rounded-lofi border-2 border-lofi-border bg-lofi-bg px-3 py-2 text-sm font-hand focus:outline-none focus-visible:focus-lofi wobble"
 );
 
 export const textarea = cva(
-  "flex w-full rounded-lofi border border-lofi-border bg-lofi-bg px-3 py-2 text-sm font-hand placeholder:text-lofi-placeholder focus:outline-none focus:ring-2 focus:ring-lofi-accent wobble"
+  "flex w-full rounded-lofi border-2 border-lofi-border bg-lofi-bg px-3 py-2 text-sm font-hand placeholder:text-lofi-placeholder focus:outline-none focus-visible:focus-lofi wobble"
 );
 
 export const link = cva(
-  "text-lofi-accent underline hover:opacity-80 font-hand",
+  "text-lofi-accent underline link-underline hover:opacity-80 font-hand focus-visible:focus-lofi",
   {
     variants: {
       active: {
@@ -197,7 +190,7 @@ export const link = cva(
 );
 
 export const tab = cva(
-  "px-4 py-2 text-sm font-hand border-b-2 border-transparent hover:border-lofi-border hover:text-lofi",
+  "px-4 py-2 text-sm font-hand border-b-2 border-transparent hover:border-lofi-border hover:text-lofi focus-visible:focus-lofi",
   {
     variants: {
       active: {
@@ -208,11 +201,11 @@ export const tab = cva(
 );
 
 export const accordion = cva(
-  "divide-y divide-lofi-border border border-lofi-border rounded-lofi wobble"
+  "divide-y divide-lofi-border border-2 border-lofi-border rounded-lofi wobble"
 );
 
 export const toggle = cva(
-  "relative inline-flex h-6 w-11 items-center rounded-full transition-colors",
+  "relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus-visible:focus-lofi",
   {
     variants: {
       checked: {
@@ -230,7 +223,7 @@ export const toggle = cva(
 );
 
 export const slider = cva(
-  "w-full h-2 bg-lofi-muted rounded-full cursor-pointer accent-lofi",
+  "w-full h-2 bg-lofi-muted rounded-full cursor-pointer accent-lofi focus-visible:focus-lofi",
   {
     variants: {
       disabled: {
@@ -244,7 +237,7 @@ export const slider = cva(
 // CONTENT (9) - Text elements with sketch fonts, icons stay clean
 // ============================================================================
 
-export const heading = cva("font-sketch text-lofi", {
+export const heading = cva("font-sketch font-bold text-lofi", {
   variants: {
     level: {
       "1": "text-4xl",
@@ -284,7 +277,7 @@ export const icon = cva("inline-block text-lofi wobble-subtle", {
 });
 
 export const badge = cva(
-  "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-hand wobble",
+  "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-hand wobble [&:not(:last-child)]:mb-2 [&:not(:first-child)]:mt-2",
   {
     variants: {
       type: {
@@ -301,7 +294,7 @@ export const badge = cva(
 );
 
 export const toast = cva(
-  "fixed rounded-lofi border border-lofi-border bg-lofi-bg p-4 font-hand wobble",
+  "fixed rounded-lofi border-2 border-lofi-border bg-lofi-bg p-4 font-hand wobble shadow-hard",
   {
     variants: {
       type: {
@@ -351,5 +344,5 @@ export const progress = cva(
 );
 
 export const chart = cva(
-  "w-full aspect-video bg-lofi-muted border border-lofi-border rounded-lofi flex items-center justify-center text-lofi-placeholder font-hand wobble"
+  "w-full aspect-video bg-lofi-muted border-2 border-lofi-border rounded-lofi flex items-center justify-center text-lofi-placeholder font-hand wobble"
 );
