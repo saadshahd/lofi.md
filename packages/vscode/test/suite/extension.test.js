@@ -22,7 +22,7 @@ describe("lofi Extension Test Suite", function () {
       assert.strictEqual(
         doc.languageId,
         "lofi",
-        "Document should be lofi language"
+        "Document should be lofi language",
       );
     } finally {
       if (fs.existsSync(testFile)) {
@@ -47,7 +47,7 @@ describe("lofi Extension Test Suite", function () {
     const commands = await vscode.commands.getCommands(true);
     assert.ok(
       commands.includes("lofi.preview.open"),
-      "lofi.preview.open command should exist after activation"
+      "lofi.preview.open command should exist after activation",
     );
   });
 });
