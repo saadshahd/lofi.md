@@ -28,9 +28,9 @@ export function renderImage(el: Element): string {
   const src = stripQuotes(getAttr(el.attrs, "src")) || "";
   const alt = stripQuotes(getAttr(el.attrs, "alt")) || "";
   const cls = styles.image();
-  return `<img class="not-last:mb-2 not-first:mt-2" src="${escapeHtml(
+  return `<img class="not-last:mb-2 not-first:mt-2 ${cls}" src="${escapeHtml(
     src,
-  )}" alt="${escapeHtml(alt)}" class="${cls}" />`;
+  )}" alt="${escapeHtml(alt)}" data-chromatic="ignore" />`;
 }
 
 export function renderIcon(el: Element): string {
@@ -84,7 +84,7 @@ export function renderAvatar(el: Element): string {
   if (src) {
     return `<div class="${cls}"><img src="${escapeHtml(src)}" alt="${escapeHtml(
       alt,
-    )}" class="w-full h-full object-cover" /></div>`;
+    )}" class="w-full h-full object-cover" data-chromatic="ignore" /></div>`;
   }
   const initials = alt
     .split(" ")
