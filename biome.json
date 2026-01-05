@@ -16,7 +16,20 @@
       "node_modules",
       "*.lofi",
       "storybook-static",
-      ".vscode-test"
+      ".vscode-test",
+      "packages/language/src/generated"
     ]
-  }
+  },
+  "overrides": [
+    {
+      "include": ["apps/storybook/stories/LofiPreview.jsx"],
+      "linter": {
+        "rules": {
+          "security": {
+            "noDangerouslySetInnerHtml": "off"
+          }
+        }
+      }
+    }
+  ]
 }

@@ -64,7 +64,7 @@ export class LofiValidator {
       const suggestion = this.findIconSuggestion(iconName);
       const hint = suggestion
         ? `Did you mean "${suggestion}"?`
-        : `Valid icons include: heart, rocket, shield, inbox, info, warning...`;
+        : "Valid icons include: heart, rocket, shield, inbox, info, warning...";
 
       accept(
         "error",

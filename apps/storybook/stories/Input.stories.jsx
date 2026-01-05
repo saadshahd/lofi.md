@@ -25,6 +25,6 @@ export const Disabled = {
   args: { source: 'input "Disabled" disabled=1' },
 };
 
-export const Error = {
+export const WithError = {
   args: { source: 'input "Username" error=1' },
 };

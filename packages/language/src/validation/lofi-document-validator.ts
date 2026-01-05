@@ -40,23 +40,24 @@ interface EnhancedError {
 }
 
 function tokenToRange(token: IToken): Range {
+  const startLine = token.startLine ?? 1;
+  const startColumn = token.startColumn ?? 1;
+  const endLine = token.endLine ?? startLine;
+  const endColumn = token.endColumn ?? startColumn;
+
   return {
     start: {
-      character: token.startColumn! - 1,
-      line: token.startLine! - 1,
+      character: startColumn - 1,
+      line: startLine - 1,
     },
     end: {
-      character: token.endColumn!,
-      line: token.endLine! - 1,
+      character: endColumn,
+      line: endLine - 1,
     },
   };
 }
 
 export class LofiDocumentValidator extends DefaultDocumentValidator {
-  constructor(services: LangiumCoreServices) {
-    super(services);
-  }
-
   protected override processParsingErrors(
     parseResult: ParseResult,
     diagnostics: Diagnostic[],
@@ -66,13 +67,15 @@ export class LofiDocumentValidator extends DefaultDocumentValidator {
       let range: Range | undefined = undefined;
 
       // Handle error recovery where token positions might be NaN
-      if (isNaN(parserError.token.startOffset)) {
+      if (Number.isNaN(parserError.token.startOffset)) {
         if ("previousToken" in parserError) {
           const token = (parserError as MismatchedTokenException).previousToken;
-          if (!isNaN(token.startOffset)) {
+          if (!Number.isNaN(token.startOffset)) {
+            const endLine = (token.endLine ?? 1) - 1;
+            const endColumn = token.endColumn ?? 1;
             range = {
-              start: { line: token.endLine! - 1, character: token.endColumn! },
-              end: { line: token.endLine! - 1, character: token.endColumn! },
+              start: { line: endLine, character: endColumn },
+              end: { line: endLine, character: endColumn },
             };
           } else {
             range = {

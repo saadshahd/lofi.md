@@ -1,7 +1,7 @@
 #!/usr/bin/env bun
-import { watch } from "fs";
-import { dirname, resolve } from "path";
-import { parseArgs } from "util";
+import { watch } from "node:fs";
+import { dirname, resolve } from "node:path";
+import { parseArgs } from "node:util";
 import { generate } from "@lofi/html";
 import { parse } from "@lofi/language";
 import type { ServerWebSocket } from "bun";

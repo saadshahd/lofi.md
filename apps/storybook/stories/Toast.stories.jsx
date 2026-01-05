@@ -19,7 +19,7 @@ export const Success = {
   },
 };
 
-export const Error = {
+export const ErrorType = {
   args: {
     source: `toast type="error"
   text "Something went wrong. Please try again."`,
