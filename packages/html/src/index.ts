@@ -1,10 +1,10 @@
 import type {
+  ChildElement,
   Document,
   Element,
-  MdBlock,
   HtmlBlock,
+  MdBlock,
   TopLevelElement,
-  ChildElement,
 } from "@lofi/language";
 import { remark } from "remark";
 import remarkGfm from "remark-gfm";
@@ -26,34 +26,34 @@ export const SVG_WOBBLE_FILTER = `<svg style="position:absolute;width:0;height:0
 </svg>`;
 
 import {
+  renderAlert,
+  renderBreadcrumb,
+  renderCard,
+  renderForm,
+  renderGrid,
+  renderMenu,
+  renderModal,
+  renderNav,
   renderPage,
   renderSection,
-  renderCard,
-  renderGrid,
-  renderForm,
-  renderModal,
-  renderAlert,
-  renderNav,
-  renderBreadcrumb,
   renderTabs,
-  renderMenu,
 } from "./renderers/containers.js";
 
 import {
   renderButton,
-  renderInput,
   renderCheckbox,
-  renderRadio,
   renderDropdown,
-  renderTextarea,
+  renderInput,
   renderLink,
-  renderTab,
-  renderToggle,
+  renderRadio,
   renderSlider,
+  renderTab,
+  renderTextarea,
+  renderToggle,
 } from "./renderers/controls.js";
 
+import { escapeHtml, stripQuotes } from "./renderers/utils.js";
 import * as styles from "./styles.js";
-import { stripQuotes, escapeHtml } from "./renderers/utils.js";
 
 function renderAccordionItem(
   sectionEl: Element,
@@ -75,15 +75,15 @@ function renderAccordionItem(
 }
 
 import {
-  renderHeading,
-  renderText,
-  renderImage,
-  renderIcon,
-  renderBadge,
-  renderToast,
   renderAvatar,
-  renderProgress,
+  renderBadge,
   renderChart,
+  renderHeading,
+  renderIcon,
+  renderImage,
+  renderProgress,
+  renderText,
+  renderToast,
 } from "./renderers/content.js";
 
 function renderAccordionWithItems(el: Element): string {

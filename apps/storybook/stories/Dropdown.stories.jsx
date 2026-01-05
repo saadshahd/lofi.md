@@ -11,7 +11,8 @@ export const Default = {
 
 export const WithPlaceholder = {
   args: {
-    source: 'dropdown "Status" options="Active,Pending,Inactive" placeholder="Select status"',
+    source:
+      'dropdown "Status" options="Active,Pending,Inactive" placeholder="Select status"',
   },
 };
 

@@ -1,0 +1,107 @@
+{
+  "name": "lofi-wireframes",
+  "displayName": "lofi Wireframes",
+  "description": "Language support and live preview for lofi wireframe DSL",
+  "version": "0.1.0",
+  "publisher": "lofi",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": ["Programming Languages", "Visualization"],
+  "activationEvents": ["onLanguage:lofi"],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "lofi",
+        "aliases": ["lofi", "lofi-wireframe"],
+        "extensions": [".lofi"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "lofi",
+        "scopeName": "source.lofi",
+        "path": "./syntaxes/lofi.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "lofi.preview.open",
+        "title": "Open Preview",
+        "category": "lofi"
+      },
+      {
+        "command": "lofi.preview.openToSide",
+        "title": "Open Preview to Side",
+        "category": "lofi"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "lofi.preview.openToSide",
+          "when": "editorLangId == lofi",
+          "group": "navigation"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "lofi.preview.open",
+          "when": "editorLangId == lofi"
+        },
+        {
+          "command": "lofi.preview.openToSide",
+          "when": "editorLangId == lofi"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "lofi.preview.openToSide",
+        "key": "ctrl+k v",
+        "mac": "cmd+k v",
+        "when": "editorLangId == lofi"
+      }
+    ],
+    "configuration": {
+      "title": "lofi Wireframes",
+      "properties": {
+        "lofi.preview.autoRefresh": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically refresh preview on file changes"
+        },
+        "lofi.preview.refreshDelay": {
+          "type": "number",
+          "default": 100,
+          "description": "Delay in ms before refreshing preview after changes"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "watch": "tsup --watch",
+    "test": "node ./test/runTest.js",
+    "vscode:prepublish": "bun run build",
+    "package": "vsce package --no-dependencies"
+  },
+  "dependencies": {
+    "@lofi/language": "workspace:*",
+    "@lofi/html": "workspace:*",
+    "vscode-languageclient": "^9.0.1",
+    "vscode-languageserver": "^9.0.1",
+    "vscode-languageserver-textdocument": "^1.0.12"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@vscode/test-electron": "^2.4.0",
+    "@vscode/vsce": "^3.2.0",
+    "glob": "^10.3.10",
+    "mocha": "^10.2.0",
+    "tsup": "^8.3.0"
+  }
+}

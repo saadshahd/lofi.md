@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { parse } from "@lofi/language";
 import { generate } from "@lofi/html";
+import { parse } from "@lofi/language";
+import React, { useState, useEffect } from "react";
 
 export function LofiPreview({ source }) {
   const [html, setHtml] = useState("<div>Loading...</div>");

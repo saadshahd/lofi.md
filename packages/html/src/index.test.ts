@@ -1,6 +1,6 @@
-import { describe, it, expect } from "vitest";
-import { generate } from "./index.js";
 import { parse } from "@lofi/language";
+import { describe, expect, it } from "vitest";
+import { generate } from "./index.js";
 
 describe("generate()", () => {
   describe("containers", () => {
@@ -132,7 +132,7 @@ describe("generate()", () => {
       expect(html).toContain("<a");
       expect(html).toContain('href="/page"');
       expect(html).toContain("Click here");
-      expect(html).toContain("font-medium");
+      expect(html).toContain("font-semibold");
     });
 
     it("renders toggle", async () => {

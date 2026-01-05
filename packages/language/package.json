@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "fastest-levenshtein": "^1.0.16",
-    "langium": "^3.3.0"
+    "langium": "^3.3.0",
+    "vscode-languageserver": "^9.0.1"
   },
   "devDependencies": {
     "langium-cli": "^3.3.0"

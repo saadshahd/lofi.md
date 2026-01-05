@@ -6,13 +6,13 @@
  * with invalid keywords.
  */
 
+import { distance } from "fastest-levenshtein";
 import type {
   ValidationAcceptor,
   ValidationChecks,
   ValidationRegistry,
 } from "langium";
-import { distance } from "fastest-levenshtein";
-import type { LofiAstType, Element } from "../generated/ast.js";
+import type { Element, LofiAstType } from "../generated/ast.js";
 import {
   ErrorCodes,
   ErrorMeta,
@@ -85,7 +85,7 @@ export class LofiValidator {
 
   private findIconSuggestion(invalid: string): string | null {
     let closest = "";
-    let minDist = Infinity;
+    let minDist = Number.POSITIVE_INFINITY;
     for (const valid of VALID_ICON_NAMES) {
       const dist = distance(invalid, valid);
       if (dist < minDist && dist <= 2) {

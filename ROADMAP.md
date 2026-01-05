@@ -138,19 +138,21 @@ Milestones 1-5 + 7 deliver a working MVP:
 
 ---
 
-## Phase 2: Developer Experience
+## Phase 2: Developer Experience ✅
 
-#### Milestone 6: LSP + Tooling
+#### Milestone 6: LSP + Tooling ✅
 
-- [ ] VS Code extension (packages/vscode)
-- [ ] React 19 webview for preview panel
-- [ ] shadcn@latest components for extension UI
-- [ ] Syntax highlighting (enhance auto-generated TextMate with all 31 keywords, or implement semantic highlighting via AbstractSemanticTokenProvider)
-- [ ] Autocomplete for element keywords
-- [ ] Hover docs for attributes
-- [ ] Diagnostics (errors shown in editor)
+- [x] VS Code extension (packages/vscode)
+- [x] Preview panel with live updates (plain HTML + inline CSS — React rejected per panel review: no interactive state needed)
+- [x] Syntax highlighting (enhanced TextMate grammar with all 31 keywords)
+- [x] Autocomplete for element keywords (via Langium LSP)
+- [x] Hover docs for attributes (via Langium LSP)
+- [x] Diagnostics with LOFI_* error codes (via Langium LSP)
+- [x] Quick fixes for common errors (CodeActionProvider)
+- [x] @vscode/test-electron integration tests (4 tests passing)
+- [x] Claude rules: `.claude/rules/vscode.md`, `.claude/rules/lsp.md`
 
-> **Note:** Langium's auto-generated TextMate/Prism grammars only include literal keywords (`md`, `html`), not terminal patterns. The Monarch grammar works correctly. For full keyword highlighting, either manually enhance TextMate grammar or implement semantic highlighting.
+> **Architecture Decision:** Preview panel uses plain HTML with inline CSS instead of React. The webview receives generated HTML and renders it — no interactive state management needed. This reduces bundle size and complexity. React/shadcn reserved for future interactive UI (settings, sidebars) if needed.
 
 ---
 

@@ -1,7 +1,10 @@
 import { dirname, join, resolve } from "path";
 import tailwindcss from "@tailwindcss/vite";
 
-const workspaceRoot = resolve(dirname(import.meta.url.replace("file://", "")), "../../..");
+const workspaceRoot = resolve(
+  dirname(import.meta.url.replace("file://", "")),
+  "../../..",
+);
 
 /** @type { import('@storybook/react-vite').StorybookConfig } */
 const config = {
@@ -15,8 +18,14 @@ const config = {
     config.resolve = config.resolve || {};
     config.resolve.alias = {
       ...config.resolve.alias,
-      "@lofi/language": resolve(workspaceRoot, "packages/language/src/index.ts"),
-      "@lofi/html/lofi.css": resolve(workspaceRoot, "packages/html/src/lofi.css"),
+      "@lofi/language": resolve(
+        workspaceRoot,
+        "packages/language/src/index.ts",
+      ),
+      "@lofi/html/lofi.css": resolve(
+        workspaceRoot,
+        "packages/html/src/lofi.css",
+      ),
       "@lofi/html": resolve(workspaceRoot, "packages/html/src/index.ts"),
     };
 

@@ -1,7 +1,7 @@
-import { describe, it, expect } from "vitest";
-import { readdirSync, readFileSync } from "node:fs";
-import { resolve, dirname, join } from "node:path";
+import { readFileSync, readdirSync } from "node:fs";
+import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { describe, expect, it } from "vitest";
 import { parse, parseWithDiagnostics } from "./index.js";
 import { toCleanAST } from "./test-utils.js";
 

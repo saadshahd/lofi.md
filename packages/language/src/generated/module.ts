@@ -3,30 +3,44 @@
  * DO NOT EDIT MANUALLY!
  ******************************************************************************/
 
-import type { LangiumSharedCoreServices, LangiumCoreServices, LangiumGeneratedCoreServices, LangiumGeneratedSharedCoreServices, LanguageMetaData, Module, IParserConfig } from 'langium';
-import { LofiAstReflection } from './ast.js';
-import { LofiGrammar } from './grammar.js';
+import type {
+  IParserConfig,
+  LangiumCoreServices,
+  LangiumGeneratedCoreServices,
+  LangiumGeneratedSharedCoreServices,
+  LangiumSharedCoreServices,
+  LanguageMetaData,
+  Module,
+} from "langium";
+import { LofiAstReflection } from "./ast.js";
+import { LofiGrammar } from "./grammar.js";
 
 export const LofiLanguageMetaData = {
-    languageId: 'lofi',
-    fileExtensions: ['.lofi'],
-    caseInsensitive: false,
-    mode: 'development'
+  languageId: "lofi",
+  fileExtensions: [".lofi"],
+  caseInsensitive: false,
+  mode: "development",
 } as const satisfies LanguageMetaData;
 
 export const LofiParserConfig: IParserConfig = {
-    recoveryEnabled: true,
-    nodeLocationTracking: 'full',
+  recoveryEnabled: true,
+  nodeLocationTracking: "full",
 };
 
-export const LofiGeneratedSharedModule: Module<LangiumSharedCoreServices, LangiumGeneratedSharedCoreServices> = {
-    AstReflection: () => new LofiAstReflection()
+export const LofiGeneratedSharedModule: Module<
+  LangiumSharedCoreServices,
+  LangiumGeneratedSharedCoreServices
+> = {
+  AstReflection: () => new LofiAstReflection(),
 };
 
-export const LofiGeneratedModule: Module<LangiumCoreServices, LangiumGeneratedCoreServices> = {
-    Grammar: () => LofiGrammar(),
-    LanguageMetaData: () => LofiLanguageMetaData,
-    parser: {
-        ParserConfig: () => LofiParserConfig
-    }
+export const LofiGeneratedModule: Module<
+  LangiumCoreServices,
+  LangiumGeneratedCoreServices
+> = {
+  Grammar: () => LofiGrammar(),
+  LanguageMetaData: () => LofiLanguageMetaData,
+  parser: {
+    ParserConfig: () => LofiParserConfig,
+  },
 };

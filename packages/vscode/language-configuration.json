@@ -1,0 +1,12 @@
+{
+  "comments": {
+    "lineComment": "#"
+  },
+  "brackets": [["\"", "\""]],
+  "autoClosingPairs": [{ "open": "\"", "close": "\"" }],
+  "surroundingPairs": [["\"", "\""]],
+  "indentationRules": {
+    "increaseIndentPattern": "^\\s*(page|section|card|grid|form|modal|alert|nav|breadcrumb|tabs|menu|accordion|md|html)\\b",
+    "decreaseIndentPattern": "^\\s*$"
+  }
+}

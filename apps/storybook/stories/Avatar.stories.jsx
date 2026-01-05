@@ -10,15 +10,21 @@ export const Default = {
 };
 
 export const Small = {
-  args: { source: 'avatar src="https://i.pravatar.cc/150" alt="User" size="small"' },
+  args: {
+    source: 'avatar src="https://i.pravatar.cc/150" alt="User" size="small"',
+  },
 };
 
 export const Medium = {
-  args: { source: 'avatar src="https://i.pravatar.cc/150" alt="User" size="medium"' },
+  args: {
+    source: 'avatar src="https://i.pravatar.cc/150" alt="User" size="medium"',
+  },
 };
 
 export const Large = {
-  args: { source: 'avatar src="https://i.pravatar.cc/150" alt="User" size="large"' },
+  args: {
+    source: 'avatar src="https://i.pravatar.cc/150" alt="User" size="large"',
+  },
 };
 
 export const AvatarGroup = {

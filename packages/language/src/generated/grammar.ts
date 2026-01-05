@@ -3,11 +3,13 @@
  * DO NOT EDIT MANUALLY!
  ******************************************************************************/
 
-import type { Grammar } from 'langium';
-import { loadGrammarFromJson } from 'langium';
+import type { Grammar } from "langium";
+import { loadGrammarFromJson } from "langium";
 
 let loadedLofiGrammar: Grammar | undefined;
-export const LofiGrammar = (): Grammar => loadedLofiGrammar ?? (loadedLofiGrammar = loadGrammarFromJson(`{
+export const LofiGrammar = (): Grammar =>
+  loadedLofiGrammar ??
+  (loadedLofiGrammar = loadGrammarFromJson(`{
   "$type": "Grammar",
   "isDeclared": true,
   "name": "Lofi",

@@ -1,0 +1,88 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "lofi",
+  "scopeName": "source.lofi",
+  "fileTypes": [".lofi"],
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#keywords" },
+    { "include": "#blocks" },
+    { "include": "#strings" },
+    { "include": "#attributes" },
+    { "include": "#numbers" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.number-sign.lofi",
+          "match": "#.*$"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.container.lofi",
+          "match": "\\b(page|section|card|grid|modal|nav|tabs|menu|form|alert|breadcrumb)\\b"
+        },
+        {
+          "name": "keyword.control.control.lofi",
+          "match": "\\b(button|input|checkbox|radio|dropdown|textarea|link|tab|accordion|toggle|slider)\\b"
+        },
+        {
+          "name": "keyword.control.content.lofi",
+          "match": "\\b(heading|text|image|icon|badge|toast|avatar|progress|chart)\\b"
+        }
+      ]
+    },
+    "blocks": {
+      "patterns": [
+        {
+          "name": "keyword.other.block.lofi",
+          "match": "^\\s*(md|html)\\b"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.lofi",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [{ "include": "#string-escape" }]
+        }
+      ]
+    },
+    "string-escape": {
+      "name": "constant.character.escape.lofi",
+      "match": "\\\\."
+    },
+    "attributes": {
+      "patterns": [
+        {
+          "match": "\\b([a-z][a-zA-Z0-9]*)=",
+          "captures": {
+            "1": { "name": "entity.other.attribute-name.lofi" }
+          }
+        },
+        {
+          "name": "constant.language.boolean.lofi",
+          "match": "(?<==)(1|0|true|false)\\b"
+        },
+        {
+          "name": "support.constant.attribute-value.lofi",
+          "match": "(?<==)(primary|secondary|danger|info|success|warning|error|small|medium|large|center|left|right|top|bottom|horizontal|vertical|start|end|between|stretch|bar|line|pie|area|donut|text|email|password|tel|url|number|date)\\b"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.lofi",
+          "match": "(?<==)\\d+\\b"
+        }
+      ]
+    }
+  }
+}

@@ -9,13 +9,13 @@
  * `md/html INDENT ... DEDENT` sequences and collapse tokens into RAW_LINE.
  */
 
+import type { ILexingError, IToken, TokenType } from "chevrotain";
 import type {
   LangiumCoreServices,
   LexerResult,
   TokenizeOptions,
 } from "langium";
-import { IndentationAwareLexer, DEFAULT_TOKENIZE_OPTIONS } from "langium";
-import type { ILexingError, IToken, TokenType } from "chevrotain";
+import { DEFAULT_TOKENIZE_OPTIONS, IndentationAwareLexer } from "langium";
 
 const RAW_BLOCK_KEYWORDS = new Set(["md", "html"]);
 

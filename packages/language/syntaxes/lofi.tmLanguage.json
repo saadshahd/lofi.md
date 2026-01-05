@@ -1,9 +1,7 @@
 {
   "name": "lofi",
   "scopeName": "source.lofi",
-  "fileTypes": [
-    ".lofi"
-  ],
+  "fileTypes": [".lofi"],
   "patterns": [
     {
       "include": "#comments"

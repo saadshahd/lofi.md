@@ -6,12 +6,15 @@ export default {
 };
 
 export const Default = {
-  args: { source: 'image src="https://picsum.photos/300/200" alt="Sample image"' },
+  args: {
+    source: 'image src="https://picsum.photos/300/200" alt="Sample image"',
+  },
 };
 
 export const WithAlt = {
   args: {
-    source: 'image src="https://picsum.photos/400/300" alt="A beautiful landscape"',
+    source:
+      'image src="https://picsum.photos/400/300" alt="A beautiful landscape"',
   },
 };
 

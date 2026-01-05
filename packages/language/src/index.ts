@@ -1,25 +1,32 @@
 import {
-  inject,
-  createDefaultCoreModule,
-  createDefaultSharedCoreModule,
+  EmptyFileSystem,
+  type FileSystemProvider,
   type LangiumCoreServices,
   type LangiumSharedCoreServices,
-  EmptyFileSystem,
+  createDefaultCoreModule,
+  createDefaultSharedCoreModule,
+  inject,
 } from "langium";
+import {
+  type LangiumServices,
+  type LangiumSharedServices,
+  createDefaultModule,
+  createDefaultSharedModule,
+} from "langium/lsp";
 import { parseHelper } from "langium/test";
+import {
+  type Attribute,
+  type Document,
+  type Element,
+  type HtmlBlock,
+  type MdBlock,
+  isElement,
+} from "./generated/ast.js";
 import {
   LofiGeneratedModule,
   LofiGeneratedSharedModule,
 } from "./generated/module.js";
 import { LofiModule, registerLofiValidationChecks } from "./lofi-module.js";
-import {
-  type Document,
-  type Element,
-  type Attribute,
-  type MdBlock,
-  type HtmlBlock,
-  isElement,
-} from "./generated/ast.js";
 
 // Re-export error types for consumers
 export type { LofiError, LofiErrorCode } from "./validation/errors.js";
@@ -148,3 +155,37 @@ export async function parseWithDiagnostics(input: string) {
 }
 
 export { services };
+
+import type { DefaultSharedModuleContext } from "langium/lsp";
+import type { Connection } from "vscode-languageserver";
+
+export type LofiLSPContext = DefaultSharedModuleContext & {
+  connection: Connection;
+};
+
+/**
+ * Create Langium services with full LSP support for VS Code extension.
+ *
+ * Includes everything from createLofiServices plus:
+ * - LSP Connection for client communication
+ * - Completion, hover, diagnostics handlers
+ * - Code actions for quick fixes
+ */
+export function createLofiLSPServices(context: LofiLSPContext): {
+  shared: LangiumSharedServices;
+  Lofi: LangiumServices;
+} {
+  const shared = inject(
+    createDefaultSharedModule(context),
+    LofiGeneratedSharedModule,
+  );
+  const Lofi = inject(
+    createDefaultModule({ shared }),
+    LofiGeneratedModule,
+    LofiModule,
+  );
+  shared.ServiceRegistry.register(Lofi);
+  registerLofiValidationChecks(Lofi);
+
+  return { shared, Lofi };
+}

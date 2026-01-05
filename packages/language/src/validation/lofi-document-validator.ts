@@ -6,23 +6,23 @@
  * 2. Add structured error data for future quick-fix support
  */
 
+import type { IToken, MismatchedTokenException } from "chevrotain";
 import type { LangiumCoreServices, ParseResult } from "langium";
+import { DefaultDocumentValidator } from "langium";
 import type {
   Diagnostic,
   DiagnosticSeverity,
   Range,
 } from "vscode-languageserver-types";
-import type { IToken, MismatchedTokenException } from "chevrotain";
-import { DefaultDocumentValidator } from "langium";
 import {
-  type LofiErrorCode,
   ErrorCodes,
   ErrorMeta,
+  type LofiErrorCode,
   VALID_KEYWORDS,
   formatErrorMessage,
 } from "./errors.js";
 
-export { type ValidationOptions } from "langium";
+export type { ValidationOptions } from "langium";
 
 const DiagnosticSeverityError: DiagnosticSeverity = 1;
 

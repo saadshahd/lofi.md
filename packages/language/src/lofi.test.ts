@@ -1,5 +1,5 @@
-import { describe, it, expect } from "vitest";
-import { parse, isElement, isMdBlock, isHtmlBlock } from "./index.js";
+import { describe, expect, it } from "vitest";
+import { isElement, isHtmlBlock, isMdBlock, parse } from "./index.js";
 
 describe("lofi grammar", () => {
   describe("basic parsing", () => {

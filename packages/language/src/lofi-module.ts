@@ -1,15 +1,15 @@
 import type {
-  Module,
   LangiumCoreServices,
+  Module,
   PartialLangiumCoreServices,
 } from "langium";
-import { LofiTokenBuilder } from "./validation/lofi-token-builder.js";
+import { LofiLexer } from "./lofi-lexer.js";
 import { LofiDocumentValidator } from "./validation/lofi-document-validator.js";
+import { LofiTokenBuilder } from "./validation/lofi-token-builder.js";
 import {
   LofiValidator,
   registerLofiValidation,
 } from "./validation/lofi-validator.js";
-import { LofiLexer } from "./lofi-lexer.js";
 
 /**
  * Custom module for lofi language that enables:

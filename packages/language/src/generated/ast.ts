@@ -4,44 +4,42 @@
  ******************************************************************************/
 
 /* eslint-disable */
-import * as langium from 'langium';
+import * as langium from "langium";
 
 export const LofiTerminals = {
-    INDENT: /synthetic:indent/,
-    DEDENT: /synthetic:dedent/,
-    STRING: /"[^"]*"/,
-    NUMBER: /[0-9]+/,
-    BOOLEAN: /true|false|yes|no/,
-    ATTR_NAME: /[a-zA-Z_][a-zA-Z0-9_-]*=/,
-    ID: /[a-zA-Z_][a-zA-Z0-9_-]*/,
-    RAW_LINE: /(?![a-zA-Z_"0-9=:#])[^\r\n]+/,
-    WS: /[\t ]+/,
-    NL: /[\r\n]+/,
-    COMMENT: /#[^\r\n]*/,
+  INDENT: /synthetic:indent/,
+  DEDENT: /synthetic:dedent/,
+  STRING: /"[^"]*"/,
+  NUMBER: /[0-9]+/,
+  BOOLEAN: /true|false|yes|no/,
+  ATTR_NAME: /[a-zA-Z_][a-zA-Z0-9_-]*=/,
+  ID: /[a-zA-Z_][a-zA-Z0-9_-]*/,
+  RAW_LINE: /(?![a-zA-Z_"0-9=:#])[^\r\n]+/,
+  WS: /[\t ]+/,
+  NL: /[\r\n]+/,
+  COMMENT: /#[^\r\n]*/,
 };
 
 export type LofiTerminalNames = keyof typeof LofiTerminals;
 
-export type LofiKeywordNames =
-    | "html"
-    | "md";
+export type LofiKeywordNames = "html" | "md";
 
 export type LofiTokenNames = LofiTerminalNames | LofiKeywordNames;
 
 export type ChildElement = Element | HtmlBlock | MdBlock;
 
-export const ChildElement = 'ChildElement';
+export const ChildElement = "ChildElement";
 
 export function isChildElement(item: unknown): item is ChildElement {
-    return reflection.isInstance(item, ChildElement);
+  return reflection.isInstance(item, ChildElement);
 }
 
 export type TopLevelElement = Element | HtmlBlock | MdBlock;
 
-export const TopLevelElement = 'TopLevelElement';
+export const TopLevelElement = "TopLevelElement";
 
 export function isTopLevelElement(item: unknown): item is TopLevelElement {
-    return reflection.isInstance(item, TopLevelElement);
+  return reflection.isInstance(item, TopLevelElement);
 }
 
 /*
@@ -51,160 +49,164 @@ export function isTopLevelElement(item: unknown): item is TopLevelElement {
  * - This eliminates ambiguity between attrs and sibling elements
  */
 export interface Attribute extends langium.AstNode {
-    readonly $container: Element;
-    readonly $type: 'Attribute';
-    name: string;
-    value: string;
+  readonly $container: Element;
+  readonly $type: "Attribute";
+  name: string;
+  value: string;
 }
 
-export const Attribute = 'Attribute';
+export const Attribute = "Attribute";
 
 export function isAttribute(item: unknown): item is Attribute {
-    return reflection.isInstance(item, Attribute);
+  return reflection.isInstance(item, Attribute);
 }
 
 export interface Document extends langium.AstNode {
-    readonly $type: 'Document';
-    elements: Array<TopLevelElement>;
+  readonly $type: "Document";
+  elements: Array<TopLevelElement>;
 }
 
-export const Document = 'Document';
+export const Document = "Document";
 
 export function isDocument(item: unknown): item is Document {
-    return reflection.isInstance(item, Document);
+  return reflection.isInstance(item, Document);
 }
 
 export interface Element extends langium.AstNode {
-    readonly $container: Document | Element;
-    readonly $type: 'Element';
-    attrs: Array<Attribute>;
-    children: Array<ChildElement>;
-    content?: string;
-    keyword: string;
+  readonly $container: Document | Element;
+  readonly $type: "Element";
+  attrs: Array<Attribute>;
+  children: Array<ChildElement>;
+  content?: string;
+  keyword: string;
 }
 
-export const Element = 'Element';
+export const Element = "Element";
 
 export function isElement(item: unknown): item is Element {
-    return reflection.isInstance(item, Element);
+  return reflection.isInstance(item, Element);
 }
 
 export interface HtmlBlock extends langium.AstNode {
-    readonly $container: Document | Element;
-    readonly $type: 'HtmlBlock';
-    lines: Array<string>;
+  readonly $container: Document | Element;
+  readonly $type: "HtmlBlock";
+  lines: Array<string>;
 }
 
-export const HtmlBlock = 'HtmlBlock';
+export const HtmlBlock = "HtmlBlock";
 
 export function isHtmlBlock(item: unknown): item is HtmlBlock {
-    return reflection.isInstance(item, HtmlBlock);
+  return reflection.isInstance(item, HtmlBlock);
 }
 
 export interface MdBlock extends langium.AstNode {
-    readonly $container: Document | Element;
-    readonly $type: 'MdBlock';
-    lines: Array<string>;
+  readonly $container: Document | Element;
+  readonly $type: "MdBlock";
+  lines: Array<string>;
 }
 
-export const MdBlock = 'MdBlock';
+export const MdBlock = "MdBlock";
 
 export function isMdBlock(item: unknown): item is MdBlock {
-    return reflection.isInstance(item, MdBlock);
+  return reflection.isInstance(item, MdBlock);
 }
 
 export type LofiAstType = {
-    Attribute: Attribute
-    ChildElement: ChildElement
-    Document: Document
-    Element: Element
-    HtmlBlock: HtmlBlock
-    MdBlock: MdBlock
-    TopLevelElement: TopLevelElement
-}
+  Attribute: Attribute;
+  ChildElement: ChildElement;
+  Document: Document;
+  Element: Element;
+  HtmlBlock: HtmlBlock;
+  MdBlock: MdBlock;
+  TopLevelElement: TopLevelElement;
+};
 
 export class LofiAstReflection extends langium.AbstractAstReflection {
+  getAllTypes(): string[] {
+    return [
+      Attribute,
+      ChildElement,
+      Document,
+      Element,
+      HtmlBlock,
+      MdBlock,
+      TopLevelElement,
+    ];
+  }
 
-    getAllTypes(): string[] {
-        return [Attribute, ChildElement, Document, Element, HtmlBlock, MdBlock, TopLevelElement];
+  protected override computeIsSubtype(
+    subtype: string,
+    supertype: string,
+  ): boolean {
+    switch (subtype) {
+      case Element:
+      case HtmlBlock:
+      case MdBlock: {
+        return (
+          this.isSubtype(ChildElement, supertype) ||
+          this.isSubtype(TopLevelElement, supertype)
+        );
+      }
+      default: {
+        return false;
+      }
     }
+  }
 
-    protected override computeIsSubtype(subtype: string, supertype: string): boolean {
-        switch (subtype) {
-            case Element:
-            case HtmlBlock:
-            case MdBlock: {
-                return this.isSubtype(ChildElement, supertype) || this.isSubtype(TopLevelElement, supertype);
-            }
-            default: {
-                return false;
-            }
-        }
+  getReferenceType(refInfo: langium.ReferenceInfo): string {
+    const referenceId = `${refInfo.container.$type}:${refInfo.property}`;
+    switch (referenceId) {
+      default: {
+        throw new Error(`${referenceId} is not a valid reference id.`);
+      }
     }
+  }
 
-    getReferenceType(refInfo: langium.ReferenceInfo): string {
-        const referenceId = `${refInfo.container.$type}:${refInfo.property}`;
-        switch (referenceId) {
-            default: {
-                throw new Error(`${referenceId} is not a valid reference id.`);
-            }
-        }
+  getTypeMetaData(type: string): langium.TypeMetaData {
+    switch (type) {
+      case Attribute: {
+        return {
+          name: Attribute,
+          properties: [{ name: "name" }, { name: "value" }],
+        };
+      }
+      case Document: {
+        return {
+          name: Document,
+          properties: [{ name: "elements", defaultValue: [] }],
+        };
+      }
+      case Element: {
+        return {
+          name: Element,
+          properties: [
+            { name: "attrs", defaultValue: [] },
+            { name: "children", defaultValue: [] },
+            { name: "content" },
+            { name: "keyword" },
+          ],
+        };
+      }
+      case HtmlBlock: {
+        return {
+          name: HtmlBlock,
+          properties: [{ name: "lines", defaultValue: [] }],
+        };
+      }
+      case MdBlock: {
+        return {
+          name: MdBlock,
+          properties: [{ name: "lines", defaultValue: [] }],
+        };
+      }
+      default: {
+        return {
+          name: type,
+          properties: [],
+        };
+      }
     }
-
-    getTypeMetaData(type: string): langium.TypeMetaData {
-        switch (type) {
-            case Attribute: {
-                return {
-                    name: Attribute,
-                    properties: [
-                        { name: 'name' },
-                        { name: 'value' }
-                    ]
-                };
-            }
-            case Document: {
-                return {
-                    name: Document,
-                    properties: [
-                        { name: 'elements', defaultValue: [] }
-                    ]
-                };
-            }
-            case Element: {
-                return {
-                    name: Element,
-                    properties: [
-                        { name: 'attrs', defaultValue: [] },
-                        { name: 'children', defaultValue: [] },
-                        { name: 'content' },
-                        { name: 'keyword' }
-                    ]
-                };
-            }
-            case HtmlBlock: {
-                return {
-                    name: HtmlBlock,
-                    properties: [
-                        { name: 'lines', defaultValue: [] }
-                    ]
-                };
-            }
-            case MdBlock: {
-                return {
-                    name: MdBlock,
-                    properties: [
-                        { name: 'lines', defaultValue: [] }
-                    ]
-                };
-            }
-            default: {
-                return {
-                    name: type,
-                    properties: []
-                };
-            }
-        }
-    }
+  }
 }
 
 export const reflection = new LofiAstReflection();

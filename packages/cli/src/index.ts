@@ -1,9 +1,9 @@
 #!/usr/bin/env bun
-import { parseArgs } from "util";
-import { parse } from "@lofi/language";
-import { generate } from "@lofi/html";
 import { watch } from "fs";
-import { resolve, dirname } from "path";
+import { dirname, resolve } from "path";
+import { parseArgs } from "util";
+import { generate } from "@lofi/html";
+import { parse } from "@lofi/language";
 import type { ServerWebSocket } from "bun";
 
 const { values, positionals } = parseArgs({
@@ -95,7 +95,7 @@ function wrapHtmlWithReload(content: string, port: number): string {
 }
 
 if (values.serve) {
-  const port = parseInt(values.port || "3000", 10);
+  const port = Number.parseInt(values.port || "3000", 10);
   const clients = new Set<ServerWebSocket<unknown>>();
 
   const cssPath = resolve(
