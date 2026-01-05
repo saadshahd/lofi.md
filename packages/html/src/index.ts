@@ -60,13 +60,13 @@ function renderAccordionItem(
   renderNodeFn: (node: TopLevelElement | ChildElement) => string,
 ): string {
   const headingEl = sectionEl.children.find(
-    (c) => c.$type === "Element" && c.keyword === "heading",
+    (c: ChildElement) => c.$type === "Element" && c.keyword === "heading",
   ) as Element | undefined;
 
   const title = headingEl ? stripQuotes(headingEl.content) : "Section";
 
   const contentChildren = sectionEl.children.filter(
-    (c) =>
+    (c: ChildElement) =>
       !(c.$type === "Element" && c.keyword === "heading" && c === headingEl),
   );
   const contentHtml = contentChildren.map(renderNodeFn).join("\n");
@@ -89,8 +89,12 @@ import {
 function renderAccordionWithItems(el: Element): string {
   const cls = styles.accordion();
   const items = el.children
-    .filter((c) => c.$type === "Element" && c.keyword === "section")
-    .map((sectionEl) => renderAccordionItem(sectionEl as Element, renderNode))
+    .filter(
+      (c: ChildElement) => c.$type === "Element" && c.keyword === "section",
+    )
+    .map((sectionEl: ChildElement) =>
+      renderAccordionItem(sectionEl as Element, renderNode),
+    )
     .join("\n");
   return `<div class="${cls}">${items}</div>`;
 }
@@ -117,6 +121,10 @@ function renderNode(node: TopLevelElement | ChildElement): string {
       return renderMarkdown(node);
     case "HtmlBlock":
       return renderHtml(node);
+    default: {
+      const _exhaustive: never = node;
+      return "<!-- Unknown node type -->";
+    }
   }
 }
 
