@@ -9,25 +9,25 @@ export const Default = {
   args: {
     source: `modal title="Confirm Action"
   text "Are you sure you want to proceed?"
-  grid flow="horizontal" gap="2"
+  grid flow=row gap=2
     button "Cancel"
-    button "Confirm" primary=1`,
+    button "Confirm" variant=primary`,
   },
 };
 
 export const CenterPosition = {
   args: {
-    source: `modal title="Welcome" position="center"
+    source: `modal title="Welcome" position=center
   text "Welcome to the application!"
-  button "Get Started" primary=1`,
+  button "Get Started" variant=primary`,
   },
 };
 
 export const BottomPosition = {
   args: {
-    source: `modal title="Cookie Notice" position="bottom"
+    source: `modal title="Cookie Notice" position=bottom
   text "We use cookies to improve your experience."
-  button "Accept" primary=1`,
+  button "Accept" variant=primary`,
   },
 };
 
@@ -36,10 +36,10 @@ export const WithForm = {
     source: `modal title="Edit Profile"
   form
     input "Name"
-    input "Email" type="email"
-    textarea "Bio" rows="3"
-  grid flow="horizontal" gap="2"
+    input "Email" type=email
+    textarea "Bio" rows=3
+  grid flow=row gap=2
     button "Cancel"
-    button "Save" primary=1`,
+    button "Save" variant=primary`,
   },
 };

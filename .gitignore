@@ -48,3 +48,9 @@ Thumbs.db
 storybook-static
 
 .playwright-mcp
+
+# Turbo
+.turbo/
+
+# VS Code extension build
+*.vsix

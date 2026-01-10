@@ -32,7 +32,7 @@ describe("generate()", () => {
     });
 
     it("renders grid with attributes", async () => {
-      const doc = await parse('grid cols="3" gap="4" align="between"');
+      const doc = await parse("grid cols=3 gap=4 align=between");
       const html = generate(doc);
       expect(html).toContain("grid-cols-3");
       expect(html).toContain("gap-4");
@@ -47,7 +47,7 @@ describe("generate()", () => {
     });
 
     it("renders alert with type", async () => {
-      const doc = await parse('alert type="error"\n  text "Error message"');
+      const doc = await parse('alert type=error\n  text "Error message"');
       const html = generate(doc);
       expect(html).toContain('role="alert"');
       expect(html).toContain("border-lofi-error");
@@ -64,7 +64,7 @@ describe("generate()", () => {
 
   describe("controls", () => {
     it("renders button with primary variant", async () => {
-      const doc = await parse('button "Save" primary=1');
+      const doc = await parse('button "Save" variant=primary');
       const html = generate(doc);
       expect(html).toContain("<button");
       expect(html).toContain("btn");
@@ -82,7 +82,7 @@ describe("generate()", () => {
 
     it("renders input with label and placeholder", async () => {
       const doc = await parse(
-        'input "Email" type="email" placeholder="you@example.com"',
+        'input "Email" type=email placeholder="you@example.com"',
       );
       const html = generate(doc);
       expect(html).toContain("<input");
@@ -106,7 +106,7 @@ describe("generate()", () => {
     });
 
     it("renders radio buttons with name", async () => {
-      const doc = await parse('radio "Option A" name="choices" selected=1');
+      const doc = await parse('radio "Option A" name=choices selected=1');
       const html = generate(doc);
       expect(html).toContain('type="radio"');
       expect(html).toContain('name="choices"');
@@ -144,7 +144,7 @@ describe("generate()", () => {
     });
 
     it("renders slider", async () => {
-      const doc = await parse('slider "Volume" min="0" max="100" value="75"');
+      const doc = await parse('slider "Volume" min=0 max=100 value=75');
       const html = generate(doc);
       expect(html).toContain('type="range"');
       expect(html).toContain('min="0"');
@@ -155,7 +155,7 @@ describe("generate()", () => {
 
   describe("content", () => {
     it("renders heading with level", async () => {
-      const doc = await parse('heading "Title" level="2"');
+      const doc = await parse('heading "Title" level=2');
       const html = generate(doc);
       expect(html).toContain("<h2");
       expect(html).toContain("</h2>");
@@ -180,7 +180,7 @@ describe("generate()", () => {
     });
 
     it("renders badge with type", async () => {
-      const doc = await parse('badge "New" type="success"');
+      const doc = await parse('badge "New" type=success');
       const html = generate(doc);
       expect(html).toContain("<span");
       expect(html).toContain("bg-lofi-success/15");
@@ -196,7 +196,7 @@ describe("generate()", () => {
     });
 
     it("renders progress bar", async () => {
-      const doc = await parse('progress value="75"');
+      const doc = await parse("progress value=75");
       const html = generate(doc);
       expect(html).toContain('role="progressbar"');
       expect(html).toContain('aria-valuenow="75"');
@@ -204,7 +204,7 @@ describe("generate()", () => {
     });
 
     it("renders chart placeholder", async () => {
-      const doc = await parse('chart "Sales" type="bar"');
+      const doc = await parse('chart "Sales" type=bar');
       const html = generate(doc);
       expect(html).toContain('data-chart-type="bar"');
       expect(html).toContain("Sales");
@@ -241,9 +241,9 @@ describe("generate()", () => {
       const lofi = `card
   heading "Login"
   form
-    input "Email" type="email" required=1
-    input "Password" type="password" required=1
-    button "Sign In" primary=1`;
+    input "Email" type=email required=1
+    input "Password" type=password required=1
+    button "Sign In" variant=primary`;
       const doc = await parse(lofi);
       const html = generate(doc);
       expect(html).toContain("Login");

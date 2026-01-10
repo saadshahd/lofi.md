@@ -14,28 +14,28 @@ export const Default = {
 
 export const Success = {
   args: {
-    source: `toast type="success"
+    source: `toast type=success
   text "Operation completed successfully!"`,
   },
 };
 
 export const ErrorType = {
   args: {
-    source: `toast type="error"
+    source: `toast type=error
   text "Something went wrong. Please try again."`,
   },
 };
 
 export const TopPosition = {
   args: {
-    source: `toast position="top"
+    source: `toast position=top
   text "New notification received."`,
   },
 };
 
 export const BottomPosition = {
   args: {
-    source: `toast position="bottom"
+    source: `toast position=bottom
   text "Message sent."`,
   },
 };

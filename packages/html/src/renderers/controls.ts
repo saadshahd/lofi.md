@@ -4,13 +4,13 @@ import { escapeHtml, getAttr, hasAttr, stripQuotes } from "./utils.js";
 
 export function renderButton(el: Element): string {
   const text = stripQuotes(el.content);
-
-  let intent: "primary" | "secondary" | "danger" = "secondary";
-  if (hasAttr(el.attrs, "primary")) intent = "primary";
-  else if (hasAttr(el.attrs, "danger")) intent = "danger";
-
+  const variant =
+    (stripQuotes(getAttr(el.attrs, "variant")) as
+      | "primary"
+      | "secondary"
+      | "danger") || "secondary";
   const disabled = hasAttr(el.attrs, "disabled");
-  const cls = styles.button({ intent });
+  const cls = styles.button({ variant });
   const disabledAttr = disabled ? " disabled" : "";
 
   return `<button class="${cls}"${disabledAttr}>${escapeHtml(text)}</button>`;

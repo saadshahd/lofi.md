@@ -67,6 +67,10 @@
   outline-offset: 2px;
 }
 
+@utility shadow-hard {
+  box-shadow: 3px 3px 0 0 var(--color-lofi-border);
+}
+
 /* 8. Button system - sketch aesthetic with press effect */
 .btn {
   display: inline-flex;

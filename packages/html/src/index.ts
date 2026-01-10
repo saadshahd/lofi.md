@@ -14,9 +14,9 @@ import remarkHtml from "remark-html";
  * SVG filters for hand-drawn wobble effect.
  * Include once per document for the `wobble` and `wobble-subtle` utility classes to work.
  */
-export const SVG_WOBBLE_FILTER = `<svg style="position:absolute;width:0;height:0" aria-hidden="true">
+export const SVG_WOBBLE_FILTER = `<svg style="position:absolute;width:0;height:0;display:none;" aria-hidden="true">
   <filter id="lofi-wobble">
-    <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="2" result="noise"/>
+    <feTurbulence type="turbulence" baseFrequency="0.2" numOctaves="2" result="noise"/>
     <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5" />
   </filter>
   <filter id="lofi-wobble-subtle">
@@ -57,21 +57,23 @@ import * as styles from "./styles.js";
 
 function renderAccordionItem(
   sectionEl: Element,
-  renderNodeFn: (node: TopLevelElement | ChildElement) => string,
+  renderNodeFn: (node: TopLevelElement | ChildElement) => string
 ): string {
   const headingEl = sectionEl.children.find(
-    (c: ChildElement) => c.$type === "Element" && c.keyword === "heading",
+    (c: ChildElement) => c.$type === "Element" && c.keyword === "heading"
   ) as Element | undefined;
 
   const title = headingEl ? stripQuotes(headingEl.content) : "Section";
 
   const contentChildren = sectionEl.children.filter(
     (c: ChildElement) =>
-      !(c.$type === "Element" && c.keyword === "heading" && c === headingEl),
+      !(c.$type === "Element" && c.keyword === "heading" && c === headingEl)
   );
   const contentHtml = contentChildren.map(renderNodeFn).join("\n");
 
-  return `<details class="accordion-item" open><summary class="accordion-trigger">${escapeHtml(title)}</summary><div class="accordion-content">${contentHtml}</div></details>`;
+  return `<details class="accordion-item" open><summary class="accordion-trigger">${escapeHtml(
+    title
+  )}</summary><div class="accordion-content">${contentHtml}</div></details>`;
 }
 
 import {
@@ -90,10 +92,10 @@ function renderAccordionWithItems(el: Element): string {
   const cls = styles.accordion();
   const items = el.children
     .filter(
-      (c: ChildElement) => c.$type === "Element" && c.keyword === "section",
+      (c: ChildElement) => c.$type === "Element" && c.keyword === "section"
     )
     .map((sectionEl: ChildElement) =>
-      renderAccordionItem(sectionEl as Element, renderNode),
+      renderAccordionItem(sectionEl as Element, renderNode)
     )
     .join("\n");
   return `<div class="${cls}">${items}</div>`;
@@ -106,7 +108,7 @@ function renderAccordionWithItems(el: Element): string {
  */
 export function generate(
   doc: Document,
-  options: { includeFilter?: boolean } = {},
+  options: { includeFilter?: boolean } = {}
 ): string {
   const { includeFilter = true } = options;
   const content = doc.elements.map(renderNode).join("\n");

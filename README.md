@@ -27,7 +27,7 @@ card
     input "Email" type="email"
     input "Password" type="password"
     checkbox "Remember me"
-    button "Sign In" primary=1
+    button "Sign In" variant="primary"
 ```
 
 Output: Hand-drawn sketch-style HTML with wobble effects.
@@ -59,7 +59,8 @@ page "Dashboard"
 ### Attributes
 
 ```lofi
-button "Save" primary=1           # Boolean: use =1
+button "Save" variant="primary"   # Enum: primary/secondary/danger
+button "Submit" disabled=1        # Boolean: use =1
 input "Email" type="email"        # String value
 grid cols="3" gap="4"             # Numeric value
 badge "New" type="success"        # Enum: info/success/warning/error

@@ -22,15 +22,15 @@ describe("lofi grammar", () => {
       }
     });
 
-    it("parses element with boolean attribute", async () => {
-      const doc = await parse('button "Save" primary=1');
+    it("parses element with string attribute", async () => {
+      const doc = await parse('button "Save" variant=primary');
       const el = doc.elements[0];
       if (isElement(el)) {
         expect(el.keyword).toBe("button");
         expect(el.content).toBe("Save");
         expect(el.attrs).toHaveLength(1);
-        expect(el.attrs[0].name).toBe("primary");
-        expect(el.attrs[0].value).toBe("1");
+        expect(el.attrs[0].name).toBe("variant");
+        expect(el.attrs[0].value).toBe("primary");
       }
     });
 

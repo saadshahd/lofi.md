@@ -8,15 +8,22 @@
   "engines": {
     "vscode": "^1.85.0"
   },
-  "categories": ["Programming Languages", "Visualization"],
-  "activationEvents": ["onLanguage:lofi"],
+  "categories": [
+    "Programming Languages",
+    "Visualization"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
     "languages": [
       {
         "id": "lofi",
-        "aliases": ["lofi", "lofi-wireframe"],
-        "extensions": [".lofi"],
+        "aliases": [
+          "lofi",
+          "lofi-wireframe"
+        ],
+        "extensions": [
+          ".lofi"
+        ],
         "configuration": "./language-configuration.json"
       }
     ],
@@ -83,7 +90,9 @@
     }
   },
   "scripts": {
-    "build": "tsup",
+    "build:ts": "tsup",
+    "build:copy-css": "cp ../html/dist/lofi.css dist/lofi.css",
+    "build": "bun run build:ts && bun run build:copy-css",
     "watch": "tsup --watch",
     "test": "node ./test/runTest.js",
     "vscode:prepublish": "bun run build",

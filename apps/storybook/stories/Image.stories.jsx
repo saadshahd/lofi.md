@@ -24,6 +24,6 @@ export const InCard = {
   image src="https://picsum.photos/400/200" alt="Product photo"
   heading "Product Name"
   text "Product description goes here."
-  button "Buy Now" primary=1`,
+  button "Buy Now" variant=primary`,
   },
 };

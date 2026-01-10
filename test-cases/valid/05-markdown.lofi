@@ -11,8 +11,8 @@ card
     | Bob | bob@co.com | Developer |
     | Carol | carol@co.com | Designer |
 
-  grid flow="row" justify="end"
-    button "Add Member" primary=1
+  grid flow=row justify=end
+    button "Add Member" variant=primary
 
 card
   heading "Features"

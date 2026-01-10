@@ -14,7 +14,7 @@
 | Packages     | `@lofi/html` (1st renderer)                         | Single responsibility; enables `@lofi/figma`     |
 | Storybook    | `apps/storybook` aggregates from packages           | React wrapper for visual regression only         |
 | md/html      | Post-lexer token collapsing                         | Langium doesn't expose lexer modes; collapse     |
-| Attributes   | All require `=` (e.g. `primary=1`)                  | Eliminates ID/attr ambiguity without lookahead;  |
+| Attributes   | All require `=` (e.g. `variant="primary"`)          | Eliminates ID/attr ambiguity without lookahead;  |
 | Sketch       | Hand-drawn with SVG wobble filter                   | Prevents stakeholder fixation on details;        |
 | Typography   | Architects Daughter (headings), Patrick Hand (body) | Sketch feel while remaining legible              |
 | Font loading | Google Fonts with subset                            | Balance between character and performance        |

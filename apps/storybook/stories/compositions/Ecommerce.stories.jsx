@@ -9,13 +9,13 @@ export const ProductCard = {
   args: {
     source: `card
   image src="https://picsum.photos/400/300" alt="Product"
-  grid flow="horizontal" align="between"
-    badge "New" type="success"
+  grid flow=row align=between
+    badge "New" type=success
     text "$99.00"
   heading "Product Name"
   text "Short product description goes here." muted=1
-  grid flow="horizontal" gap="2"
-    button "Add to Cart" primary=1
+  grid flow=row gap=2
+    button "Add to Cart" variant=primary
     button "Wishlist"`,
   },
 };
@@ -23,33 +23,33 @@ export const ProductCard = {
 export const ProductGrid = {
   args: {
     source: `page "Products"
-  grid flow="vertical" gap="4"
-    grid align="between" items="center"
+  grid flow=col gap=4
+    grid align=between items=center
       grid
         link "All"
         link "Electronics" active=1
         link "Clothing"
         link "Home"
       input placeholder="Search products..."
-    grid cols="3" gap="4"
+    grid cols=3 gap=4
       card
-        grid flow="vertical" gap=3
+        grid flow=col gap=3
           image src="https://picsum.photos/400/300?1" alt="Product 1"
           heading "Headphones"
           text "$129.00"
-          button "Add to Cart" primary=1
+          button "Add to Cart" variant=primary
       card
-        grid flow="vertical" gap=3
+        grid flow=col gap=3
           image src="https://picsum.photos/400/300?2" alt="Product 2"
           heading "Smart Watch"
           text "$299.00"
-          button "Add to Cart" primary=1
+          button "Add to Cart" variant=primary
       card
-        grid flow="vertical" gap=3
+        grid flow=col gap=3
           image src="https://picsum.photos/400/300?3" alt="Product 3"
           heading "Bluetooth Speaker"
           text "$79.00"
-          button "Add to Cart" primary=1`,
+          button "Add to Cart" variant=primary`,
   },
 };
 
@@ -60,15 +60,15 @@ export const Checkout = {
     link "Cart"
     link "Shipping"
     link "Payment"
-  grid cols="2" gap="4"
+  grid cols=2 gap=4
     card
       heading "Payment"
       form
         input "Card Number" placeholder="1234 5678 9012 3456"
-        grid cols="2" gap="2"
+        grid cols=2 gap=2
           input "Expiry" placeholder="MM/YY"
           input "CVC" placeholder="123"
-        button "Place Order" primary=1
+        button "Place Order" variant=primary
     card
       heading "Order Summary"
       md
@@ -83,7 +83,7 @@ export const Checkout = {
       form
         input "Full Name"
         input "Address"
-        grid cols="2" gap="2"
+        grid cols=2 gap=2
           input "City"
           input "Zip Code"
         dropdown "Country" options="USA,Canada,UK"`,

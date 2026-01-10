@@ -15,7 +15,7 @@ export const Default = {
 
 export const CenterAligned = {
   args: {
-    source: `section align="center"
+    source: `section align=center
   heading "Centered Section"
   text "This content is centered."`,
   },
@@ -23,7 +23,7 @@ export const CenterAligned = {
 
 export const RightAligned = {
   args: {
-    source: `section align="right"
+    source: `section align=right
   heading "Right Aligned"
   text "This content is right-aligned."`,
   },

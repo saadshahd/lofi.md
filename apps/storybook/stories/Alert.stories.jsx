@@ -7,28 +7,28 @@ export default {
 
 export const Info = {
   args: {
-    source: `alert type="info"
+    source: `alert type=info
   text "This is an informational message."`,
   },
 };
 
 export const Success = {
   args: {
-    source: `alert type="success"
+    source: `alert type=success
   text "Operation completed successfully!"`,
   },
 };
 
 export const Warning = {
   args: {
-    source: `alert type="warning"
+    source: `alert type=warning
   text "Please review before proceeding."`,
   },
 };
 
 export const Errors = {
   args: {
-    source: `alert type="error"
+    source: `alert type=error
   text "Something went wrong. Please try again."`,
   },
 };

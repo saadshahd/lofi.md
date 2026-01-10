@@ -6,15 +6,15 @@ export default {
 };
 
 export const Primary = {
-  args: { source: 'button "Save" primary=1' },
+  args: { source: 'button "Save" variant=primary' },
 };
 
 export const Secondary = {
-  args: { source: 'button "Cancel" secondary=1' },
+  args: { source: 'button "Cancel" variant=secondary' },
 };
 
 export const Danger = {
-  args: { source: 'button "Delete" danger=1' },
+  args: { source: 'button "Delete" variant=danger' },
 };
 
 export const Disabled = {

@@ -10,7 +10,7 @@ export const Default = {
 };
 
 export const WithRange = {
-  args: { source: 'slider "Brightness" min="0" max="100" value="75"' },
+  args: { source: 'slider "Brightness" min=0 max=100 value=75' },
 };
 
 export const Disabled = {
@@ -21,8 +21,8 @@ export const InForm = {
   args: {
     source: `form
   text "Adjust settings:"
-  slider "Volume" min="0" max="100" value="50"
-  slider "Brightness" min="0" max="100" value="75"
-  button "Apply" primary=1`,
+  slider "Volume" min=0 max=100 value=50
+  slider "Brightness" min=0 max=100 value=75
+  button "Apply" variant=primary`,
   },
 };

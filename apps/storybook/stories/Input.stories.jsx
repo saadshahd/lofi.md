@@ -10,11 +10,11 @@ export const Text = {
 };
 
 export const Email = {
-  args: { source: 'input "Email" type="email" placeholder="you@example.com"' },
+  args: { source: 'input "Email" type=email placeholder="you@example.com"' },
 };
 
 export const Password = {
-  args: { source: 'input "Password" type="password"' },
+  args: { source: 'input "Password" type=password' },
 };
 
 export const Required = {

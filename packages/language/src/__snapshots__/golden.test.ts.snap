@@ -217,8 +217,8 @@ exports[`golden tests > valid cases > parses 01-grid-layout.lofi 1`] = `
           "attrs": [
             {
               "$type": "Attribute",
-              "name": "primary",
-              "value": "1",
+              "name": "variant",
+              "value": "primary",
             },
           ],
           "children": [],
@@ -277,7 +277,7 @@ exports[`golden tests > valid cases > parses 02-page-structure.lofi 1`] = `
                 {
                   "$type": "Attribute",
                   "name": "src",
-                  "value": "/user.png",
+                  "value": "https://i.pravatar.cc/40",
                 },
                 {
                   "$type": "Attribute",
@@ -864,8 +864,8 @@ exports[`golden tests > valid cases > parses 03-form-complete.lofi 1`] = `
                   "attrs": [
                     {
                       "$type": "Attribute",
-                      "name": "danger",
-                      "value": "1",
+                      "name": "variant",
+                      "value": "danger",
                     },
                   ],
                   "children": [],
@@ -924,8 +924,8 @@ exports[`golden tests > valid cases > parses 03-form-complete.lofi 1`] = `
               "attrs": [
                 {
                   "$type": "Attribute",
-                  "name": "secondary",
-                  "value": "1",
+                  "name": "variant",
+                  "value": "secondary",
                 },
               ],
               "children": [],
@@ -937,8 +937,8 @@ exports[`golden tests > valid cases > parses 03-form-complete.lofi 1`] = `
               "attrs": [
                 {
                   "$type": "Attribute",
-                  "name": "primary",
-                  "value": "1",
+                  "name": "variant",
+                  "value": "primary",
                 },
               ],
               "children": [],
@@ -1008,8 +1008,8 @@ exports[`golden tests > valid cases > parses 04-modal.lofi 1`] = `
               "attrs": [
                 {
                   "$type": "Attribute",
-                  "name": "danger",
-                  "value": "1",
+                  "name": "variant",
+                  "value": "danger",
                 },
               ],
               "children": [],
@@ -1069,8 +1069,8 @@ exports[`golden tests > valid cases > parses 04-modal.lofi 1`] = `
           "attrs": [
             {
               "$type": "Attribute",
-              "name": "secondary",
-              "value": "1",
+              "name": "variant",
+              "value": "secondary",
             },
           ],
           "children": [],
@@ -1231,8 +1231,8 @@ exports[`golden tests > valid cases > parses 05-markdown.lofi 1`] = `
               "attrs": [
                 {
                   "$type": "Attribute",
-                  "name": "primary",
-                  "value": "1",
+                  "name": "variant",
+                  "value": "primary",
                 },
               ],
               "children": [],

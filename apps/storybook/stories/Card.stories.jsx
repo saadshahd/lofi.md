@@ -18,16 +18,16 @@ export const WithForm = {
     source: `card
   heading "Login"
   form
-    input "Email" type="email"
-    input "Password" type="password"
-    button "Sign In" primary=1`,
+    input "Email" type=email
+    input "Password" type=password
+    button "Sign In" variant=primary`,
   },
 };
 
 export const WithBadge = {
   args: {
     source: `card
-  badge "New" type="success"
+  badge "New" type=success
   heading "Feature"
   text "This is a new feature."`,
   },

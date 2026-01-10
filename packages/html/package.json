@@ -9,10 +9,13 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./lofi.css": "./src/lofi.css"
+    "./lofi.css": "./src/lofi.css",
+    "./dist/lofi.css": "./dist/lofi.css"
   },
   "scripts": {
-    "build": "tsup src/index.ts --format esm --dts"
+    "build:css": "bunx @tailwindcss/cli -i src/lofi.css -o dist/lofi.css --minify",
+    "build:ts": "tsup src/index.ts --format esm --dts",
+    "build": "bun run build:css && bun run build:ts"
   },
   "dependencies": {
     "@lofi/language": "workspace:*",
@@ -20,5 +23,8 @@
     "remark": "^15.0.1",
     "remark-gfm": "^4.0.1",
     "remark-html": "^16.0.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.18"
   }
 }

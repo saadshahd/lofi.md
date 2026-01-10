@@ -129,14 +129,14 @@ export const menu = cva("flex flex-col");
 
 export const button = cva("btn", {
   variants: {
-    intent: {
+    variant: {
       primary: "btn-primary",
       secondary: "btn-secondary",
       danger: "btn-danger",
     },
   },
   defaultVariants: {
-    intent: "secondary",
+    variant: "secondary",
   },
 });
 

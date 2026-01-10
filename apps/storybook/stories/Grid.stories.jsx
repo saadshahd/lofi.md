@@ -7,7 +7,7 @@ export default {
 
 export const TwoColumns = {
   args: {
-    source: `grid cols="2" gap="4"
+    source: `grid cols=2 gap=4
   card
     heading "Left"
   card
@@ -17,7 +17,7 @@ export const TwoColumns = {
 
 export const ThreeColumns = {
   args: {
-    source: `grid cols="3" gap="4"
+    source: `grid cols=3 gap=4
   card
     heading "One"
   card
@@ -29,16 +29,16 @@ export const ThreeColumns = {
 
 export const JustifyBetween = {
   args: {
-    source: `grid flow="horizontal" align="between"
-  button "Cancel" secondary=1
-  button "Save" primary=1`,
+    source: `grid flow=row align=between
+  button "Cancel" variant=secondary
+  button "Save" variant=primary`,
   },
 };
 
 export const CenteredGrid = {
   args: {
-    source: `grid cols="2" gap="4" place="center"
-  badge "A" type="info"
-  badge "B" type="success"`,
+    source: `grid cols=2 gap=4 place=center
+  badge "A" type=info
+  badge "B" type=success`,
   },
 };

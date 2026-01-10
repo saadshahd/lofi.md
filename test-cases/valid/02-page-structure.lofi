@@ -6,31 +6,31 @@ page "Dashboard"
     link "Home" active=1
     link "Settings"
     link "Profile"
-    avatar src="/user.png" size="small"
+    avatar src="https://i.pravatar.cc/40" size=small
 
-  section align="center"
-    icon name="inbox" size="large"
-    heading "Welcome" level="1"
+  section align=center
+    icon name=inbox size=large
+    heading "Welcome" level=1
     text "Your dashboard is ready"
-    progress value="75" size="medium"
+    progress value=75 size=medium
 
   section
-    heading "Analytics" level="2"
-    chart "Monthly Revenue" type="line"
-    chart "User Distribution" type="pie"
+    heading "Analytics" level=2
+    chart "Monthly Revenue" type=line
+    chart "User Distribution" type=pie
 
-  grid cols="3"
+  grid cols=3
     card
-      icon name="rocket"
-      heading "Fast" level="3"
+      icon name=rocket
+      heading "Fast" level=3
       text "Lightning performance"
 
     card
-      icon name="shield"
-      heading "Secure" level="3"
+      icon name=shield
+      heading "Secure" level=3
       text "Enterprise security"
 
     card
-      icon name="heart"
-      heading "Loved" level="3"
+      icon name=heart
+      heading "Loved" level=3
       text "Trusted by thousands"

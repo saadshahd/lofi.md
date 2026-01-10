@@ -31,6 +31,6 @@ export const WithButtons = {
   link "Features"
   link "Pricing"
   button "Sign In"
-  button "Get Started" primary=1`,
+  button "Get Started" variant=primary`,
   },
 };

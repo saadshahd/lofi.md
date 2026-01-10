@@ -115,26 +115,22 @@ For elements with hover, active, focus states:
 // styles.ts - CVA just composes class names
 export const button = cva("btn", {
   variants: {
-    intent: {
+    variant: {
       primary: "btn-primary",
       secondary: "btn-secondary",
       danger: "btn-danger",
     },
   },
-  defaultVariants: { intent: "secondary" },
+  defaultVariants: { variant: "secondary" },
 });
 ```
 
 ```typescript
-// renderer - clean intent selection
+// renderer - read variant attribute directly
 export function renderButton(el: Element): string {
   const text = stripQuotes(el.content);
-
-  let intent: "primary" | "secondary" | "danger" = "secondary";
-  if (hasAttr(el.attrs, "primary")) intent = "primary";
-  else if (hasAttr(el.attrs, "danger")) intent = "danger";
-
-  const cls = styles.button({ intent });
+  const variant = getAttr(el.attrs, "variant") || "secondary";
+  const cls = styles.button({ variant });
   const disabled = hasAttr(el.attrs, "disabled");
 
   return `<button class="${cls}"${disabled ? " disabled" : ""}>${escapeHtml(text)}</button>`;
@@ -185,5 +181,5 @@ packages/html/src/
 1. **Closed vocabulary** — No arbitrary Tailwind classes in output
 2. **CSS for states** — Use CSS classes for hover/active/focus, not Tailwind variants
 3. **Theme tokens** — All colors/fonts/radii from `@theme`, never hardcoded
-4. **Single intent** — Use enum variants (`intent: "primary"`) not boolean flags
+4. **Single variant** — Use enum attribute (`variant="primary"`) not boolean flags
 5. **Transitions in CSS** — Complex transitions belong in CSS, not utility classes

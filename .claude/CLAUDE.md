@@ -27,7 +27,7 @@ bun run dev              # Dev server with hot reload
 bun run build            # Build all packages
 
 # Testing
-bun test                 # Run Vitest
+bun run test             # Run Vitest (ALWAYS use 'bun run test', not 'bun test')
 bun run storybook        # Launch Storybook 10
 
 # Linting

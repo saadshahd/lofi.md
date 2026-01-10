@@ -1,9 +1,10 @@
 {
   "name": "lofi",
   "private": true,
+  "packageManager": "bun@1.1.0",
   "workspaces": ["packages/*", "apps/*"],
   "scripts": {
-    "build": "bun run --filter '*' build",
+    "build": "turbo build",
     "test": "vitest run",
     "lint": "biome check .",
     "lint:fix": "biome check . --write",
@@ -14,8 +15,9 @@
   "devDependencies": {
     "@biomejs/biome": "^1.9.0",
     "tailwindcss": "^4.0.0",
+    "tsup": "^8.3.0",
+    "turbo": "^2.7.2",
     "typescript": "^5.7.0",
-    "vitest": "^2.1.0",
-    "tsup": "^8.3.0"
+    "vitest": "^2.1.0"
   }
 }

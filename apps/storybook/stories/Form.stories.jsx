@@ -10,10 +10,10 @@ export const LoginForm = {
     source: `card
   heading "Login"
   form
-    input "Email" type="email" placeholder="you@example.com"
-    input "Password" type="password"
+    input "Email" type=email placeholder="you@example.com"
+    input "Password" type=password
     checkbox "Remember me"
-    button "Sign In" primary=1`,
+    button "Sign In" variant=primary`,
   },
 };
 
@@ -22,20 +22,20 @@ export const CompleteForm = {
     source: `card
   heading "Account Settings"
   form
-    input "Email" type="email" placeholder="you@example.com"
-    input "Password" type="password"
-    input "Phone" type="tel"
-    textarea "Bio" rows="3" placeholder="Tell us about yourself"
+    input "Email" type=email placeholder="you@example.com"
+    input "Password" type=password
+    input "Phone" type=tel
+    textarea "Bio" rows=3 placeholder="Tell us about yourself"
     dropdown "Country" options="USA,Canada,UK,Australia" placeholder="Select country"
     checkbox "Receive notifications" checked=1
     checkbox "Enable dark mode"
-    radio "Standard Plan" name="plan" selected=1
-    radio "Pro Plan" name="plan"
+    radio "Standard Plan" name=plan selected=1
+    radio "Pro Plan" name=plan
     toggle "Two-factor auth" checked=1
-    slider "Volume" min="0" max="100" value="50"
-    grid flow="horizontal" gap=2
-      button "Cancel" secondary=1
-      button "Save Changes" primary=1`,
+    slider "Volume" min=0 max=100 value=50
+    grid flow=row gap=2
+      button "Cancel" variant=secondary
+      button "Save Changes" variant=primary`,
   },
 };
 
@@ -45,10 +45,10 @@ export const WithValidation = {
   heading "Register"
   form
     input "Username" error=1
-    alert type="error"
+    alert type=error
       text "Username already taken"
-    input "Email" type="email"
-    input "Password" type="password"
-    button "Register" primary=1`,
+    input "Email" type=email
+    input "Password" type=password
+    button "Register" variant=primary`,
   },
 };

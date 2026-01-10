@@ -13,11 +13,11 @@ export const Login = {
       heading "Welcome Back"
       text "Sign in to your account" muted=1
       form
-        input "Email" type="email" placeholder="you@example.com"
-        input "Password" type="password"
+        input "Email" type=email placeholder="you@example.com"
+        input "Password" type=password
         checkbox "Remember me"
-        button "Sign In" primary=1
-      grid flow="horizontal" align="between"
+        button "Sign In" variant=primary
+      grid flow=row align=between
         link "Forgot password?"
         link "Create account"`,
   },
@@ -31,14 +31,14 @@ export const Signup = {
       heading "Create Account"
       text "Start your free trial" muted=1
       form
-        grid cols="2" gap="2"
+        grid cols=2 gap=2
           input "First Name"
           input "Last Name"
-        input "Email" type="email" placeholder="you@example.com"
-        input "Password" type="password"
-        input "Confirm Password" type="password"
+        input "Email" type=email placeholder="you@example.com"
+        input "Password" type=password
+        input "Confirm Password" type=password
         checkbox "I agree to the Terms of Service"
-        button "Create Account" primary=1
+        button "Create Account" variant=primary
       md
         Already have an account? [Sign in](#)`,
   },
@@ -52,8 +52,8 @@ export const ForgotPassword = {
       heading "Forgot Password?"
       text "Enter your email to receive a reset link" muted=1
       form
-        input "Email" type="email" placeholder="you@example.com"
-        button "Send Reset Link" primary=1
+        input "Email" type=email placeholder="you@example.com"
+        button "Send Reset Link" variant=primary
       link "Back to login"`,
   },
 };
