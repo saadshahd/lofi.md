@@ -13,11 +13,11 @@
       },
     },
     "apps/storybook": {
-      "name": "@lofi/storybook",
+      "name": "@lofi.md/storybook",
       "version": "0.0.1",
       "dependencies": {
-        "@lofi/html": "workspace:*",
-        "@lofi/language": "workspace:*",
+        "@lofi.md/html": "workspace:*",
+        "@lofi.md/language": "workspace:*",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
       },
@@ -30,24 +30,24 @@
       },
     },
     "packages/cli": {
-      "name": "@lofi/cli",
+      "name": "@lofi.md/cli",
       "version": "0.0.1",
       "bin": {
-        "lofi": "./dist/index.js",
+        "lofi": "./src/index.ts",
       },
       "dependencies": {
-        "@lofi/html": "workspace:*",
-        "@lofi/language": "workspace:*",
+        "@lofi.md/html": "workspace:*",
+        "@lofi.md/language": "workspace:*",
       },
       "devDependencies": {
         "@types/bun": "latest",
       },
     },
     "packages/html": {
-      "name": "@lofi/html",
+      "name": "@lofi.md/html",
       "version": "0.0.1",
       "dependencies": {
-        "@lofi/language": "workspace:*",
+        "@lofi.md/language": "workspace:*",
         "class-variance-authority": "^0.7.0",
         "remark": "^15.0.1",
         "remark-gfm": "^4.0.1",
@@ -58,7 +58,7 @@
       },
     },
     "packages/language": {
-      "name": "@lofi/language",
+      "name": "@lofi.md/language",
       "version": "0.0.1",
       "dependencies": {
         "fastest-levenshtein": "^1.0.16",
@@ -71,10 +71,10 @@
     },
     "packages/vscode": {
       "name": "lofi-wireframes",
-      "version": "0.1.0",
+      "version": "0.0.1",
       "dependencies": {
-        "@lofi/html": "workspace:*",
-        "@lofi/language": "workspace:*",
+        "@lofi.md/html": "workspace:*",
+        "@lofi.md/language": "workspace:*",
         "vscode-languageclient": "^9.0.1",
         "vscode-languageserver": "^9.0.1",
         "vscode-languageserver-textdocument": "^1.0.12",
@@ -246,13 +246,13 @@
 
     "@jridgewell/trace-mapping": ["@jridgewell/trace-mapping@0.3.31", "", { "dependencies": { "@jridgewell/resolve-uri": "^3.1.0", "@jridgewell/sourcemap-codec": "^1.4.14" } }, "sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw=="],
 
-    "@lofi/cli": ["@lofi/cli@workspace:packages/cli"],
+    "@lofi.md/cli": ["@lofi.md/cli@workspace:packages/cli"],
 
-    "@lofi/html": ["@lofi/html@workspace:packages/html"],
+    "@lofi.md/html": ["@lofi.md/html@workspace:packages/html"],
 
-    "@lofi/language": ["@lofi/language@workspace:packages/language"],
+    "@lofi.md/language": ["@lofi.md/language@workspace:packages/language"],
 
-    "@lofi/storybook": ["@lofi/storybook@workspace:apps/storybook"],
+    "@lofi.md/storybook": ["@lofi.md/storybook@workspace:apps/storybook"],
 
     "@nodelib/fs.scandir": ["@nodelib/fs.scandir@2.1.5", "", { "dependencies": { "@nodelib/fs.stat": "2.0.5", "run-parallel": "^1.1.9" } }, "sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g=="],
 

@@ -1,5 +1,5 @@
-import { generate } from "@lofi/html";
-import { parse } from "@lofi/language";
+import { generate } from "@lofi.md/html";
+import { parse } from "@lofi.md/language";
 import React, { useState, useEffect } from "react";
 
 export function LofiPreview({ source }) {

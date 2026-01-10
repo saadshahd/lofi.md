@@ -1,4 +1,4 @@
-import { parse } from "@lofi/language";
+import { parse } from "@lofi.md/language";
 import { describe, expect, it } from "vitest";
 import { generate } from "./index.js";
 
@@ -18,7 +18,7 @@ describe("generate()", () => {
       expect(html).toContain("<div");
       expect(html).toContain("rounded-lofi");
       expect(html).toContain("border");
-      expect(html).toContain("wobble");
+      expect(html).toContain("sketch");
     });
 
     it("renders nested card with children", async () => {

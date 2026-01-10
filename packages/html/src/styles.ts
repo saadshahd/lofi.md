@@ -3,14 +3,16 @@ import { cva } from "class-variance-authority";
 /*
  * CVA definitions for all 31 lofi elements.
  * Uses Tailwind v4 @theme tokens from lofi.css for hand-drawn sketch aesthetic.
- * Containers get wobble effect, icons stay clean.
+ * Sketch effect via CSS organic border-radius + subtle rotation.
  */
 
 // ============================================================================
-// CONTAINERS (11) - All get wobble effect for sketchy borders
+// CONTAINERS (11) - Sketch effect via sketch + sketch-tilt utilities
 // ============================================================================
 
-export const page = cva("min-h-screen p-6 bg-lofi-bg text-lofi font-hand");
+export const page = cva(
+  "min-h-screen p-6 bg-lofi-bg text-lofi font-hand paper-texture",
+);
 
 export const section = cva("py-6", {
   variants: {
@@ -23,7 +25,7 @@ export const section = cva("py-6", {
 });
 
 export const card = cva(
-  "rounded-lofi border-2 border-lofi-border bg-lofi-bg p-4 wobble shadow-hard flex flex-col gap-3",
+  "rounded-lofi border-2 border-lofi-border bg-lofi-bg p-4 sketch sketch-card shadow-hard flex flex-col gap-3",
 );
 
 /*
@@ -77,7 +79,7 @@ export const grid = cva("flex", {
 export const form = cva("flex flex-col gap-4");
 
 export const modal = cva(
-  "fixed bg-lofi-bg rounded-lofi border-2 border-lofi-border p-6 max-w-md w-full wobble shadow-hard flex flex-col gap-4",
+  "fixed bg-lofi-bg rounded-lofi border-2 border-lofi-border p-6 max-w-md w-full sketch sketch-card shadow-hard flex flex-col gap-4",
   {
     variants: {
       position: {
@@ -94,7 +96,7 @@ export const modal = cva(
 );
 
 export const alert = cva(
-  "rounded-lofi border-2 p-4 font-hand wobble flex items-start gap-1.5 leading-none [&>p]:mt-1",
+  "rounded-lofi border-2 p-4 font-hand sketch sketch-alert flex items-start gap-1.5 leading-none [&>p]:mt-1",
   {
     variants: {
       type: {
@@ -124,7 +126,7 @@ export const tabs = cva("flex border-b-2 border-lofi-border");
 export const menu = cva("flex flex-col");
 
 // ============================================================================
-// CONTROLS (11) - Interactive elements with wobble effect
+// CONTROLS (11) - Interactive elements with sketch effect
 // ============================================================================
 
 export const button = cva("btn", {
@@ -141,7 +143,7 @@ export const button = cva("btn", {
 });
 
 export const input = cva(
-  "flex h-10 rounded-lofi border-2 border-lofi-border bg-lofi-bg px-3 py-2 text-sm font-hand placeholder:text-lofi-placeholder focus:outline-none focus-visible:focus-lofi wobble",
+  "flex h-10 rounded-lofi border-2 border-lofi-border bg-lofi-bg px-3 py-2 text-sm font-hand placeholder:text-lofi-placeholder focus:outline-none focus-visible:focus-lofi sketch sketch-control",
   {
     variants: {
       disabled: {
@@ -184,11 +186,11 @@ export const radio = cva(
 );
 
 export const dropdown = cva(
-  "flex h-10 w-full items-center justify-between rounded-lofi border-2 border-lofi-border bg-lofi-bg px-3 py-2 text-sm font-hand focus:outline-none focus-visible:focus-lofi wobble",
+  "flex h-10 w-full items-center justify-between rounded-lofi border-2 border-lofi-border bg-lofi-bg px-3 py-2 text-sm font-hand focus:outline-none focus-visible:focus-lofi sketch sketch-control",
 );
 
 export const textarea = cva(
-  "flex w-full rounded-lofi border-2 border-lofi-border bg-lofi-bg px-3 py-2 text-sm font-hand placeholder:text-lofi-placeholder focus:outline-none focus-visible:focus-lofi wobble",
+  "flex w-full rounded-lofi border-2 border-lofi-border bg-lofi-bg px-3 py-2 text-sm font-hand placeholder:text-lofi-placeholder focus:outline-none focus-visible:focus-lofi sketch sketch-control",
 );
 
 export const link = cva(
@@ -214,7 +216,7 @@ export const tab = cva(
 );
 
 export const accordion = cva(
-  "divide-y divide-lofi-border border-2 border-lofi-border rounded-lofi wobble",
+  "divide-y divide-lofi-border border-2 border-lofi-border rounded-lofi sketch sketch-card",
 );
 
 export const toggle = cva(
@@ -274,9 +276,11 @@ export const text = cva("text-lofi font-hand", {
   },
 });
 
-export const image = cva("max-w-full h-auto rounded-lofi wobble");
+export const image = cva(
+  "max-w-full h-auto rounded-lofi sketch sketch-control",
+);
 
-export const icon = cva("inline-block text-lofi wobble-subtle", {
+export const icon = cva("inline-block text-lofi", {
   variants: {
     size: {
       small: "w-4 h-4",
@@ -290,7 +294,7 @@ export const icon = cva("inline-block text-lofi wobble-subtle", {
 });
 
 export const badge = cva(
-  "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-hand wobble w-fit",
+  "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-hand w-fit",
   {
     variants: {
       type: {
@@ -307,7 +311,7 @@ export const badge = cva(
 );
 
 export const toast = cva(
-  "fixed rounded-lofi border-2 border-lofi-border bg-lofi-bg p-4 font-hand wobble shadow-hard",
+  "fixed rounded-lofi border-2 border-lofi-border bg-lofi-bg p-4 font-hand sketch sketch-card shadow-hard",
   {
     variants: {
       type: {
@@ -341,7 +345,7 @@ export const avatar = cva("rounded-full bg-lofi-placeholder overflow-hidden", {
 });
 
 export const progress = cva(
-  "w-full rounded-full bg-lofi-muted overflow-hidden wobble",
+  "w-full rounded-full bg-lofi-muted overflow-hidden",
   {
     variants: {
       size: {
@@ -357,7 +361,7 @@ export const progress = cva(
 );
 
 export const chart = cva(
-  "bg-lofi-muted border-2 border-lofi-border rounded-lofi flex items-center justify-center text-lofi-placeholder font-hand wobble relative",
+  "bg-lofi-muted border-2 border-lofi-border rounded-lofi flex items-center justify-center text-lofi-placeholder font-hand sketch sketch-card relative",
   {
     variants: {
       aspect: {

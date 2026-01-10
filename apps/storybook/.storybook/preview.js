@@ -1,4 +1,4 @@
-import "@lofi/html/lofi.css";
+import "@lofi.md/html/lofi.css";
 
 /** @type { import('@storybook/react-vite').Preview } */
 const preview = {

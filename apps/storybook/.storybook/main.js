@@ -18,15 +18,15 @@ const config = {
     config.resolve = config.resolve || {};
     config.resolve.alias = {
       ...config.resolve.alias,
-      "@lofi/language": resolve(
+      "@lofi.md/language": resolve(
         workspaceRoot,
         "packages/language/src/index.ts",
       ),
-      "@lofi/html/lofi.css": resolve(
+      "@lofi.md/html/lofi.css": resolve(
         workspaceRoot,
         "packages/html/src/lofi.css",
       ),
-      "@lofi/html": resolve(workspaceRoot, "packages/html/src/index.ts"),
+      "@lofi.md/html": resolve(workspaceRoot, "packages/html/src/index.ts"),
     };
 
     return config;

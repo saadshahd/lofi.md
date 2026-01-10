@@ -2,8 +2,8 @@
 import { watch } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { parseArgs } from "node:util";
-import { generate } from "@lofi/html";
-import { parse } from "@lofi/language";
+import { generate } from "@lofi.md/html";
+import { parse } from "@lofi.md/language";
 import type { ServerWebSocket } from "bun";
 
 const { values, positionals } = parseArgs({
@@ -60,7 +60,7 @@ function wrapHtml(content: string): string {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>lofi preview</title>
-  <link rel="stylesheet" href="https://unpkg.com/@lofi/html/dist/lofi.css">
+  <link rel="stylesheet" href="https://unpkg.com/@lofi.md/html/dist/lofi.css">
 </head>
 <body class="bg-lofi-bg p-8 font-hand">
   ${content}

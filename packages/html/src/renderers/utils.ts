@@ -1,4 +1,4 @@
-import type { Attribute, Element } from "@lofi/language";
+import type { Attribute, Element } from "@lofi.md/language";
 
 export function getAttr(attrs: Attribute[], name: string): string | undefined {
   return attrs.find((a) => a.name === name)?.value;

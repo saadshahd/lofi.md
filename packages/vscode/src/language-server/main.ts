@@ -1,4 +1,4 @@
-import { createLofiLSPServices } from "@lofi/language";
+import { createLofiLSPServices } from "@lofi.md/language";
 import { startLanguageServer } from "langium/lsp";
 import { NodeFileSystem } from "langium/node";
 import { ProposedFeatures, createConnection } from "vscode-languageserver/node";

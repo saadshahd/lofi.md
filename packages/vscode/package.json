@@ -2,7 +2,7 @@
   "name": "lofi-wireframes",
   "displayName": "lofi Wireframes",
   "description": "Language support and live preview for lofi wireframe DSL",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "publisher": "lofi",
   "license": "MIT",
   "engines": {
@@ -99,8 +99,8 @@
     "package": "vsce package --no-dependencies"
   },
   "dependencies": {
-    "@lofi/language": "workspace:*",
-    "@lofi/html": "workspace:*",
+    "@lofi.md/language": "workspace:*",
+    "@lofi.md/html": "workspace:*",
     "vscode-languageclient": "^9.0.1",
     "vscode-languageserver": "^9.0.1",
     "vscode-languageserver-textdocument": "^1.0.12"

@@ -1,6 +1,7 @@
 {
-  "name": "@lofi/cli",
+  "name": "@lofi.md/cli",
   "version": "0.0.1",
+  "license": "MIT",
   "type": "module",
   "bin": {
     "lofi": "./src/index.ts"
@@ -9,8 +10,8 @@
     "dev": "bun --watch src/index.ts"
   },
   "dependencies": {
-    "@lofi/language": "workspace:*",
-    "@lofi/html": "workspace:*"
+    "@lofi.md/language": "workspace:*",
+    "@lofi.md/html": "workspace:*"
   },
   "devDependencies": {
     "@types/bun": "latest"

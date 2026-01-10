@@ -1,0 +1,9 @@
+# Config
+tsconfig.json
+
+# Development
+.turbo/
+*.test.ts
+
+# IDE
+.vscode/

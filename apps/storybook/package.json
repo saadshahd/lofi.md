@@ -1,5 +1,5 @@
 {
-  "name": "@lofi/storybook",
+  "name": "@lofi.md/storybook",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -9,8 +9,8 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@lofi/html": "workspace:*",
-    "@lofi/language": "workspace:*",
+    "@lofi.md/html": "workspace:*",
+    "@lofi.md/language": "workspace:*",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

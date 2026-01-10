@@ -5,25 +5,10 @@ import type {
   HtmlBlock,
   MdBlock,
   TopLevelElement,
-} from "@lofi/language";
+} from "@lofi.md/language";
 import { remark } from "remark";
 import remarkGfm from "remark-gfm";
 import remarkHtml from "remark-html";
-
-/**
- * SVG filters for hand-drawn wobble effect.
- * Include once per document for the `wobble` and `wobble-subtle` utility classes to work.
- */
-export const SVG_WOBBLE_FILTER = `<svg style="position:absolute;width:0;height:0;display:none;" aria-hidden="true">
-  <filter id="lofi-wobble">
-    <feTurbulence type="turbulence" baseFrequency="0.2" numOctaves="2" result="noise"/>
-    <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5" />
-  </filter>
-  <filter id="lofi-wobble-subtle">
-    <feTurbulence type="turbulence" baseFrequency="0.015" numOctaves="1" result="noise"/>
-    <feDisplacementMap in="SourceGraphic" in2="noise" scale="0.5" />
-  </filter>
-</svg>`;
 
 import {
   renderAlert,
@@ -57,22 +42,22 @@ import * as styles from "./styles.js";
 
 function renderAccordionItem(
   sectionEl: Element,
-  renderNodeFn: (node: TopLevelElement | ChildElement) => string
+  renderNodeFn: (node: TopLevelElement | ChildElement) => string,
 ): string {
   const headingEl = sectionEl.children.find(
-    (c: ChildElement) => c.$type === "Element" && c.keyword === "heading"
+    (c: ChildElement) => c.$type === "Element" && c.keyword === "heading",
   ) as Element | undefined;
 
   const title = headingEl ? stripQuotes(headingEl.content) : "Section";
 
   const contentChildren = sectionEl.children.filter(
     (c: ChildElement) =>
-      !(c.$type === "Element" && c.keyword === "heading" && c === headingEl)
+      !(c.$type === "Element" && c.keyword === "heading" && c === headingEl),
   );
   const contentHtml = contentChildren.map(renderNodeFn).join("\n");
 
   return `<details class="accordion-item" open><summary class="accordion-trigger">${escapeHtml(
-    title
+    title,
   )}</summary><div class="accordion-content">${contentHtml}</div></details>`;
 }
 
@@ -92,10 +77,10 @@ function renderAccordionWithItems(el: Element): string {
   const cls = styles.accordion();
   const items = el.children
     .filter(
-      (c: ChildElement) => c.$type === "Element" && c.keyword === "section"
+      (c: ChildElement) => c.$type === "Element" && c.keyword === "section",
     )
     .map((sectionEl: ChildElement) =>
-      renderAccordionItem(sectionEl as Element, renderNode)
+      renderAccordionItem(sectionEl as Element, renderNode),
     )
     .join("\n");
   return `<div class="${cls}">${items}</div>`;
@@ -104,15 +89,9 @@ function renderAccordionWithItems(el: Element): string {
 /**
  * Generate HTML from a lofi document.
  * @param doc - Parsed lofi document
- * @param options.includeFilter - Include SVG wobble filter (default: true)
  */
-export function generate(
-  doc: Document,
-  options: { includeFilter?: boolean } = {}
-): string {
-  const { includeFilter = true } = options;
-  const content = doc.elements.map(renderNode).join("\n");
-  return includeFilter ? `${SVG_WOBBLE_FILTER}\n${content}` : content;
+export function generate(doc: Document): string {
+  return doc.elements.map(renderNode).join("\n");
 }
 
 function renderNode(node: TopLevelElement | ChildElement): string {

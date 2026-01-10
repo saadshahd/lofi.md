@@ -47,13 +47,31 @@
   }
 } */
 
-/* 6. Wobble utilities (for sketchy containers and icons) */
-@utility wobble {
-  filter: url(#lofi-wobble);
+/* 6. Sketch utilities (CSS-only hand-drawn aesthetic) */
+@utility sketch {
+  border-radius: 2px 8px 5px 10px / 10px 3px 8px 4px;
+  transform: rotate(var(--sketch-tilt, -0.3deg));
+  overflow: hidden;
 }
 
-@utility wobble-subtle {
-  filter: url(#lofi-wobble-subtle);
+@utility sketch-card {
+  --sketch-tilt: -0.4deg;
+}
+
+@utility sketch-control {
+  --sketch-tilt: 0deg;
+  border-radius: var(--radius-lofi);
+}
+
+@utility sketch-alert {
+  --sketch-tilt: -0.5deg;
+}
+
+@utility paper-texture {
+  background-image:
+    linear-gradient(90deg, transparent 95%, rgba(0, 0, 0, 0.06) 100%),
+    linear-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+  background-size: 20px 20px;
 }
 
 /* 7. Sketch effect utilities */
@@ -68,7 +86,9 @@
 }
 
 @utility shadow-hard {
-  box-shadow: 3px 3px 0 0 var(--color-lofi-border);
+  box-shadow:
+    3px 3px 0 -1px var(--color-lofi-bg),
+    4px 4px 0 0 var(--color-lofi-border);
 }
 
 /* 8. Button system - sketch aesthetic with press effect */
@@ -85,7 +105,6 @@
   cursor: pointer;
   transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.1s
     ease;
-  filter: url(#lofi-wobble);
 }
 
 .btn:focus-visible {

@@ -1,6 +1,6 @@
 /**
  * Valid icon names for the lofi DSL.
- * SYNC: Must match icons defined in @lofi/html packages/html/src/icons.ts
+ * SYNC: Must match icons defined in @lofi.md/html packages/html/src/icons.ts
  */
 
 const ICON_NAMES = [

@@ -1,6 +1,7 @@
 {
-  "name": "@lofi/html",
+  "name": "@lofi.md/html",
   "version": "0.0.1",
+  "license": "MIT",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -18,7 +19,7 @@
     "build": "bun run build:css && bun run build:ts"
   },
   "dependencies": {
-    "@lofi/language": "workspace:*",
+    "@lofi.md/language": "workspace:*",
     "class-variance-authority": "^0.7.0",
     "remark": "^15.0.1",
     "remark-gfm": "^4.0.1",

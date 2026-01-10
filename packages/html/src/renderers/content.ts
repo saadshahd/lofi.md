@@ -1,4 +1,4 @@
-import type { Element } from "@lofi/language";
+import type { Element } from "@lofi.md/language";
 import { getIconSvg } from "../icons.js";
 import * as styles from "../styles.js";
 import { escapeHtml, getAttr, hasAttr, stripQuotes } from "./utils.js";

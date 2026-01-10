@@ -1,0 +1,16 @@
+# Source files
+src/
+*.ts
+!dist/**/*.d.ts
+
+# Config
+tsconfig.json
+tsup.config.ts
+langium-config.json
+
+# Development
+.turbo/
+*.test.ts
+
+# IDE
+.vscode/

@@ -6,7 +6,7 @@ export default defineConfig([
     format: ["cjs"],
     outDir: "dist",
     external: ["vscode"],
-    noExternal: ["@lofi/language", "@lofi/html"],
+    noExternal: ["@lofi.md/language", "@lofi.md/html"],
     sourcemap: true,
     clean: true,
   },
@@ -14,7 +14,7 @@ export default defineConfig([
     entry: ["src/language-server/main.ts"],
     format: ["cjs"],
     outDir: "dist/language-server",
-    noExternal: ["@lofi/language"],
+    noExternal: ["@lofi.md/language"],
     sourcemap: true,
   },
 ]);

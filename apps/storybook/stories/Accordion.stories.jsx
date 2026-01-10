@@ -36,7 +36,7 @@ export const FAQ = {
   accordion
     section
       heading "How do I install?"
-      text "Run: npm install -g @lofi/cli"
+      text "Run: npm install -g @lofi.md/cli"
     section
       heading "What formats are supported?"
       text "Currently HTML output only."

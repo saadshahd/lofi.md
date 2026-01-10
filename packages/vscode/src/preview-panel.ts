@@ -1,5 +1,5 @@
-import { SVG_WOBBLE_FILTER, generate } from "@lofi/html";
-import { parse } from "@lofi/language";
+import { generate } from "@lofi.md/html";
+import { parse } from "@lofi.md/language";
 import * as vscode from "vscode";
 
 let currentPanel: LofiPreviewPanel | undefined;
@@ -35,7 +35,7 @@ export class LofiPreviewPanel {
       {
         enableScripts: false,
         localResourceRoots: [extensionUri],
-      }
+      },
     );
 
     currentPanel = new LofiPreviewPanel(panel, extensionUri);
@@ -59,16 +59,16 @@ export class LofiPreviewPanel {
         `<div class="text-lofi-error font-hand p-4">
           <h2 class="font-sketch text-xl mb-2">Parse Error</h2>
           <pre class="bg-lofi-muted p-2 rounded-lofi text-sm">${escapeHtml(
-            String(error)
+            String(error),
           )}</pre>
-        </div>`
+        </div>`,
       );
     }
   }
 
   private getStylesheetUri(): vscode.Uri {
     return this.panel.webview.asWebviewUri(
-      vscode.Uri.joinPath(this.extensionUri, "dist", "lofi.css")
+      vscode.Uri.joinPath(this.extensionUri, "dist", "lofi.css"),
     );
   }
 
