@@ -68,9 +68,11 @@
 }
 
 @utility paper-texture {
-  background-image:
-    linear-gradient(90deg, transparent 95%, rgba(0, 0, 0, 0.06) 100%),
-    linear-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+  background-image: linear-gradient(
+      90deg,
+      transparent 95%,
+      rgba(0, 0, 0, 0.06) 100%
+    ), linear-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1px);
   background-size: 20px 20px;
 }
 
@@ -86,9 +88,8 @@
 }
 
 @utility shadow-hard {
-  box-shadow:
-    3px 3px 0 -1px var(--color-lofi-bg),
-    4px 4px 0 0 var(--color-lofi-border);
+  box-shadow: 3px 3px 0 -1px var(--color-lofi-bg), 4px 4px 0 0
+    var(--color-lofi-border);
 }
 
 /* 8. Button system - sketch aesthetic with press effect */

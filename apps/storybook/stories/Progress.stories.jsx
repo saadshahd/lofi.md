@@ -6,23 +6,23 @@ export default {
 };
 
 export const Default = {
-  args: { source: 'progress value=50' },
+  args: { source: "progress value=50" },
 };
 
 export const Empty = {
-  args: { source: 'progress value=0' },
+  args: { source: "progress value=0" },
 };
 
 export const Full = {
-  args: { source: 'progress value=100' },
+  args: { source: "progress value=100" },
 };
 
 export const Small = {
-  args: { source: 'progress value=75 size=small' },
+  args: { source: "progress value=75 size=small" },
 };
 
 export const Large = {
-  args: { source: 'progress value=60 size=large' },
+  args: { source: "progress value=60 size=large" },
 };
 
 export const InCard = {

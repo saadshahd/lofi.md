@@ -11,7 +11,7 @@
 | Output       | Text DSL → HTML only with shadcn sketch styling     | LLMs generate text, humans consume visually      |
 | Ecosystem    | Node/bun                                            | moo.md integration, designers don't use Java     |
 | Tailwind     | Closed vocabulary, no arbitrary classes             | bounded output for better generation             |
-| Packages     | `@lofi/html` (1st renderer)                         | Single responsibility; enables `@lofi/figma`     |
+| Packages     | `@lofi.md/html` (1st renderer)                      | Single responsibility; enables future renderers |
 | Storybook    | `apps/storybook` aggregates from packages           | React wrapper for visual regression only         |
 | md/html      | Post-lexer token collapsing                         | Langium doesn't expose lexer modes; collapse     |
 | Attributes   | All require `=` (e.g. `variant="primary"`)          | Eliminates ID/attr ambiguity without lookahead;  |

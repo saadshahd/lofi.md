@@ -116,7 +116,7 @@
 - [x] `lofi --watch` → file watcher with auto-regeneration
 - [x] `lofi --serve` → dev server with WebSocket hot reload
 - [x] Create bin/lofi entry point (bun-native, no bundling needed)
-- [ ] Publish to npm (deferred until v1.0)
+- [x] Publish to npm (`@lofi.md/cli`, `@lofi.md/html`, `@lofi.md/language`)
 
 #### Milestone 7: Documentation ✅
 

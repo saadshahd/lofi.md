@@ -4,17 +4,32 @@
 
 LLM-first wireframe DSL. Generate UI mockups from simple text, optimized for AI generation and human tweaking.
 
+## Installation
+
+```bash
+npm install -g @lofi.md/cli
+# or
+bun add -g @lofi.md/cli
+```
+
 ## Quick Start
 
 ```bash
-# Requires bun (https://bun.sh)
-git clone https://github.com/user/lofi.git
-cd lofi && bun install
-
 # Generate HTML
-bun packages/cli/src/index.ts example.lofi
+lofi example.lofi
+
+# Output to file
+lofi example.lofi -o out.html
 
 # Dev server with hot reload
+lofi example.lofi --serve
+```
+
+### From Source
+
+```bash
+git clone https://github.com/lofi-md/wiremd.git
+cd wiremd && bun install
 bun packages/cli/src/index.ts example.lofi --serve
 ```
 

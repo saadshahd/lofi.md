@@ -32,37 +32,38 @@
 ## Phase 2: Verification
 
 ### Build
-- [ ] Run `bun install` (refresh lockfile after renames)
-- [ ] Run `bun run build` (all packages)
-- [ ] Verify `packages/language/dist/` exists
-- [ ] Verify `packages/html/dist/` exists with lofi.css
-- [ ] Verify `packages/vscode/dist/` exists
+- [x] Run `bun install` (refresh lockfile after renames)
+- [x] Run `bun run build` (all packages)
+- [x] Verify `packages/language/dist/` exists
+- [x] Verify `packages/html/dist/` exists with lofi.css
+- [x] Verify `packages/vscode/dist/` exists
 
 ### Tests
-- [ ] Run `bun run test`
-- [ ] All tests pass
+- [x] Run `bun run test`
+- [x] All tests pass (99 tests)
 
 ### Lint
-- [ ] Run `bun run lint`
-- [ ] No errors
+- [x] Run `bun run lint`
+- [x] No errors
 
 ---
 
 ## Phase 3: Documentation Audit
 
 ### Core Docs
-- [ ] `README.md` — Quick start accurate, installation commands use `@lofi.md/*`
-- [ ] `SYNTAX.md` — Element reference complete
-- [ ] `PHILOSOPHY.md` — Design axioms documented
-- [ ] `ROADMAP.md` — Milestones up to date
+- [x] `README.md` — Quick start accurate, installation commands use `@lofi.md/*`
+- [x] `SYNTAX.md` — Element reference complete
+- [x] `PHILOSOPHY.md` — Design axioms documented
+- [x] `ROADMAP.md` — Milestones up to date
+- [x] `DECISIONS.md` — Updated package scope references
 
 ### Package READMEs (optional for v0.0.1)
-- [ ] `packages/language/README.md` — Basic usage
-- [ ] `packages/html/README.md` — Basic usage
-- [ ] `packages/cli/README.md` — CLI commands
+- [ ] `packages/language/README.md` — Basic usage (skipped for v0.0.1)
+- [ ] `packages/html/README.md` — Basic usage (skipped for v0.0.1)
+- [ ] `packages/cli/README.md` — CLI commands (skipped for v0.0.1)
 
 ### Changelog
-- [ ] Create `CHANGELOG.md` with v0.0.1 entry
+- [x] Create `CHANGELOG.md` with v0.0.1 entry
 
 ---
 
