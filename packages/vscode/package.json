@@ -2,24 +2,21 @@
   "name": "lofi-wireframes",
   "displayName": "lofi.md",
   "description": "Language support and live preview for lofi wireframe DSL",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "publisher": "moo",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/moo-md/lofi.md"
+    "url": "https://github.com/saadshahd/lofi.md"
   },
   "bugs": {
-    "url": "https://github.com/moo-md/lofi.md/issues"
+    "url": "https://github.com/saadshahd/lofi.md/issues"
   },
-  "homepage": "https://github.com/moo-md/lofi.md#readme",
+  "homepage": "https://github.com/saadshahd/lofi.md#readme",
   "engines": {
     "vscode": "^1.85.0"
   },
-  "categories": [
-    "Programming Languages",
-    "Visualization"
-  ],
+  "categories": ["Programming Languages", "Visualization"],
   "keywords": [
     "wireframe",
     "prototype",
@@ -35,13 +32,8 @@
     "languages": [
       {
         "id": "lofi",
-        "aliases": [
-          "lofi",
-          "lofi-wireframe"
-        ],
-        "extensions": [
-          ".lofi"
-        ],
+        "aliases": ["lofi", "lofi-wireframe"],
+        "extensions": [".lofi"],
         "configuration": "./language-configuration.json"
       }
     ],

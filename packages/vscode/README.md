@@ -30,6 +30,6 @@ card
 
 ## Learn More
 
-- [Full syntax reference](https://github.com/moo-md/lofi.md/blob/main/SYNTAX.md)
+- [Full syntax reference](https://github.com/saadshahd/lofi.md/blob/main/SYNTAX.md)
 - [CLI for batch generation](https://www.npmjs.com/package/@lofi.md/cli)
-- [Philosophy & design](https://github.com/moo-md/lofi.md/blob/main/PHILOSOPHY.md)
+- [Philosophy & design](https://github.com/saadshahd/lofi.md/blob/main/PHILOSOPHY.md)
