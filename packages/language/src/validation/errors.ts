@@ -11,7 +11,13 @@ export const ErrorCodes = {
   LOFI_INDENT_003: "LOFI_INDENT_003",
   LOFI_INDENT_004: "LOFI_INDENT_004",
   LOFI_SYNTAX_001: "LOFI_SYNTAX_001",
+  LOFI_SYNTAX_002: "LOFI_SYNTAX_002",
+  LOFI_SYNTAX_003: "LOFI_SYNTAX_003",
   LOFI_ATTR_001: "LOFI_ATTR_001",
+  LOFI_ATTR_002: "LOFI_ATTR_002",
+  LOFI_ATTR_003: "LOFI_ATTR_003",
+  LOFI_BLOCK_001: "LOFI_BLOCK_001",
+  LOFI_BLOCK_003: "LOFI_BLOCK_003",
 } as const;
 
 export type LofiErrorCode = (typeof ErrorCodes)[keyof typeof ErrorCodes];
@@ -67,7 +73,37 @@ export const ErrorMeta: Record<
   LOFI_ATTR_001: {
     message: "Unknown icon name",
     suggestion: "See SYNTAX.md for valid icon names",
-    example: 'icon name="heart"',
+    example: "icon name=heart",
+  },
+  LOFI_SYNTAX_002: {
+    message: "Missing content",
+    suggestion: "This element requires quoted text content",
+    example: 'button "Save"',
+  },
+  LOFI_SYNTAX_003: {
+    message: "Invalid attribute",
+    suggestion: "Check valid attributes for this element in SYNTAX.md",
+    example: 'button "Save" variant=primary',
+  },
+  LOFI_ATTR_002: {
+    message: "Invalid attribute value",
+    suggestion: "Check valid values for this attribute in SYNTAX.md",
+    example: 'button "Save" variant=primary',
+  },
+  LOFI_ATTR_003: {
+    message: "Duplicate attribute",
+    suggestion: "Remove the duplicate attribute",
+    example: 'button "Save" variant=primary',
+  },
+  LOFI_BLOCK_001: {
+    message: "Empty block",
+    suggestion: "Add content to the block or remove it",
+    example: "md\n  | Header |\n  |--------|",
+  },
+  LOFI_BLOCK_003: {
+    message: "Unclosed block",
+    suggestion: "Ensure proper indentation closes the block",
+    example: "html\n  <div>content</div>",
   },
 };
 

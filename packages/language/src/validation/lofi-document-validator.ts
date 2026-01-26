@@ -161,6 +161,23 @@ export class LofiDocumentValidator extends DefaultDocumentValidator {
       }
     }
 
+    // Check for unclosed html/md block (missing DEDENT)
+    if (
+      message.includes("Expecting: DEDENT") &&
+      (message.includes("html") || message.includes("md"))
+    ) {
+      const meta = ErrorMeta[ErrorCodes.LOFI_BLOCK_003];
+      return {
+        message: formatErrorMessage(ErrorCodes.LOFI_BLOCK_003),
+        code: ErrorCodes.LOFI_BLOCK_003,
+        data: {
+          code: ErrorCodes.LOFI_BLOCK_003,
+          suggestion: meta.suggestion,
+          example: meta.example,
+        },
+      };
+    }
+
     // Return original message with parsing error code
     return {
       message,

@@ -12,7 +12,13 @@ import type {
   ValidationChecks,
   ValidationRegistry,
 } from "langium";
-import type { Element, LofiAstType } from "../generated/ast.js";
+import type {
+  Element,
+  HtmlBlock,
+  LofiAstType,
+  MdBlock,
+} from "../generated/ast.js";
+import { ELEMENT_SCHEMAS } from "./element-schema.js";
 import {
   ErrorCodes,
   ErrorMeta,
@@ -95,6 +101,195 @@ export class LofiValidator {
     }
     return closest || null;
   }
+
+  checkRequiredContent(element: Element, accept: ValidationAcceptor): void {
+    const schema = ELEMENT_SCHEMAS[element.keyword];
+    if (!schema) return;
+
+    if (schema.requiresContent && !element.content) {
+      const meta = ErrorMeta[ErrorCodes.LOFI_SYNTAX_002];
+      accept(
+        "error",
+        formatErrorMessage(
+          ErrorCodes.LOFI_SYNTAX_002,
+          `'${element.keyword}' requires content`,
+        ),
+        {
+          node: element,
+          property: "keyword",
+          code: ErrorCodes.LOFI_SYNTAX_002,
+          data: {
+            code: ErrorCodes.LOFI_SYNTAX_002,
+            suggestion: meta.suggestion,
+            example: meta.example,
+          },
+        },
+      );
+    }
+  }
+
+  checkValidAttributes(element: Element, accept: ValidationAcceptor): void {
+    const schema = ELEMENT_SCHEMAS[element.keyword];
+    if (!schema) return;
+
+    for (const attr of element.attrs) {
+      const attrName = attr.name.replace(/=$/, "");
+
+      if (attrName === "name" && element.keyword === "icon") {
+        continue;
+      }
+
+      if (!schema.validAttrs.has(attrName)) {
+        const validList = Array.from(schema.validAttrs.keys());
+        const hint =
+          validList.length > 0
+            ? `Valid: ${validList.join(", ")}`
+            : "No attributes allowed";
+
+        accept(
+          "error",
+          formatErrorMessage(
+            ErrorCodes.LOFI_SYNTAX_003,
+            `'${attrName}' for '${element.keyword}'. ${hint}`,
+          ),
+          {
+            node: attr,
+            property: "name",
+            code: ErrorCodes.LOFI_SYNTAX_003,
+            data: {
+              code: ErrorCodes.LOFI_SYNTAX_003,
+              invalidAttr: attrName,
+              element: element.keyword,
+            },
+          },
+        );
+      }
+    }
+  }
+
+  checkAttributeValues(element: Element, accept: ValidationAcceptor): void {
+    const schema = ELEMENT_SCHEMAS[element.keyword];
+    if (!schema) return;
+
+    for (const attr of element.attrs) {
+      const attrName = attr.name.replace(/=$/, "");
+      const attrSchema = schema.validAttrs.get(attrName);
+      if (!attrSchema) continue;
+
+      const value = attr.value.replace(/^"|"$/g, "");
+
+      if (attrSchema.type === "enum" && attrSchema.values) {
+        if (!attrSchema.values.includes(value)) {
+          accept(
+            "error",
+            formatErrorMessage(
+              ErrorCodes.LOFI_ATTR_002,
+              `'${value}' for '${attrName}'. Expected: ${attrSchema.values.join(", ")}`,
+            ),
+            {
+              node: attr,
+              property: "value",
+              code: ErrorCodes.LOFI_ATTR_002,
+              data: {
+                code: ErrorCodes.LOFI_ATTR_002,
+                invalidValue: value,
+                validValues: attrSchema.values,
+              },
+            },
+          );
+        }
+      }
+
+      if (attrSchema.type === "number") {
+        const num = Number.parseInt(value, 10);
+        const outOfRange =
+          Number.isNaN(num) ||
+          (attrSchema.min !== undefined && num < attrSchema.min) ||
+          (attrSchema.max !== undefined && num > attrSchema.max);
+
+        if (outOfRange) {
+          const range =
+            attrSchema.min !== undefined && attrSchema.max !== undefined
+              ? `${attrSchema.min}-${attrSchema.max}`
+              : attrSchema.min !== undefined
+                ? `>= ${attrSchema.min}`
+                : `<= ${attrSchema.max}`;
+
+          accept(
+            "error",
+            formatErrorMessage(
+              ErrorCodes.LOFI_ATTR_002,
+              `'${value}' for '${attrName}'. Expected number in range ${range}`,
+            ),
+            {
+              node: attr,
+              property: "value",
+              code: ErrorCodes.LOFI_ATTR_002,
+              data: {
+                code: ErrorCodes.LOFI_ATTR_002,
+                invalidValue: value,
+                range,
+              },
+            },
+          );
+        }
+      }
+    }
+  }
+
+  checkDuplicateAttributes(element: Element, accept: ValidationAcceptor): void {
+    const seen = new Map<string, boolean>();
+
+    for (const attr of element.attrs) {
+      const attrName = attr.name.replace(/=$/, "");
+
+      if (seen.has(attrName)) {
+        accept(
+          "error",
+          formatErrorMessage(ErrorCodes.LOFI_ATTR_003, `'${attrName}'`),
+          {
+            node: attr,
+            property: "name",
+            code: ErrorCodes.LOFI_ATTR_003,
+            data: {
+              code: ErrorCodes.LOFI_ATTR_003,
+              duplicateAttr: attrName,
+            },
+          },
+        );
+      } else {
+        seen.set(attrName, true);
+      }
+    }
+  }
+
+  checkEmptyMdBlock(block: MdBlock, accept: ValidationAcceptor): void {
+    const content = block.lines.join("\n").trim();
+    if (!content) {
+      accept("error", formatErrorMessage(ErrorCodes.LOFI_BLOCK_001, "md"), {
+        node: block,
+        code: ErrorCodes.LOFI_BLOCK_001,
+        data: {
+          code: ErrorCodes.LOFI_BLOCK_001,
+          blockType: "md",
+        },
+      });
+    }
+  }
+
+  checkEmptyHtmlBlock(block: HtmlBlock, accept: ValidationAcceptor): void {
+    const content = block.lines.join("\n").trim();
+    if (!content) {
+      accept("error", formatErrorMessage(ErrorCodes.LOFI_BLOCK_001, "html"), {
+        node: block,
+        code: ErrorCodes.LOFI_BLOCK_001,
+        data: {
+          code: ErrorCodes.LOFI_BLOCK_001,
+          blockType: "html",
+        },
+      });
+    }
+  }
 }
 
 /**
@@ -111,7 +306,13 @@ export function registerLofiValidation(
     Element: [
       validator.checkValidKeyword.bind(validator),
       validator.checkValidIconName.bind(validator),
+      validator.checkRequiredContent.bind(validator),
+      validator.checkValidAttributes.bind(validator),
+      validator.checkAttributeValues.bind(validator),
+      validator.checkDuplicateAttributes.bind(validator),
     ],
+    MdBlock: [validator.checkEmptyMdBlock.bind(validator)],
+    HtmlBlock: [validator.checkEmptyHtmlBlock.bind(validator)],
   };
   registry.register(checks, validator);
 }
